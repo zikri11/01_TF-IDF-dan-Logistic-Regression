@@ -7,16 +7,25 @@ from mikrotik_adapter import (
     remove_bandwidth_limit,
     apply_firewall_block,
     remove_firewall_block,
+    enable_interface,
+    disable_interface,
+    enable_nat,
+    disable_nat,
+    MANAGEMENT_INTERFACES,
     MikroTikAdapter,
 )
 
 PROTECTED_IPS = {"127.0.0.1", "192.168.88.1", ROUTER_HOST}
-VALID_INTERFACES = {"ether1", "ether2", "ether3", "ether4", "wlan1", "bridge"}
+VALID_INTERFACES = {"ether1", "ether2", "ether3", "ether4", "wlan1", "bridge", "pwr-line1"}
 SUPPORTED_INTENTS = {
     "limit_bandwidth": "apply_bandwidth_limit",
     "remove_limit": "remove_bandwidth_limit",
     "block_traffic": "apply_firewall_block",
     "unblock_traffic": "remove_firewall_block",
+    "enable_interface": "enable_interface",
+    "disable_interface": "disable_interface",
+    "enable_nat": "enable_nat",
+    "disable_nat": "disable_nat",
 }
 
 
@@ -67,12 +76,13 @@ def normalize_target(target_str: str) -> str:
     if not isinstance(target_str, str) or not target_str.strip():
         raise ValueError("Target IP cannot be empty")
     s = target_str.strip().lower()
+    if s.startswith("port"):
+        num = re.search(r"\d+", s)
+        if num:
+            s = f"ether{num.group(0)}"
     if s in VALID_INTERFACES:
         return s
-    if re.match(r"^(?:ether\d+|wlan\d+|bridge\d*|port\s*\d+)$", s):
-        if s.startswith("port"):
-            num = re.search(r"\d+", s).group(0)
-            s = f"ether{num}"
+    if re.match(r"^(?:ether\d+|wlan\d+|bridge\d*)$", s):
         raise ValueError(f"Interface {s} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)")
     if "/" in s:
         return str(ipaddress.ip_network(s, strict=False))
@@ -129,6 +139,83 @@ def build_network_policy(
         }
 
     action = SUPPORTED_INTENTS[intent_norm]
+
+    if intent_norm in ("enable_interface", "disable_interface"):
+        if not target or not str(target).strip():
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": None,
+                "rate": rate,
+                "dst_port": dst_port,
+                "protocol": protocol,
+                "name": None,
+                "is_valid": False,
+                "error": "Target interface wajib diisi",
+            }
+        tgt = str(target).strip().lower()
+        if tgt.startswith("port"):
+            num_m = re.search(r"\d+", tgt)
+            tgt = f"ether{num_m.group(0)}" if num_m else tgt
+
+        if tgt not in VALID_INTERFACES:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": tgt,
+                "rate": rate,
+                "dst_port": dst_port,
+                "protocol": protocol,
+                "name": None,
+                "is_valid": False,
+                "error": f"Interface {tgt} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)",
+            }
+
+        if intent_norm == "disable_interface" and tgt in MANAGEMENT_INTERFACES:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": tgt,
+                "rate": rate,
+                "dst_port": dst_port,
+                "protocol": protocol,
+                "name": None,
+                "is_valid": False,
+                "error": f"Anti-lockout: Dilarang mematikan interface manajemen ({tgt}) karena sedang digunakan Controller!",
+            }
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": tgt,
+            "rate": None,
+            "dst_port": None,
+            "protocol": None,
+            "name": f"iface_{tgt}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm in ("enable_nat", "disable_nat"):
+        out_interface = str(target).strip().lower() if target and str(target).strip() else "ether1"
+        if out_interface.startswith("port"):
+            num_m = re.search(r"\d+", out_interface)
+            if num_m:
+                out_interface = f"ether{num_m.group(0)}"
+        comment = "IBN_NAT_MASQ"
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": out_interface,
+            "out_interface": out_interface,
+            "comment": comment,
+            "rate": None,
+            "dst_port": None,
+            "protocol": None,
+            "name": f"nat_{out_interface}",
+            "is_valid": True,
+            "error": None,
+        }
 
     # Validate dst_port
     norm_dst_port = None
@@ -284,6 +371,8 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
     rate = policy.get("rate")
     dst_port = policy.get("dst_port")
     protocol = policy.get("protocol", "tcp") or "tcp"
+    out_iface = policy.get("out_interface") or target or "ether1"
+    comment = policy.get("comment", "IBN_NAT_MASQ")
 
     try:
         if intent == "limit_bandwidth":
@@ -309,6 +398,30 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
                 adapter.remove_firewall_block(target=target, dst_port=dst_port)
                 if adapter
                 else remove_firewall_block(target=target, dst_port=dst_port)
+            )
+        elif intent == "enable_interface":
+            res = (
+                adapter.enable_interface(name=target)
+                if adapter
+                else enable_interface(name=target)
+            )
+        elif intent == "disable_interface":
+            res = (
+                adapter.disable_interface(name=target)
+                if adapter
+                else disable_interface(name=target)
+            )
+        elif intent == "enable_nat":
+            res = (
+                adapter.enable_nat(out_interface=out_iface, comment=comment)
+                if adapter
+                else enable_nat(out_interface=out_iface, comment=comment)
+            )
+        elif intent == "disable_nat":
+            res = (
+                adapter.disable_nat(out_interface=out_iface, comment=comment)
+                if adapter
+                else disable_nat(out_interface=out_iface, comment=comment)
             )
         else:
             return {

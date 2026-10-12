@@ -2,6 +2,8 @@ import librouteros
 from typing import Optional, Union
 from config import ROUTER_HOST, ROUTER_PORT, ROUTER_USER, ROUTER_PASS, ROUTER_TIMEOUT
 
+MANAGEMENT_INTERFACES = {'ether2', 'bridge'}
+
 
 class MikroTikAdapter:
     def __init__(self, host=ROUTER_HOST, port=ROUTER_PORT, user=ROUTER_USER, password=ROUTER_PASS, timeout=ROUTER_TIMEOUT):
@@ -193,6 +195,73 @@ class MikroTikAdapter:
             )
         ]
 
+    # Interface Domain (/interface)
+    def get_interface_states(self) -> list:
+        self.connect()
+        return list(self.api.path('interface'))
+
+    def enable_interface(self, name: str) -> dict:
+        self.connect()
+        ifaces = self.api.path('interface')
+        target = next((i for i in ifaces if i.get('name') == name), None)
+        if not target:
+            raise ValueError(f"Interface '{name}' tidak ditemukan")
+        if not target.get('disabled', False):
+            return {'action': 'noop', 'id': target['.id'], 'name': name, 'disabled': False}
+        ifaces.update(**{'.id': target['.id'], 'disabled': False})
+        return {'action': 'enabled', 'id': target['.id'], 'name': name, 'disabled': False}
+
+    def disable_interface(self, name: str) -> dict:
+        if name in MANAGEMENT_INTERFACES:
+            raise ValueError("Anti-lockout: Dilarang mematikan interface manajemen (ether2 / bridge)!")
+        self.connect()
+        ifaces = self.api.path('interface')
+        target = next((i for i in ifaces if i.get('name') == name), None)
+        if not target:
+            raise ValueError(f"Interface '{name}' tidak ditemukan")
+        if target.get('disabled', False):
+            return {'action': 'noop', 'id': target['.id'], 'name': name, 'disabled': True}
+        ifaces.update(**{'.id': target['.id'], 'disabled': True})
+        return {'action': 'disabled', 'id': target['.id'], 'name': name, 'disabled': True}
+
+    # NAT Domain (/ip/firewall/nat)
+    def get_nat_rules(self) -> list:
+        self.connect()
+        return list(self.api.path('ip', 'firewall', 'nat'))
+
+    def enable_nat(self, out_interface: str = 'ether1', comment: str = 'IBN_NAT_MASQ') -> dict:
+        self.connect()
+        nat = self.api.path('ip', 'firewall', 'nat')
+        existing = next(
+            (
+                r for r in nat
+                if r.get('chain') == 'srcnat'
+                and r.get('action') == 'masquerade'
+                and (r.get('out-interface') == out_interface or (comment and r.get('comment') == comment))
+            ),
+            None
+        )
+        if existing:
+            if not existing.get('disabled', False):
+                return {'action': 'noop', 'id': existing['.id'], 'out_interface': out_interface, 'comment': comment}
+            nat.update(**{'.id': existing['.id'], 'disabled': False})
+            return {'action': 'enabled', 'id': existing['.id'], 'out_interface': out_interface, 'comment': comment}
+        new_id = nat.add(chain='srcnat', action='masquerade', **{'out-interface': out_interface, 'comment': comment})
+        return {'action': 'added', 'id': new_id, 'out_interface': out_interface, 'comment': comment}
+
+    def disable_nat(self, out_interface: str = 'ether1', comment: str = 'IBN_NAT_MASQ') -> dict:
+        self.connect()
+        nat = self.api.path('ip', 'firewall', 'nat')
+        matches = [
+            r for r in nat
+            if r.get('chain') == 'srcnat'
+            and r.get('action') == 'masquerade'
+            and ((comment and r.get('comment') == comment) or (out_interface and r.get('out-interface') == out_interface))
+        ]
+        for m in matches:
+            nat.remove(m['.id'])
+        return {'action': 'removed', 'count': len(matches)}
+
 
 _default_adapter = MikroTikAdapter()
 
@@ -222,4 +291,23 @@ def remove_firewall_block(
 
 def get_firewall_blocks() -> list:
     return _default_adapter.get_firewall_blocks()
+
+def get_interface_states() -> list:
+    return _default_adapter.get_interface_states()
+
+def enable_interface(name: str) -> dict:
+    return _default_adapter.enable_interface(name)
+
+def disable_interface(name: str) -> dict:
+    return _default_adapter.disable_interface(name)
+
+def get_nat_rules() -> list:
+    return _default_adapter.get_nat_rules()
+
+def enable_nat(out_interface: str = 'ether1', comment: str = 'IBN_NAT_MASQ') -> dict:
+    return _default_adapter.enable_nat(out_interface, comment)
+
+def disable_nat(out_interface: str = 'ether1', comment: str = 'IBN_NAT_MASQ') -> dict:
+    return _default_adapter.disable_nat(out_interface, comment)
+
 

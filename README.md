@@ -50,42 +50,64 @@ Arsitektur modul NLP dirancang secara khusus untuk lingkungan *resource-constrai
 
 ---
 
-## 3. Hasil Evaluasi & Tolok Ukur Kinerja (Benchmark)
+## 3. Laporan Evaluasi 8 Parameter Riset (Metodologi Split 80/20)
 
-Evaluasi dilakukan secara empiris menggunakan modul `benchmark_model.py` terhadap dataset korpus evaluasi (120 sampel seimbang):
+Evaluasi kuantitatif komprehensif dijalankan menggunakan skrip `evaluasi_riset_ibn.py` terhadap dataset korpus dengan rasio **80% Data Latih (192 sampel)** dan **20% Data Uji Independen (48 sampel)** secara proporsional (*Stratified Split*):
 
-### A. Matriks Klasifikasi (Classification Report)
-* **Dataset:** 120 sampel (30 sampel per kelas intent)
+```text
+================================================================================
+                   TABEL RINGKASAN RESMI EVALUASI RISET
+================================================================================
++------------------------------+-------------------+------------------------------------------------+
+| Parameter Riset              | Nilai Kuantitatif | Interpretasi Akademis                          |
++------------------------------+-------------------+------------------------------------------------+
+| 1. CPU Controller Load       | 17.1%             | Sangat Rendah (Beban CPU Laptop/Mini PC minim) |
+|    RAM Memory Footprint      | 116.25 MB         | Hemat Memori (Overhead model hanya 0.73 MB)    |
+| 2. Processing Time (Mean)    | 0.958 ms          | Ultra-Fast (Inferensi & Validasi < 1.5 ms)     |
+|    Controller Throughput     | 1,042.3 QPS       | Mampu melayani ribuan kueri per detik          |
+| 3. Akurasi Intent (Accuracy) | 100.00%           | Akurasi sempurna pada 20% unseen test set      |
+| 4. Precision (Macro Avg)     | 1.0000            | Presisi tinggi tanpa salah prediksi kelas      |
+| 5. Recall (Macro Avg)        | 1.0000            | Sensitivitas tinggi mengenali seluruh kelas    |
+| 6. F1-Score (Macro Avg)      | 1.0000            | Harmoni sempurna antara precision & recall     |
+| 7. Command Accuracy          | 100.00%           | 100% Valid & Patuh Aturan Guard-Rail           |
+| 8. Kompleksitas Deployment   | 31.90 KB          | Ringkas, mandiri, tanpa GPU, mudah dideploy    |
++------------------------------+-------------------+------------------------------------------------+
+```
+
+### A. Matriks Klasifikasi Per-Kelas (Classification Report)
+* **Dataset Evaluasi:** 48 sampel unseen test set (6 sampel per kelas)
 * **Akurasi Keseluruhan:** **100.00%**
 
 | Intent Class | Precision | Recall | F1-Score | Support |
 | :--- | :---: | :---: | :---: | :---: |
-| `limit_bandwidth` | 1.0000 | 1.0000 | 1.0000 | 30 |
-| `remove_limit` | 1.0000 | 1.0000 | 1.0000 | 30 |
-| `block_traffic` | 1.0000 | 1.0000 | 1.0000 | 30 |
-| `unblock_traffic` | 1.0000 | 1.0000 | 1.0000 | 30 |
-| **Macro Average** | **1.0000** | **1.0000** | **1.0000** | **120** |
+| `block_traffic` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `disable_interface` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `disable_nat` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `enable_interface` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `enable_nat` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `limit_bandwidth` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `remove_limit` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| `unblock_traffic` | 1.0000 | 1.0000 | 1.0000 | 6 |
+| **Macro Average** | **1.0000** | **1.0000** | **1.0000** | **48** |
 
-### B. Confusion Matrix
+### B. Confusion Matrix (8x8)
 ```text
-True \ Pred          block_traffic  limit_bandwidth  remove_limit  unblock_traffic
-block_traffic                   30                0             0                0
-limit_bandwidth                  0               30             0                0
-remove_limit                     0                0            30                0
-unblock_traffic                  0                0             0               30
+True \ Pred          block  dis_if  dis_nat  en_if  en_nat  lim_bw  rem_lim  unblock
+block_traffic          6      0        0       0       0       0       0        0
+disable_interface      0      6        0       0       0       0       0        0
+disable_nat            0      0        6       0       0       0       0        0
+enable_interface       0      0        0       6       0       0       0        0
+enable_nat             0      0        0       0       6       0       0        0
+limit_bandwidth        0      0        0       0       0       6       0        0
+remove_limit           0      0        0       0       0       0       6        0
+unblock_traffic        0      0        0       0       0       0       0        6
 ```
 
-### C. Benchmark Latensi & Throughput (1,000 Iterasi)
-* **Ukuran File Model (`intent_model.joblib`):** **35.37 KB**
-* **Jumlah Fitur N-Gram Vocabulary:** 626 n-grams
-* **Model Load Time:** ~92.5 ms (hanya sekali saat inisialisasi)
-* **Cold Start Latency:** 1.162 ms
-* **Rata-rata Latensi Inferensi (Mean):** **0.973 ms** (< 1 milidetik)
-* **Median Latensi:** 0.896 ms
-* **Persentil 95 (P95):** 1.589 ms
-* **Persentil 99 (P99):** 1.749 ms
-* **Single-Query Throughput:** **1,027.5 queries / detik**
-* **Batch Inference Throughput:** **33,636 queries / detik**
+### C. Command Accuracy & Policy Compliance
+* **Perintah Langsung Tereksekusi Valid:** **46 / 48 (95.83%)**
+* **Proteksi Keamanan Aktif (Anti-Lockout Triggers):** **2 / 48 (4.17%)** *(Menolak mematikan ether2)*
+* **Kesalahan Konfigurasi / Format Gagal:** **0 / 48 (0.00%)**
+* **Total Policy & Command Accuracy Rate:** **100.00%**
 
 ---
 

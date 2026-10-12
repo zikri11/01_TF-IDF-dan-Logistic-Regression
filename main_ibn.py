@@ -79,6 +79,44 @@ def show_status(adapter: MikroTikAdapter):
             print(format_table(["No", "ID", "Chain", "Src Address", "Dst Port", "Proto", "Action", "Comment"], rows))
         else:
             print("    (Tidak ada firewall filter drop rule aktif)")
+
+        nats = adapter.get_nat_rules()
+        print(f"\n[3] Firewall NAT Masquerade Aktif ({len(nats)} rule):")
+        if nats:
+            rows = []
+            for idx, n in enumerate(nats, 1):
+                status_str = "Disabled" if n.get("disabled") in (True, "true") else "Aktif"
+                rows.append([
+                    str(idx),
+                    n.get(".id", "-"),
+                    n.get("chain", "-"),
+                    n.get("action", "-"),
+                    n.get("out-interface") or n.get("out-interface-list") or "-",
+                    n.get("comment", "-"),
+                    status_str,
+                ])
+            print(format_table(["No", "ID", "Chain", "Action", "Out-Interface", "Comment", "Status"], rows))
+        else:
+            print("    (Tidak ada NAT rule aktif)")
+
+        ifaces = adapter.get_interface_states()
+        print(f"\n[4] Interface Status Router ({len(ifaces)} interface):")
+        if ifaces:
+            rows = []
+            for idx, i in enumerate(ifaces, 1):
+                status_str = "Disabled" if i.get("disabled") in (True, "true") else "Aktif"
+                running_str = "yes" if i.get("running") in (True, "true") else "no"
+                rows.append([
+                    str(idx),
+                    i.get(".id", "-"),
+                    i.get("name", "-"),
+                    i.get("type", "-"),
+                    status_str,
+                    running_str,
+                ])
+            print(format_table(["No", "ID", "Name", "Type", "Status", "Running"], rows))
+        else:
+            print("    (Tidak ada interface terdeteksi)")
         print()
     except Exception as e:
         print(f"{COLOR_RED}Gagal mengambil status router: {e}{COLOR_RESET}\n")
@@ -88,7 +126,7 @@ def show_help():
     print(f"""
 {COLOR_BOLD}{COLOR_CYAN}=== PANDUAN PENGGUNAAN SISTEM IBN ==={COLOR_RESET}
 Sistem menerima kalimat perintah bahasa alami (Bahasa Indonesia) untuk
-konfigurasi otomatis QoS (Simple Queue) dan Firewall MikroTik.
+konfigurasi otomatis QoS (Simple Queue), Firewall, Interface, dan NAT MikroTik.
 
 {COLOR_BOLD}Contoh Perintah Alami:{COLOR_RESET}
  1. Batasi Bandwidth (limit_bandwidth):
@@ -111,8 +149,18 @@ konfigurasi otomatis QoS (Simple Queue) dan Firewall MikroTik.
     * "buka blokir port 80 untuk 192.168.88.50"
     * "buka blokir port 443"
 
+ 5. Kontrol Interface (enable_interface / disable_interface):
+    * "hidupkan wifi" / "matikan wifi"
+    * "nyalakan port 4" / "matikan port 4"
+    * (Catatan: port 2 & bridge dilindungi proteksi anti-lockout)
+
+ 6. Kontrol NAT Masquerade (enable_nat / disable_nat):
+    * "aktifkan nat internet" / "matikan nat internet"
+    * "nyalakan NAT masquerade pada ether1"
+    * "cabut NAT masquerade pada ether1"
+
 {COLOR_BOLD}Perintah Sistem Khusus:{COLOR_RESET}
- * status / cek   : Menampilkan Simple Queue & Firewall Drop aktif di router
+ * status / cek   : Menampilkan Simple Queue, Firewall, NAT, & Interface aktif di router
  * bantuan / help : Menampilkan panduan contoh kalimat ini
  * clear / cls    : Membersihkan layar terminal
  * keluar / exit  : Keluar dari program
@@ -142,6 +190,8 @@ def handle_input_intent(text: str, adapter: MikroTikAdapter):
         print(f"    Target Net  : {policy.get('target') or '-'}")
         if policy.get('dst_port'):
             print(f"    Dst Port    : {policy.get('dst_port')} ({policy.get('protocol', 'tcp')})")
+        if policy.get('out_interface'):
+            print(f"    Out-Iface   : {policy.get('out_interface')}")
         print(f"    Rate Limit  : {policy.get('rate') or '-'}")
         print(f"    Rule Name   : {policy.get('name') or '-'}")
     else:
@@ -161,7 +211,14 @@ def handle_input_intent(text: str, adapter: MikroTikAdapter):
         print(f"    Status      : {COLOR_GREEN}SUKSES{COLOR_RESET}")
         if isinstance(res, dict):
             print(f"    Aksi Router : {res.get('action', '-')}")
-            print(f"    Rule ID     : {res.get('id', '-')}")
+            if "id" in res:
+                print(f"    Rule ID     : {res.get('id', '-')}")
+            if "name" in res:
+                print(f"    Interface   : {res.get('name')}")
+            if "disabled" in res:
+                print(f"    Disabled    : {res.get('disabled')}")
+            if "out_interface" in res:
+                print(f"    Out-Iface   : {res.get('out_interface')}")
             if "max_limit" in res:
                 print(f"    Max Limit   : {res.get('max_limit')}")
             if res.get("dst_port"):

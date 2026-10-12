@@ -478,5 +478,485 @@
   {
     "text": "Lepas blokiran perangkat 192.168.88.216",
     "intent": "unblock_traffic"
+  },
+  {
+    "text": "Aktifkan interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable port 3 mikrotik",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Tolong aktifkan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Matikan interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 3 mikrotik",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Tolong matikan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Aktifkan NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Buat rule NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Terapkan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Jalankan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan masquerading ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan fitur NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan fitur NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan fitur NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable rule NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Tolong aktifkan NAT di router",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan aturan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Matikan NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus rule NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hilangkan NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hentikan NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan masquerading ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan fitur NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan fitur NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hentikan fitur NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable rule NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Tolong matikan NAT di router",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan aturan NAT masquerade ether1",
+    "intent": "disable_nat"
   }
 ]

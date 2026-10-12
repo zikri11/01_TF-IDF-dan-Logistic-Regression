@@ -61,7 +61,7 @@ def main():
     final_model = build_pipeline()
     final_model.fit(texts, labels)
 
-    joblib.dump(final_model, MODEL_PATH)
+    joblib.dump(final_model, MODEL_PATH, compress=3)
     file_size_kb = MODEL_PATH.stat().st_size / 1024
 
     print(f"[+] Model tersimpan : {MODEL_PATH.name}")
