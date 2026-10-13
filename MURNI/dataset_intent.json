@@ -1,0 +1,962 @@
+[
+  {
+    "text": "Batasi bandwidth IP 192.168.88.50 menjadi 2 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Limit kecepatan internet untuk 192.168.88.20 sebesar 512 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Tolong cekik bandwidth 192.168.88.35 jadi 1 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Set batas kecepatan download dan upload 192.168.88.40 sebesar 2M",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Batasi internet komputer 192.168.88.15 maksimal 5 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Kecilkan bandwidth untuk host 192.168.88.70 jadi 256 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Beri batas kecepatan 192.168.88.88 sebesar 10 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Konfigurasi qos limit 192.168.88.99 4 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Limit bandwidth mahasiswa di IP 192.168.88.100 menjadi 3 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Tolong pangkas bandwidth 192.168.88.120 jadi 1M",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Atur batas pemakaian bandwidth 192.168.88.110 sebesar 2 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Batasin koneksi 192.168.88.125 jadi 512k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Terapkan pembatasan bandwidth pada IP 192.168.88.130 sebesar 1.5 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Tolong limit IP 192.168.88.140 dengan kecepatan 4M",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Beri batasan qos untuk 192.168.88.150 sebesar 8 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Turunkan kecepatan internet 192.168.88.160 jadi 1 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Limit koneksi host 192.168.88.170 ke 512 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Batasi pemakaian data untuk IP 192.168.88.180 dengan rate 2 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Tolong atur simple queue IP 192.168.88.190 max-limit 3M",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Pangkas kecepatan jaringan 192.168.88.200 menjadi 256k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Cekik akses bandwidth perangkat 192.168.88.210 jadi 1.5M",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Batasi speed IP 192.168.88.220 hanya boleh 2 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Alokasikan bandwidth maksimal 5 Mbps untuk 192.168.88.230",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Kendalikan bandwidth 192.168.88.240 sebesar 512 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Limit transfer rate 192.168.88.245 jadi 10 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Pasang limit kecepatan pada 192.168.88.212 sebesar 4 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Atur simple queue limit untuk 192.168.88.215 sebesar 2M",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Beri batas maksimal akses data 192.168.88.218 1 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Limit bandwidth komputer lab 192.168.88.225 menjadi 3 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Batasi pemakaian internet 192.168.88.235 jadi 512k saja",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "Hapus limit bandwidth untuk IP 192.168.88.50",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Cabut pembatasan kecepatan pada 192.168.88.20",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Kembalikan kecepatan normal IP 192.168.88.35",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Unlimit bandwidth untuk 192.168.88.40",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus simple queue untuk host 192.168.88.15",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Lepas batasan bandwidth dari 192.168.88.70",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus aturan qos limit pada IP 192.168.88.88",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Bebaskan kecepatan internet untuk 192.168.88.99",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hilangkan batasan kecepatan pada 192.168.88.100",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Tolong cabut limitasi bandwidth 192.168.88.120",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Kembalikan bandwidth penuh untuk 192.168.88.110",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus pembatasan qos IP 192.168.88.125",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Tolong unlimit kecepatan IP 192.168.88.130",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Jangan batasi lagi bandwidth 192.168.88.140",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Normalisasikan kembali kecepatan 192.168.88.150",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus queue limitasi 192.168.88.160",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Reset batas kecepatan perangkat 192.168.88.170 ke normal",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Bebaskan bandwidth host 192.168.88.180 seperti semula",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Cabut aturan simple queue 192.168.88.190",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus batas maksimal bandwidth 192.168.88.200",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Lepaskan limit kecepatan untuk IP 192.168.88.210",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Kembalikan speed maksimal untuk 192.168.88.220",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus pengaturan batasan data 192.168.88.230",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Tolong hilangkan limit pada IP 192.168.88.240",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Cabut pembatas internet untuk 192.168.88.245",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Buka batasan kecepatan 192.168.88.212",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Hapus simple queue yang membatasi 192.168.88.215",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Kembalikan koneksi tanpa limit untuk 192.168.88.218",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Lepas limit internet komputer 192.168.88.225",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Bebaskan pembatasan transfer rate 192.168.88.235",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "Blokir akses internet untuk IP 192.168.88.99",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Drop semua trafik dari 192.168.88.40",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tutup koneksi internet untuk host 192.168.88.77",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Putus koneksi jaringan pada IP 192.168.88.88",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Blokir trafik keluar masuk untuk 192.168.88.65",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tolak semua paket dari IP 192.168.88.55",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Pasang filter drop untuk 192.168.88.33",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Hentikan akses jaringan untuk komputer 192.168.88.22",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tolong blokir IP 192.168.88.111 dari internet",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Cut off koneksi untuk 192.168.88.222",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Jatuhkan semua traffic dari host 192.168.88.14",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Blokir koneksi lab untuk IP 192.168.88.18",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Isolasi IP 192.168.88.29 agar tidak bisa akses internet",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tolong disable akses internet 192.168.88.45",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Filter drop semua trafik dari IP 192.168.88.60",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Blokir akses keluar untuk perangkat 192.168.88.75",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Matikan koneksi internet 192.168.88.82",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Cegat semua paket data dari 192.168.88.94",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Blokir komunikasi jaringan untuk 192.168.88.105",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tutup akses web dan jaringan 192.168.88.115",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Drop koneksi dari perangkat 192.168.88.128",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Blokir komputer 192.168.88.135 agar tidak bisa online",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Putuskan sambungan internet host 192.168.88.145",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tolak trafik jaringan dari 192.168.88.155",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tambahkan rule drop firewall untuk 192.168.88.165",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Blokir IP nakal 192.168.88.175 sekarang",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Hentikan lalu lintas paket dari 192.168.88.185",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Drop akses internet IP 192.168.88.195",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Tolong putus trafik IP 192.168.88.205",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Isolasi perangkat 192.168.88.216 dari jaringan luar",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "Buka blokir untuk IP 192.168.88.99",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Izinkan kembali akses internet untuk 192.168.88.40",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Lepas blokir trafik IP 192.168.88.77",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Bolehkan lagi koneksi jaringan dari 192.168.88.88",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Unblock IP 192.168.88.65 agar bisa browsing",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Hapus aturan drop firewall untuk IP 192.168.88.55",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Buka kembali koneksi internet host 192.168.88.33",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Pulihkan akses jaringan untuk 192.168.88.22",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Tolong izinkan trafik dari IP 192.168.88.111",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Cabut status blokir untuk 192.168.88.222",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Buka filter firewall untuk komputer 192.168.88.14",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Aktifkan kembali koneksi IP 192.168.88.18",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Lepaskan isolasi jaringan IP 192.168.88.29",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Bolehkan paket internet untuk host 192.168.88.45",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Hapus firewall drop rule pada IP 192.168.88.60",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Buka blokir akses internet 192.168.88.75",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Hidupkan kembali koneksi 192.168.88.82",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Lepas pencegatan paket untuk 192.168.88.94",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Izinkan komunikasi jaringan untuk 192.168.88.105",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Buka kembali akses web 192.168.88.115",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Hapus filter drop dari 192.168.88.128",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Unblock komputer 192.168.88.135 agar bisa online lagi",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Sambungkan kembali koneksi internet 192.168.88.145",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Terima kembali paket dari 192.168.88.155",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Cabut rule drop firewall 192.168.88.165",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Normalkan akses IP 192.168.88.175",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Buka isolasi trafik dari 192.168.88.185",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Izinkan lalu lintas data 192.168.88.195",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Bolehkan kembali akses jaringan 192.168.88.205",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Lepas blokiran perangkat 192.168.88.216",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "Aktifkan interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable interface ether4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Aktifkan port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Hidupkan port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Nyalakan port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Enable port 3 mikrotik",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Tolong aktifkan interface ether3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "Matikan interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Padamkan interface ether4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Nonaktifkan port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Disable port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Matikan port 3 mikrotik",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Tolong matikan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "Aktifkan NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Pasang NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Buat rule NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Terapkan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Jalankan NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan masquerading ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan fitur NAT",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Hidupkan fitur NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Nyalakan fitur NAT ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Enable rule NAT masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Tolong aktifkan NAT di router",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Aktifkan aturan NAT masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "Matikan NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Cabut NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hapus rule NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hilangkan NAT masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hentikan NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan masquerading ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan fitur NAT",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Nonaktifkan fitur NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Hentikan fitur NAT ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Disable rule NAT masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Tolong matikan NAT di router",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "Matikan aturan NAT masquerade ether1",
+    "intent": "disable_nat"
+  }
+]
