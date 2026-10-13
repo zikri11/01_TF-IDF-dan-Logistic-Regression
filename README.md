@@ -1,15 +1,19 @@
 # Lightweight Intent-Based Networking (IBN) Berbasis MikroTik RouterOS
-**Implementasi Hybrid NLP: Scikit-Learn TF-IDF & Logistic Regression dengan Deterministic Entity Extraction**
+**Studi Komparatif: Baseline Murni (Pure Machine Learning) vs Arsitektur Hybrid (Ours) dengan Evaluasi 8 Parameter Riset**
 
 [![Python Version](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![RouterOS](https://img.shields.io/badge/MikroTik-RouterOS%20v6.49.17-red.svg)](https://mikrotik.com/)
 [![License](https://img.shields.io/badge/License-Academic-green.svg)]()
-[![Model Size](https://img.shields.io/badge/Model%20Size-35.37%20KB-brightgreen.svg)]()
+[![Model Size](https://img.shields.io/badge/Model%20Size-31.90%20KB-brightgreen.svg)]()
 [![Inference Latency](https://img.shields.io/badge/Inference%20Latency-%3C%201%20ms-orange.svg)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Comparative%20Study-purple.svg)]()
 
-Repository ini memuat kode sumber, korpus dataset, model terlatih, mesin kebijakan (*policy engine*), serta antarmuka CLI untuk prototipe penelitian **Intent-Based Networking (IBN)** berbasis perangkat nyata **MikroTik RouterOS v6 (hAP lite / RB941-2nD)**.
+Repository ini memuat kode sumber, dataset korpus 240 sampel (8 kelas intent), model Machine Learning terlatih, skrip evaluasi kuantitatif 8 parameter riset (metodologi split 80/20), serta antarmuka CLI untuk prototipe penelitian **Intent-Based Networking (IBN)** pada perangkat fisik nyata **MikroTik RouterOS v6 (hAP lite / RB941-2nD)**.
 
-Sistem ini memungkinkan administrator jaringan menyampaikan tujuan pengelolaan jaringan (*intent*) menggunakan kalimat bahasa alami berbahasa Indonesia. Sistem secara otomatis menerjemahkan teks tersebut menjadi representasi kebijakan agnostik vendor (*Intermediate Policy*), memvalidasi batas keamanan (*safety guard-rails*), dan menerapkannya secara langsung ke router fisik melalui **RouterOS Binary API (Port 8728)** dengan prinsip idempoten.
+Repository ini terstruktur secara rapi ke dalam **3 Direktori Utama**:
+* **`GAMBAR/`**: Diagram arsitektur end-to-end dan pipeline NLP beresolusi tinggi (High-DPI @2x monokrom).
+* **`MURNI/`**: Implementasi **Baseline Murni (*Pure Machine Learning*)** berbasis Scikit-Learn TF-IDF + Logistic Regression murni tanpa aturan sintaksis tambahan.
+* **`HYBRID/`**: Implementasi **Arsitektur Hibrida (*Ours*)** yang menggabungkan Machine Learning statistik dengan *Deterministic Regex Slotting*, *Syntactic Cue Overrides*, *Morphological Normalizer*, dan *Semantic Action Guard*.
 
 ---
 
@@ -115,109 +119,108 @@ unblock_traffic        0      0        0       0       0       0       0        
 
 ```text
 .
-├── GAMBAR/
+├── GAMBAR/                                   # Aset Visual & Diagram Ilmiah
 │   ├── diagram_arsitektur_ibn_mikrotik.png   # Diagram arsitektur end-to-end
-│   ├── diagram_arsitektur_ibn_mikrotik.svg   # Source vector diagram arsitektur
-│   ├── diagram_alur_nlp.png                 # Diagram alur pipeline NLP
-│   └── diagram_alur_nlp.svg                 # Source vector pipeline NLP
-├── config.py                                 # Parameter koneksi RouterOS (IP, Port, Kredensial)
-├── dataset_intent.json                       # Dataset korpus 120 kalimat latih
-├── train_nlp.py                              # Skrip training Scikit-Learn pipeline
-├── intent_model.joblib                       # Model terlatih (35.37 KB)
-├── nlp_parser.py                             # Hybrid NLP extractor & disambiguator
-├── policy_engine.py                          # Validator keamanan & normalisasi policy
-├── mikrotik_adapter.py                       # Driver API RouterOS port 8728 & idempotency
-├── main_ibn.py                               # Antarmuka CLI Interaktif utama
-├── benchmark_model.py                        # Skrip benchmark latensi & metrik klasifikasi
-├── create_diagram.py                         # Skrip renderer Playwright diagram arsitektur
-├── create_nlp_diagram.py                     # Skrip renderer Playwright diagram NLP
-├── test_fase1.py                             # Unit test adapter koneksi & router
-├── test_fase2.py                             # Unit test policy engine & safety invariants
-├── test_fase3.py                             # Integration test NLP unseen prompts
-├── test_fase4.py                             # Test interaktif simulasi CLI subprocess
-├── test_port_feature.py                      # Test fitur interface fisik & service port
-├── requirements.txt                          # Daftar dependensi Python
+│   ├── diagram_arsitektur_ibn_mikrotik.svg   # Source vector arsitektur
+│   ├── diagram_alur_nlp.png                 # Diagram pipeline hybrid NLP
+│   └── diagram_alur_nlp.svg                 # Source vector hybrid NLP
+│
+├── MURNI/                                    # Implementasi Baseline Pure Machine Learning
+│   ├── config.py                             # Konfigurasi router lab
+│   ├── dataset_intent.json                   # Dataset korpus 240 sampel (8 kelas)
+│   ├── train_nlp_murni.py                    # Training model pure ML
+│   ├── intent_model_murni.joblib             # Model statistik murni (31.90 KB)
+│   ├── nlp_parser_murni.py                   # Parser NLP berbasis 100% statistik ML
+│   ├── policy_engine.py                      # Policy validator & generator
+│   ├── mikrotik_adapter.py                   # Driver API port 8728 & idempotency
+│   ├── main_ibn.py                           # CLI interaktif versi Murni
+│   ├── test_murni.py                         # Test suite versi Murni
+│   ├── evaluasi_murni.py                     # Evaluasi kuantitatif Murni (80/20)
+│   └── LAPORAN_EVALUASI_MURNI.txt            # Hasil laporan evaluasi Murni
+│
+├── HYBRID/                                   # Implementasi Arsitektur Hibrida (Ours)
+│   ├── config.py                             # Konfigurasi router lab
+│   ├── dataset_intent.json                   # Dataset korpus 240 sampel (8 kelas)
+│   ├── train_nlp.py                          # Training model hybrid
+│   ├── intent_model.joblib                   # Model terlatih (31.90 KB)
+│   ├── nlp_parser.py                         # Hybrid NLP (ML + Regex + Cues + Action Guard)
+│   ├── policy_engine.py                      # Policy validator & generator
+│   ├── mikrotik_adapter.py                   # Driver API port 8728 & idempotency
+│   ├── main_ibn.py                           # CLI interaktif versi Hybrid (4 Tabel)
+│   ├── evaluasi_riset_ibn.py                 # Evaluasi kuantitatif Hybrid (80/20)
+│   ├── LAPORAN_EVALUASI_RISET.txt            # Hasil laporan evaluasi Hybrid
+│   ├── benchmark_model.py                    # Benchmark latensi & throughput 1.000 iterasi
+│   ├── create_diagram.py                     # Skrip renderer Playwright diagram arsitektur
+│   ├── create_nlp_diagram.py                 # Skrip renderer Playwright diagram NLP
+│   └── test_*.py                             # 8 suite pengujian otomatis lengkap
+│
+├── komparasi_hasil.py                        # Skrip runner perbandingan Murni vs Hybrid
+├── KOMPARASI_MURNI_VS_HYBRID.txt             # Laporan teks resmi hasil studi komparatif
+├── requirements.txt                          # Daftar dependensi pustaka Python
 └── README.md                                 # Dokumentasi utama proyek
 ```
 
 ---
 
-## 5. Panduan Instalasi & Persiapan
+## 5. Panduan Instalasi & Pengoperasian
 
-### A. Prasyarat Lingkungan
-* Python 3.10+ (Direkomendasikan Python 3.12)
-* Perangkat MikroTik RouterOS v6 fisik atau Cloud Hosted Router (CHR)
-* Port service `api` aktif pada port **8728** di MikroTik (`/ip service enable api`)
-
-### B. Instalasi Dependensi
-Clone repository dan pasang pustaka yang dibutuhkan:
+### A. Instalasi Dependensi
 ```bash
 git clone https://github.com/zikri11/01_TF-IDF-dan-Logistic-Regression.git
 cd 01_TF-IDF-dan-Logistic-Regression
 pip install -r requirements.txt
 ```
 
-### C. Konfigurasi Koneksi Router
-Buka file `config.py` dan sesuaikan parameter IP serta kredensial router lab Anda:
+### B. Konfigurasi Router
+Sesuaikan IP dan kata sandi router lab pada `HYBRID/config.py` dan `MURNI/config.py`:
 ```python
 ROUTER_HOST = "192.168.88.1"
 ROUTER_PORT = 8728
 ROUTER_USER = "admin"
-ROUTER_PASS = "PASSWORD_ROUTER_ANDA"
+ROUTER_PASS = "PASSWORD_ANDA"
 ROUTER_TIMEOUT = 5
 ```
 
----
+### C. Menjalankan Demo Interaktif
+* **Untuk Menjalankan Versi Hybrid (Rekomendasi Utama):**
+  ```bash
+  cd HYBRID
+  python main_ibn.py
+  ```
+* **Untuk Menjalankan Versi Baseline Murni:**
+  ```bash
+  cd MURNI
+  python main_ibn.py
+  ```
 
-## 6. Cara Menjalankan Program
-
-### A. Menjalankan Antarmuka Interaktif CLI
-Jalankan program utama untuk memulai sesi IBN:
+### D. Menjalankan Studi Komparatif Otomatis
+Jalankan skrip pembanding langsung dari root direktori:
 ```bash
-python main_ibn.py
-```
-
-Perintah bawaan yang tersedia di dalam prompt:
-* `status` / `cek`: Menampilkan tabel antrean Simple Queue dan Firewall Drop aktif di router.
-* `bantuan` / `help`: Menampilkan panduan contoh format kalimat alami.
-* `clear` / `cls`: Membersihkan layar terminal.
-* `keluar` / `exit`: Menutup program secara aman.
-
-### B. Menjalankan Benchmark Kinerja Model
-Untuk mengevaluasi performa model Machine Learning secara mandiri:
-```bash
-python benchmark_model.py
-```
-
-### C. Menjalankan Seluruh Automated Test Suites
-Verifikasi integritas sistem end-to-end langsung ke router:
-```bash
-python test_fase1.py
-python test_fase2.py
-python test_fase3.py
-python test_fase4.py
-python test_port_feature.py
+python komparasi_hasil.py
 ```
 
 ---
 
-## 7. Tabel Contoh Kalimat Alami yang Didukung
+## 6. Tabel Cakupan Perintah Bahasa Alami (4 Domain Jaringan)
 
-| Domain | Contoh Kalimat Operator | Hasil Ekstraksi NLP | Aksi Eksekusi MikroTik |
+| Domain | Contoh Perintah Bahasa Alami | Hasil Ekstraksi NLP | Aksi Nyata RouterOS |
 | :--- | :--- | :--- | :--- |
-| **QoS (Host IP)** | `"Batasi bandwidth 192.168.88.50 jadi 2 Mbps"` | Target: `192.168.88.50/32`, Rate: `2M/2M` | `/queue/simple/add name=qos_192.168.88.50 max-limit=2M/2M` |
-| **QoS (Variasi Unit)** | `"bisa batasi jalur 192.168.21.21 jadi 9mb"` | Target: `192.168.21.21/32`, Rate: `9M/9M` | Normalisasi unit fleksibel `9mb` $\rightarrow$ `9M/9M` |
-| **QoS (Port Fisik)** | `"saya ingin port 3 kasih limit 5mb"` | Target: `ether3`, Rate: `5M/5M` | `/queue/simple/add name=qos_ether3 target=ether3 max-limit=5M/5M` |
-| **QoS (Rollback)** | `"Cabut limit bandwidth untuk port 3"` | Target: `ether3`, Intent: `remove_limit` | Menghapus antrean `qos_ether3` dari router |
-| **Firewall (IP Drop)** | `"Blokir akses internet untuk 192.168.88.99"` | Target: `192.168.88.99/32`, Intent: `block` | `/ip/firewall/filter/add chain=forward action=drop src-address=...` |
-| **Firewall (Port + IP)** | `"blokir port 80 untuk 192.168.88.50"` | Target: `192.168.88.50/32`, Port: `80` (tcp) | Filter drop forward spesifik IP dan port destination 80 |
-| **Firewall (Global Drop)**| `"blokir port 443"` | Target: Global, Port: `443` (tcp) | Filter drop forward port destination 443 tanpa batasan IP |
-| **Firewall (Alias Service)**| `"tutup akses ssh 192.168.88.50"` | Target: `192.168.88.50/32`, Port: `22` (tcp) | Mapping otomatis alias `ssh` $\rightarrow$ port 22 |
-| **Firewall (Unblock)** | `"buka blokir port 80 untuk 192.168.88.50"`| Intent: `unblock_traffic`, Port: `80` | Menghapus rule drop yang terpasang |
-| **Safety Invariant** | `"Blokir internet 192.168.88.1"` | Target: Gateway Router | **REJECTED**: Proteksi anti-lockout router aktif |
-| **Hardware Catalog** | `"port 5 kasih limit 5mb"` | Target: `ether5` | **REJECTED**: Interface tidak tersedia pada fisik hAP lite |
+| **QoS Host** | `"Batasi bandwidth 192.168.88.50 jadi 2 Mbps"` | Target: `192.168.88.50/32`, Rate: `2M/2M` | Menambah antrean `/queue/simple` |
+| **QoS Port Fisik** | `"saya ingin port 3 kasih limit 5mb"` | Target: `ether3`, Rate: `5M/5M` | Menambah antrean target `ether3` |
+| **QoS Rollback** | `"Cabut limit bandwidth untuk port 3"` | Target: `ether3`, Intent: `remove_limit` | Menghapus antrean `qos_ether3` |
+| **Firewall IP** | `"Blokir akses internet untuk 192.168.88.99"` | Target: `192.168.88.99/32`, Intent: `block` | Menambah drop rule `/ip/firewall/filter` |
+| **Firewall Port** | `"blokir port 80 untuk 192.168.88.50"` | Target: `192.168.88.50/32`, Port: `80` (tcp) | Filter drop port destination 80 |
+| **Firewall Global**| `"blokir port 443"` | Target: Global, Port: `443` (tcp) | Filter drop port 443 seluruh trafik |
+| **Firewall Unblock**| `"buka blokir port 80 untuk 192.168.88.50"`| Intent: `unblock_traffic`, Port: `80` | Menghapus drop rule dari router |
+| **Interface Up** | `"hidupkan wifi"` / `"aktif kan port 1"` | Target: `wlan1` / `ether1` | Mengaktifkan interface (`disabled=no`) |
+| **Interface Down** | `"matikan port 4"` / `"matikan wifi"` | Target: `ether4` / `wlan1` | Mematikan interface non-manajemen |
+| **NAT On** | `"aktifkan nat internet"` / `"enable masquerade"` | Target: `ether1`, Chain: `srcnat` | Menambah rule NAT masquerade |
+| **NAT Off** | `"matikan nat"` / `"disable masquerade"` | Intent: `disable_nat` | Menghapus rule NAT masquerade |
+| **Anti-Lockout IP** | `"Blokir internet 192.168.88.1"` | Target: Gateway Router | **DITOLAK**: Proteksi anti-lockout router aktif |
+| **Anti-Lockout Port**| `"matikan port 2"` | Target: Management Port | **DITOLAK**: Interface controller dilindungi |
+| **Action Guard** | `"sdfsdnf port 1"` | Kalimat acak / tanpa kata kerja | **DITOLAK**: Perintah tidak sah |
 
 ---
 
-## 8. Lisensi & Hak Cipta
+## 7. Lisensi & Hak Cipta
 Penelitian dan pengembangan prototipe sistem ini dikembangkan untuk keperluan akademik dan riset Intent-Based Networking (IBN) pada Program Studi Teknik Informatika, Fakultas Teknik, Universitas Siliwangi (UNSIL).
