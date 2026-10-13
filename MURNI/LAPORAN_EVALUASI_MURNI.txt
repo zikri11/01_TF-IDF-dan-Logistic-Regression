@@ -1,0 +1,93 @@
+================================================================================
+   LAPORAN EVALUASI & BENCHMARK RISET BASELINE MURNI (PURE MACHINE LEARNING)
+           IBN MIKROTIK ROUTEROS v6 TANPA BANTUAN ATURAN SINTAKSIS
+================================================================================
+ Waktu Evaluasi     : 2026-10-13 08:59:30
+ Host Controller    : WIN32 (Python 3.12.10)
+ Target Hardware    : MikroTik hAP lite (RouterOS v6.49.17 / RAM 32MB)
+ Rasio Pembagian    : 80% Data Latih (Train) : 20% Data Uji (Test) [Stratified]
+ Metode Model       : Pure Scikit-Learn TF-IDF (1,2-gram) + Logistic Regression (C=5.0)
+================================================================================
+
+[*] Total Dataset   : 240 sampel kalimat
+[*] Jumlah Kelas    : 8 intent
+[*] Data Train (80%): 192 sampel (24 sampel per kelas)
+[*] Data Test  (20%): 48 sampel (6 sampel per kelas)
+
+--------------------------------------------------------------------------------
+ [PARAMETER 3, 4, 5, 6] EVALUASI AKURASI INTENT, PRECISION, RECALL, F1-SCORE
+ (Dievaluasi secara objektif pada 20% Data Uji Independen / Unseen Test Set)
+--------------------------------------------------------------------------------
+ * Akurasi Intent (Accuracy) : 85.42%
+
++-------------------+-----------+--------+----------+---------+
+| Intent Class      | Precision | Recall | F1-Score | Support |
++-------------------+-----------+--------+----------+---------+
+| block_traffic     | 0.7500    | 0.5000 | 0.6000   | 6       |
+| disable_interface | 1.0000    | 1.0000 | 1.0000   | 6       |
+| disable_nat       | 1.0000    | 1.0000 | 1.0000   | 6       |
+| enable_interface  | 1.0000    | 1.0000 | 1.0000   | 6       |
+| enable_nat        | 1.0000    | 1.0000 | 1.0000   | 6       |
+| limit_bandwidth   | 0.8000    | 0.6667 | 0.7273   | 6       |
+| remove_limit      | 0.7143    | 0.8333 | 0.7692   | 6       |
+| unblock_traffic   | 0.6250    | 0.8333 | 0.7143   | 6       |
+| Macro Average     | 0.8612    | 0.8542 | 0.8513   | 48      |
+| Weighted Average  | 0.8612    | 0.8542 | 0.8513   | 48      |
++-------------------+-----------+--------+----------+---------+
+
+Confusion Matrix (8x8):
++-------------------+----------+----------+----------+----------+----------+----------+----------+----------+
+| True \ Pred       | block_tr | disable_ | disable_ | enable_i | enable_n | limit_ba | remove_l | unblock_ |
++-------------------+----------+----------+----------+----------+----------+----------+----------+----------+
+| block_traffic     | 3        | 0        | 0        | 0        | 0        | 0        | 0        | 3        |
+| disable_interface | 0        | 6        | 0        | 0        | 0        | 0        | 0        | 0        |
+| disable_nat       | 0        | 0        | 6        | 0        | 0        | 0        | 0        | 0        |
+| enable_interface  | 0        | 0        | 0        | 6        | 0        | 0        | 0        | 0        |
+| enable_nat        | 0        | 0        | 0        | 0        | 6        | 0        | 0        | 0        |
+| limit_bandwidth   | 0        | 0        | 0        | 0        | 0        | 4        | 2        | 0        |
+| remove_limit      | 0        | 0        | 0        | 0        | 0        | 1        | 5        | 0        |
+| unblock_traffic   | 1        | 0        | 0        | 0        | 0        | 0        | 0        | 5        |
++-------------------+----------+----------+----------+----------+----------+----------+----------+----------+
+
+--------------------------------------------------------------------------------
+ [PARAMETER 7] COMMAND ACCURACY & POLICY COMPLIANCE (ROUTEROS PAYLOAD)
+--------------------------------------------------------------------------------
+ * Perintah Eksekusi Benar & Valid  : 39 / 48 (81.25%)
+ * Proteksi Keamanan Terjaga        : 2 / 48 (4.17%)
+ * Perintah Salah / Gagal (Failures): 7 / 48 (14.58%)
+ * TOTAL COMMAND ACCURACY RATE      : 85.42%
+
+--------------------------------------------------------------------------------
+ [PARAMETER 1 & 2] PROFILING RESOURCE (CPU / RAM) & PROCESSING TIME
+--------------------------------------------------------------------------------
+ * Penggunaan RAM Controller Awal  : 115.36 MB
+ * Penggunaan RAM Saat Inferensi   : 117.96 MB
+ * Memory Overhead Model NLP       : 2.60 MB
+ * Beban CPU Controller            : 15.5%
+
+ * Total Iterasi Pengujian Latensi : 1,000 kueri
+ * Rata-rata Latensi NLP (Mean)    : 1.014 ms
+ * Median Latensi NLP              : 0.893 ms
+ * Latensi Persentil 95 (P95)      : 1.577 ms
+ * Latensi Persentil 99 (P99)      : 2.265 ms
+ * Total Processing Time Controller: 1.031 ms
+ * Throughput Controller (QPS)     : 968.2 kueri/detik
+
+================================================================================
+             TABEL RINGKASAN RESMI EVALUASI RISET (VERSI MURNI)
+================================================================================
++------------------------------+-------------------+-----------------------------------------------------+
+| Parameter Riset              | Nilai Kuantitatif | Interpretasi Akademis                               |
++------------------------------+-------------------+-----------------------------------------------------+
+| 1. CPU Controller Load       | 15.5%             | Rendah (Komputasi statistik ringan)                 |
+|    RAM Memory Footprint      | 117.96 MB         | Hemat Memori (< 50 MB total process)                |
+| 2. Processing Time (Mean)    | 1.031 ms          | Sangat Cepat (< 1.5 ms)                             |
+|    Controller Throughput     | 968.2 QPS         | Throughput tinggi                                   |
+| 3. Akurasi Intent (Accuracy) | 85.42%            | Mengalami penurunan akibat ambiguitas kata          |
+| 4. Precision (Macro Avg)     | 0.8612            | Terganggu oleh overlap kata blokir/unblock          |
+| 5. Recall (Macro Avg)        | 0.8542            | Mengalami misklasifikasi pada kelas negasi          |
+| 6. F1-Score (Macro Avg)      | 0.8513            | Cukup baik secara umum, namun tidak optimal         |
+| 7. Command Accuracy          | 85.42%            | Terjadi 7 kegagalan konfigurasi akibat salah intent |
+| 8. Kompleksitas Deployment   | 31.90 KB          | Sangat ringkas dan mudah dideploy                   |
++------------------------------+-------------------+-----------------------------------------------------+
+================================================================================

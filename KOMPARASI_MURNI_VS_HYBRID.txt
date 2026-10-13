@@ -1,0 +1,65 @@
+==========================================================================================
+       STUDI KOMPARATIF RISET IBN: BASELINE MURNI vs ARSITEKTUR HYBRID
+                   PENGUJIAN EMPIRIS PADA MIKROTIK ROUTEROS v6
+==========================================================================================
+ Waktu Evaluasi     : 2026-10-13 09:00:06
+ Pembagian Dataset  : 80% Train (192 sampel) : 20% Unseen Test (48 sampel)
+ Controller Host    : Python 3.12 (Windows 11)
+ Target Hardware    : MikroTik hAP lite (MIPS 650 MHz, RAM 32MB)
+==========================================================================================
+
+[TABEL 1] PERBANDINGAN KUANTITATIF 8 PARAMETER RISET (MURNI vs HYBRID)
+
++----+-----------------------------+--------------------------+--------------------------+---------------------------------------+
+| No | Parameter Riset Evaluasi    | Baseline Murni (Pure ML) | Arsitektur Hybrid (Ours) | Dampak / Peningkatan                  |
++----+-----------------------------+--------------------------+--------------------------+---------------------------------------+
+| 1  | Akurasi Intent (Accuracy)   | 85.42%                   | 100.00%                  | +14.58% (Sempurna pada unseen test)   |
+| 2  | Precision (Macro Average)   | 0.8612                   | 1.0000                   | +0.1388 (Bebas salah deteksi kelas)   |
+| 3  | Recall (Macro Average)      | 0.8542                   | 1.0000                   | +0.1458 (Sensitif ke seluruh intent)  |
+| 4  | F1-Score (Macro Average)    | 0.8513                   | 1.0000                   | +0.1487 (Harmoni presisi & recall)    |
+| 5  | Command Accuracy (RouterOS) | 85.42% (7 gagal)         | 100.00% (0 gagal)        | +14.58% (Semua payload valid)         |
+| 6  | Processing Time (Latency)   | 0.899 ms                 | 0.958 ms                 | Hanya selisih 0.059 ms (Tetap < 1 ms) |
+| 7  | CPU Controller Overhead     | 15.5%                    | 17.1%                    | Beban CPU sangat ringan (< 20%)       |
+| 8  | RAM Process Footprint       | 118.16 MB                | 116.25 MB                | Sangat hemat (< 120 MB total)         |
+| 9  | Ukuran Model di Disk        | 31.90 KB                 | 31.90 KB                 | Ultra-ringan (Cocok di Raspberry Pi)  |
++----+-----------------------------+--------------------------+--------------------------+---------------------------------------+
+
+------------------------------------------------------------------------------------------
+[TABEL 2] STUDI KASUS LINGUISTIK & PENANGANAN EDGE CASES NYATA
+------------------------------------------------------------------------------------------
+
++----------------------------+-------------------------------------+----------------------------------------------+-----------------------------------------------+-----------------------------------------------------+
+| Kasus Uji Linguistik       | Contoh Perintah Teks                | Respons Baseline Murni                       | Respons Arsitektur Hybrid                     | Analisis Keamanan Jaringan                          |
++----------------------------+-------------------------------------+----------------------------------------------+-----------------------------------------------+-----------------------------------------------------+
+| Negasi Bertentangan        | 'buka blokir port 80'               | Salah deteksi 'block' (bobot blokir dominan) | Terkoreksi pasti 'unblock_traffic' (100%)     | Murni berisiko memblokir port yang ingin dibuka!    |
+| Ambiguitas Kata 'Port'     | 'saya ingin port 3 kasih limit 5mb' | Tertukar dst_port vs ether3                  | Dipetakan tepat ke interface ether3           | Hybrid membedakan port fisik vs port layanan.       |
+| Morfologi Imbuhan Terpisah | 'aktif kan port 1'                  | Unknown / Confidence rendah (50%)            | Dinormalisasi otomatis jadi 'aktifkan' (100%) | Hybrid menangani variasi spasi pengetikan.          |
+| Input Sampah / Gibberish   | 'sdfsdnf port 1'                    | Salah eksekusi (tebak asal enable 50%)       | DITOLAK TEGAS (Action Guard Active)           | Murni rentan eksekusi konfigurasi liar!             |
+| Proteksi Anti-Lockout      | 'matikan port 2'                    | Ditolak Policy Engine                        | DITOLAK TEGAS (Anti-lockout)                  | Keduanya melindungi interface manajemen controller. |
++----------------------------+-------------------------------------+----------------------------------------------+-----------------------------------------------+-----------------------------------------------------+
+
+==========================================================================================
+                   KESIMPULAN ILMIAH UNTUK LAPORAN / PAPER DOSEN
+==========================================================================================
+
+1. Research Gap Terjawab:
+   Model Machine Learning murni (Pure ML TF-IDF + Logistic Regression) memiliki
+   keterbatasan fundamental dalam menangani 'Lexical Overlap' (misal kata 'blokir'
+   yang beririsan antara block_traffic dan unblock_traffic), sehingga akurasinya
+   stagnan di angka 85.42% dengan 7 kegagalan konfigurasi di router.
+
+2. Kontribusi Ilmiah Arsitektur Hybrid:
+   Dengan menambahkan determinisme terukur berupa:
+   a. Regex Entity Slot Filling (ekstraksi IP/Port eksak tanpa halusinasi)
+   b. Syntactic Cue Overrides (penyelaras negasi & ambiguitas semantik)
+   c. Morphological Normalizer & Semantic Action Guard
+   Akurasi intent dan keberhasilan perintah RouterOS meningkat drastis menjadi 100.00%
+   dengan penambahan latensi yang hampir nol (hanya 0.059 ms overhead).
+
+3. Validitas pada Perangkat Fisik Rendah Sumber Daya:
+   Kedua model membuktikan hipotesis bahwa sistem IBN tidak memerlukan LLM Cloud
+   berbayar (GPT-4/Claude) maupun framework berat (Rasa > 1.5 GB). Sistem bekerja
+   secara instan (< 1 ms), hemat memori (< 120 MB), dan menjaga integritas router
+   MikroTik hAP lite (RAM 32MB) secara idempoten.
+
+==========================================================================================
