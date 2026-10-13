@@ -56,6 +56,10 @@ Arsitektur modul NLP dirancang secara khusus untuk lingkungan *resource-constrai
 
 ## 3. Laporan Evaluasi 8 Parameter Riset (Metodologi Split 80/20)
 
+Berikut adalah visualisasi perbandingan alur pemrosesan dan data empiris antara Baseline Murni (*Pure ML*) melawan Arsitektur Hybrid (*Ours*):
+
+![Diagram Komparasi Murni vs Hybrid](GAMBAR/diagram_komparasi_murni_vs_hybrid.png)
+
 Evaluasi kuantitatif komprehensif dijalankan menggunakan skrip `evaluasi_riset_ibn.py` terhadap dataset korpus dengan rasio **80% Data Latih (192 sampel)** dan **20% Data Uji Independen (48 sampel)** secara proporsional (*Stratified Split*):
 
 ```text
@@ -123,7 +127,9 @@ unblock_traffic        0      0        0       0       0       0       0        
 │   ├── diagram_arsitektur_ibn_mikrotik.png   # Diagram arsitektur end-to-end
 │   ├── diagram_arsitektur_ibn_mikrotik.svg   # Source vector arsitektur
 │   ├── diagram_alur_nlp.png                 # Diagram pipeline hybrid NLP
-│   └── diagram_alur_nlp.svg                 # Source vector hybrid NLP
+│   ├── diagram_alur_nlp.svg                 # Source vector hybrid NLP
+│   ├── diagram_komparasi_murni_vs_hybrid.png # Diagram studi komparatif Murni vs Hybrid
+│   └── diagram_komparasi_murni_vs_hybrid.svg # Source vector diagram komparatif
 │
 ├── MURNI/                                    # Implementasi Baseline Pure Machine Learning
 │   ├── config.py                             # Konfigurasi router lab
