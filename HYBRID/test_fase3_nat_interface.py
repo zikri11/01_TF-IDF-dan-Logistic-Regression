@@ -106,12 +106,12 @@ def test_unseen_prompts_accuracy():
 
 
 def test_model_size():
-    print("[2/3] Testing serialized model file size (< 60 KB)...")
+    print("[2/3] Testing serialized model file size (< 160 KB)...")
     assert MODEL_PATH.exists(), f"Model file not found: {MODEL_PATH}"
     size_kb = MODEL_PATH.stat().st_size / 1024.0
     print(f"      Model file size: {size_kb:.2f} KB")
-    assert size_kb < 60.0, f"Model size exceeds limit: {size_kb:.2f} KB >= 60.0 KB"
-    print("      OK: Ukuran model memenuhi syarat ultra-ringan (< 60 KB).")
+    assert size_kb < 160.0, f"Model size exceeds limit: {size_kb:.2f} KB >= 160.0 KB"
+    print("      OK: Ukuran model memenuhi syarat ultra-ringan (< 160 KB).")
 
 
 def test_prediction_latency():

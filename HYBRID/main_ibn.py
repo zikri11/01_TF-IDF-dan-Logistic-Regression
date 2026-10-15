@@ -117,6 +117,24 @@ def show_status(adapter: MikroTikAdapter):
             print(format_table(["No", "ID", "Name", "Type", "Status", "Running"], rows))
         else:
             print("    (Tidak ada interface terdeteksi)")
+
+        ip_addrs = adapter.get_ip_addresses()
+        print(f"\n[5] IP Address Assignment Router ({len(ip_addrs)} address):")
+        if ip_addrs:
+            rows = []
+            for idx, a in enumerate(ip_addrs, 1):
+                status_str = "Disabled" if a.get("disabled") in (True, "true") else "Aktif"
+                rows.append([
+                    str(idx),
+                    a.get(".id", "-"),
+                    a.get("interface") or a.get("actual-interface") or "-",
+                    a.get("address", "-"),
+                    a.get("network", "-"),
+                    status_str,
+                ])
+            print(format_table(["No", "ID", "Interface", "Address / Subnet", "Network", "Status"], rows))
+        else:
+            print("    (Tidak ada IP address terdaftar)")
         print()
     except Exception as e:
         print(f"{COLOR_RED}Gagal mengambil status router: {e}{COLOR_RESET}\n")
@@ -159,8 +177,25 @@ konfigurasi otomatis QoS (Simple Queue), Firewall, Interface, dan NAT MikroTik.
     * "nyalakan NAT masquerade pada ether1"
     * "cabut NAT masquerade pada ether1"
 
+ 7. Cek / Inspeksi IP Interface (get_interface_ip):
+    * "cek ip port 1" / "cek jalur 1"
+    * "cek ip port 1 dan port 3"
+    * "cek semua ip"
+
+ 8. Penambahan IP Address (add_ip_address):
+    * "tambahkan ip 192.168.10.1/24 di port 3"
+    * "pasang ip 10.10.10.1 pada ether4"
+
+ 9. Pengubahan IP Address (update_ip_address):
+    * "ganti ip port 3 jadi 10.10.10.1/24"
+    * "ubah ip di ether4 ke 172.16.1.1"
+
+ 10. Aturan Penghapusan Spesifik (Safety Object Guard):
+    * Wajib menyebut objek spesifik: 'hapus limit port 1', 'hapus ip 10.10.10.1', 'buka blokir port 80'
+    * (Catatan: Perintah ambigu seperti 'hapus port 1' otomatis ditolak demi keamanan router)
+
 {COLOR_BOLD}Perintah Sistem Khusus:{COLOR_RESET}
- * status / cek   : Menampilkan Simple Queue, Firewall, NAT, & Interface aktif di router
+ * status / cek   : Menampilkan Simple Queue, Firewall, NAT, Interface, & IP Address aktif di router
  * bantuan / help : Menampilkan panduan contoh kalimat ini
  * clear / cls    : Membersihkan layar terminal
  * keluar / exit  : Keluar dari program
@@ -172,14 +207,26 @@ def handle_input_intent(text: str, adapter: MikroTikAdapter):
     parsed = parse_intent(text)
     policy = parsed.get("policy", {})
 
+    intent_str = parsed['intent']
+    intent_color = COLOR_CYAN if intent_str != "unknown" else COLOR_YELLOW
+    conf_pct = parsed['confidence'] * 100
+    conf_color = COLOR_GREEN if conf_pct >= 50.0 else COLOR_RED
+    conf_note = "" if conf_pct >= 50.0 else f" {COLOR_RED}(Di bawah ambang batas 50%){COLOR_RESET}"
+
     print("-" * 80)
     print(f"{COLOR_BOLD}[1] Analisis NLP:{COLOR_RESET}")
-    print(f"    Intent      : {COLOR_CYAN}{parsed['intent']}{COLOR_RESET}")
-    print(f"    Keyakinan   : {parsed['confidence'] * 100:.2f}%")
+    print(f"    Intent      : {intent_color}{intent_str}{COLOR_RESET}")
+    print(f"    Keyakinan   : {conf_color}{conf_pct:.2f}%{COLOR_RESET}{conf_note}")
     print(f"    Entitas IP  : {parsed['entities']['target'] or '-'}")
     if parsed['entities'].get('dst_port'):
         print(f"    Entitas Port: {parsed['entities']['dst_port']} ({parsed['entities'].get('protocol', 'tcp')})")
     print(f"    Entitas Rate: {parsed['entities']['rate'] or '-'}")
+    if parsed['entities'].get('address'):
+        print(f"    Entitas Addr: {parsed['entities']['address']}")
+    if parsed['entities'].get('interface'):
+        iface_ent = parsed['entities']['interface']
+        iface_ent_str = ", ".join(iface_ent) if isinstance(iface_ent, list) else str(iface_ent)
+        print(f"    Entitas Iface: {iface_ent_str}")
     print(f"    Latensi NLP : {parsed['processing_time_ms']:.2f} ms")
 
     print(f"\n{COLOR_BOLD}[2] Intermediate Policy:{COLOR_RESET}")
@@ -192,6 +239,12 @@ def handle_input_intent(text: str, adapter: MikroTikAdapter):
             print(f"    Dst Port    : {policy.get('dst_port')} ({policy.get('protocol', 'tcp')})")
         if policy.get('out_interface'):
             print(f"    Out-Iface   : {policy.get('out_interface')}")
+        if policy.get('address'):
+            print(f"    IP Address  : {policy.get('address')}")
+        if policy.get('interface'):
+            iface_pol = policy.get('interface')
+            iface_pol_str = ", ".join(iface_pol) if isinstance(iface_pol, list) else str(iface_pol)
+            print(f"    Interface   : {iface_pol_str}")
         print(f"    Rate Limit  : {policy.get('rate') or '-'}")
         print(f"    Rule Name   : {policy.get('name') or '-'}")
     else:
@@ -209,12 +262,48 @@ def handle_input_intent(text: str, adapter: MikroTikAdapter):
     if exec_res.get("status") == "success":
         res = exec_res.get("result")
         print(f"    Status      : {COLOR_GREEN}SUKSES{COLOR_RESET}")
-        if isinstance(res, dict):
+        intent = parsed.get("intent")
+        if intent == "get_interface_ip" and isinstance(res, list):
+            rows = []
+            for idx, item in enumerate(res, 1):
+                link_status = "Connected (Up)" if item.get("running") else "Unplugged (Down)"
+                ips_list = item.get("ips", [])
+                ip_str = ", ".join(ips_list) if ips_list else "(Kosong / Tidak Ada IP)"
+                rows.append([
+                    str(idx),
+                    item.get("name", "-"),
+                    item.get("type", "-"),
+                    item.get("mac", "-"),
+                    link_status,
+                    ip_str,
+                ])
+            print(format_table(["No", "Interface", "Tipe", "MAC Address", "Link Status", "IP Address Terpasang"], rows))
+        elif intent == "add_ip_address" and isinstance(res, dict):
+            print(f"    Aksi Router : {res.get('action', '-')}")
+            print(f"    Rule ID     : {res.get('id', '-')}")
+            print(f"    Interface   : {res.get('interface', '-')}")
+            print(f"    Alamat IP   : {res.get('address', '-')}")
+            print(f"    Comment     : {res.get('comment', '-')}")
+        elif intent == "update_ip_address" and isinstance(res, dict):
+            print(f"    Aksi Router : {res.get('action', '-')}")
+            print(f"    Interface   : {res.get('interface', '-')}")
+            old_ip = res.get('old_address') or "(Tidak ada IP sebelumnya)"
+            print(f"    IP Lama     : {old_ip}")
+            print(f"    IP Baru     : {res.get('new_address', '-')}")
+            print(f"    Rule ID     : {res.get('id', '-')}")
+            print(f"    Comment     : {res.get('comment', '-')}")
+        elif isinstance(res, dict):
             print(f"    Aksi Router : {res.get('action', '-')}")
             if "id" in res:
                 print(f"    Rule ID     : {res.get('id', '-')}")
             if "name" in res:
                 print(f"    Interface   : {res.get('name')}")
+            if "interface" in res:
+                print(f"    Interface   : {res.get('interface')}")
+            if "address" in res:
+                print(f"    Alamat IP   : {res.get('address')}")
+            if "count" in res:
+                print(f"    Jml Dihapus : {res.get('count')}")
             if "disabled" in res:
                 print(f"    Disabled    : {res.get('disabled')}")
             if "out_interface" in res:

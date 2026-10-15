@@ -2,24 +2,24 @@
        LAPORAN EVALUASI & BENCHMARK RISET INTENT-BASED NETWORKING (IBN)
                    BERBASIS MIKROTIK ROUTEROS v6 & HYBRID NLP
 ================================================================================
- Waktu Evaluasi     : 2026-10-13 08:48:25
+ Waktu Evaluasi     : 2026-10-14 12:42:59
  Host Controller    : WIN32 (Python 3.12.10)
  Target Hardware    : MikroTik hAP lite (RouterOS v6.49.17 / RAM 32MB)
  Rasio Pembagian    : 80% Data Latih (Train) : 20% Data Uji (Test) [Stratified]
 ================================================================================
 
-[*] Total Dataset   : 240 sampel kalimat
-[*] Jumlah Kelas    : 8 intent
-[*] Data Train (80%): 192 sampel (24 sampel per kelas)
-[*] Data Test  (20%): 48 sampel (6 sampel per kelas)
+[*] Total Dataset   : 770 sampel kalimat
+[*] Jumlah Kelas    : 11 intent
+[*] Data Train (80%): 616 sampel (56 sampel per kelas)
+[*] Data Test  (20%): 154 sampel (14 sampel per kelas)
 
 --------------------------------------------------------------------------------
  [PARAMETER 8] KOMPLEKSITAS DEPLOYMENT & MODEL FOOTPRINT
 --------------------------------------------------------------------------------
  * Lokasi File Model      : intent_model.joblib
- * Ukuran Model di Disk   : 31.90 KB (Ultra-Lightweight Footprint)
- * Jumlah Fitur N-Gram    : 703 n-grams (Unigram + Bigram)
- * Waktu Cold Start Load  : 3.29 ms
+ * Ukuran Model di Disk   : 128.04 KB (Ultra-Lightweight Footprint)
+ * Jumlah Fitur N-Gram    : 1597 n-grams (Unigram + Bigram)
+ * Waktu Cold Start Load  : 7.22 ms
  * Kebutuhan Hardware     : CPU laptop / Mini PC / Raspberry Pi (Nol Kebutuhan GPU)
  * Dependensi Pustaka     : Scikit-Learn, Joblib, LibRouterOS (Zero Cloud LLM Dependency)
 
@@ -32,57 +32,63 @@
 +-------------------+-----------+--------+----------+---------+
 | Intent Class      | Precision | Recall | F1-Score | Support |
 +-------------------+-----------+--------+----------+---------+
-| block_traffic     | 1.0000    | 1.0000 | 1.0000   | 6       |
-| disable_interface | 1.0000    | 1.0000 | 1.0000   | 6       |
-| disable_nat       | 1.0000    | 1.0000 | 1.0000   | 6       |
-| enable_interface  | 1.0000    | 1.0000 | 1.0000   | 6       |
-| enable_nat        | 1.0000    | 1.0000 | 1.0000   | 6       |
-| limit_bandwidth   | 1.0000    | 1.0000 | 1.0000   | 6       |
-| remove_limit      | 1.0000    | 1.0000 | 1.0000   | 6       |
-| unblock_traffic   | 1.0000    | 1.0000 | 1.0000   | 6       |
-| Macro Average     | 1.0000    | 1.0000 | 1.0000   | 48      |
-| Weighted Average  | 1.0000    | 1.0000 | 1.0000   | 48      |
+| add_ip_address    | 1.0000    | 1.0000 | 1.0000   | 14      |
+| block_traffic     | 1.0000    | 1.0000 | 1.0000   | 14      |
+| disable_interface | 1.0000    | 1.0000 | 1.0000   | 14      |
+| disable_nat       | 1.0000    | 1.0000 | 1.0000   | 14      |
+| enable_interface  | 1.0000    | 1.0000 | 1.0000   | 14      |
+| enable_nat        | 1.0000    | 1.0000 | 1.0000   | 14      |
+| get_interface_ip  | 1.0000    | 1.0000 | 1.0000   | 14      |
+| limit_bandwidth   | 1.0000    | 1.0000 | 1.0000   | 14      |
+| remove_limit      | 1.0000    | 1.0000 | 1.0000   | 14      |
+| unblock_traffic   | 1.0000    | 1.0000 | 1.0000   | 14      |
+| update_ip_address | 1.0000    | 1.0000 | 1.0000   | 14      |
+| Macro Average     | 1.0000    | 1.0000 | 1.0000   | 154     |
+| Weighted Average  | 1.0000    | 1.0000 | 1.0000   | 154     |
 +-------------------+-----------+--------+----------+---------+
 
-Confusion Matrix (8x8):
-+-------------------+----------+----------+----------+----------+----------+----------+----------+----------+
-| True \ Pred       | block_tr | disable_ | disable_ | enable_i | enable_n | limit_ba | remove_l | unblock_ |
-+-------------------+----------+----------+----------+----------+----------+----------+----------+----------+
-| block_traffic     | 6        | 0        | 0        | 0        | 0        | 0        | 0        | 0        |
-| disable_interface | 0        | 6        | 0        | 0        | 0        | 0        | 0        | 0        |
-| disable_nat       | 0        | 0        | 6        | 0        | 0        | 0        | 0        | 0        |
-| enable_interface  | 0        | 0        | 0        | 6        | 0        | 0        | 0        | 0        |
-| enable_nat        | 0        | 0        | 0        | 0        | 6        | 0        | 0        | 0        |
-| limit_bandwidth   | 0        | 0        | 0        | 0        | 0        | 6        | 0        | 0        |
-| remove_limit      | 0        | 0        | 0        | 0        | 0        | 0        | 6        | 0        |
-| unblock_traffic   | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 6        |
-+-------------------+----------+----------+----------+----------+----------+----------+----------+----------+
+Confusion Matrix (11x11):
++-------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+| True \ Pred       | add_ip_a | block_tr | disable_ | disable_ | enable_i | enable_n | get_inte | limit_ba | remove_l | unblock_ | update_i |
++-------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+| add_ip_address    | 14       | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        |
+| block_traffic     | 0        | 14       | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        |
+| disable_interface | 0        | 0        | 14       | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        |
+| disable_nat       | 0        | 0        | 0        | 14       | 0        | 0        | 0        | 0        | 0        | 0        | 0        |
+| enable_interface  | 0        | 0        | 0        | 0        | 14       | 0        | 0        | 0        | 0        | 0        | 0        |
+| enable_nat        | 0        | 0        | 0        | 0        | 0        | 14       | 0        | 0        | 0        | 0        | 0        |
+| get_interface_ip  | 0        | 0        | 0        | 0        | 0        | 0        | 14       | 0        | 0        | 0        | 0        |
+| limit_bandwidth   | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 14       | 0        | 0        | 0        |
+| remove_limit      | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 14       | 0        | 0        |
+| unblock_traffic   | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 14       | 0        |
+| update_ip_address | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 0        | 14       |
++-------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 --------------------------------------------------------------------------------
  [PARAMETER 7] COMMAND ACCURACY & POLICY COMPLIANCE (ROUTEROS PAYLOAD)
 --------------------------------------------------------------------------------
- * Perintah Eksekusi Valid (Langsung ke RouterOS) : 46 / 48 (95.83%)
- * Proteksi Keamanan Terjaga (Anti-lockout Shield)  : 2 / 48 (4.17%)
- * Kesalahan Konfigurasi / Format Gagal (Failures)  : 0 / 48 (0.00%)
+ * Perintah Eksekusi Valid (Langsung ke RouterOS) : 149 / 154 (96.75%)
+ * Proteksi Keamanan Terjaga (Anti-lockout Shield)  : 5 / 154 (3.25%)
+ * Kesalahan Konfigurasi / Format Gagal (Failures)  : 0 / 154 (0.00%)
  * TOTAL COMMAND & POLICY ACCURACY RATE             : 100.00% (100% Policy Invariant Compliant)
 
 --------------------------------------------------------------------------------
  [PARAMETER 1 & 2] PROFILING RESOURCE (CPU / RAM) & PROCESSING TIME
 --------------------------------------------------------------------------------
- * Penggunaan RAM Controller Awal  : 115.42 MB
- * Penggunaan RAM Saat Inferensi   : 116.14 MB
- * Memory Overhead Model NLP       : 0.73 MB (Sangat Hemat)
- * Beban CPU Controller            : 15.4% (Ringan)
+ * Penggunaan RAM Controller Awal  : 116.02 MB
+ * Penggunaan RAM Saat Inferensi   : 117.46 MB
+ * Memory Overhead Model NLP       : 1.45 MB (Sangat Hemat)
+ * Beban CPU Controller            : 20.9% (Ringan)
 
  * Total Iterasi Pengujian Latensi : 1,000 kueri
- * Rata-rata Latensi NLP (Mean)    : 1.073 ms
- * Median Latensi NLP              : 0.973 ms
- * Latensi NLP Min / Max           : 0.815 ms / 2.791 ms
- * Latensi Persentil 95 (P95)      : 1.594 ms
- * Latensi Persentil 99 (P99)      : 1.947 ms
- * Rata-rata Validasi Policy       : 0.018 ms
- * Total Processing Time Controller: 1.090 ms (< 1.5 milidetik)
- * Throughput Controller (QPS)     : 915.5 kueri/detik
+ * Rata-rata Latensi NLP (Mean)    : 1.359 ms
+ * Median Latensi NLP              : 1.288 ms
+ * Latensi NLP Min / Max           : 0.926 ms / 2.604 ms
+ * Latensi Persentil 95 (P95)      : 1.969 ms
+ * Latensi Persentil 99 (P99)      : 2.181 ms
+ * Rata-rata Validasi Policy       : 0.021 ms
+ * Total Processing Time Controller: 1.380 ms (< 1.5 milidetik)
+ * Throughput Controller (QPS)     : 723.4 kueri/detik
 
 ================================================================================
                    TABEL RINGKASAN RESMI EVALUASI RISET
@@ -90,15 +96,15 @@ Confusion Matrix (8x8):
 +------------------------------+-------------------+------------------------------------------------+
 | Parameter Riset              | Nilai Kuantitatif | Interpretasi Akademis                          |
 +------------------------------+-------------------+------------------------------------------------+
-| 1. CPU Controller Load       | 15.4%             | Sangat Rendah (Beban CPU Laptop/Mini PC minim) |
-|    RAM Memory Footprint      | 116.14 MB         | Hemat Memori (< 50 MB total process)           |
-| 2. Processing Time (Mean)    | 1.090 ms          | Ultra-Fast (Inferensi & Validasi < 1.5 ms)     |
-|    Controller Throughput     | 915.5 QPS         | Mampu melayani ribuan intent per detik         |
+| 1. CPU Controller Load       | 20.9%             | Sangat Rendah (Beban CPU Laptop/Mini PC minim) |
+|    RAM Memory Footprint      | 117.46 MB         | Hemat Memori (< 50 MB total process)           |
+| 2. Processing Time (Mean)    | 1.380 ms          | Ultra-Fast (Inferensi & Validasi < 1.5 ms)     |
+|    Controller Throughput     | 723.4 QPS         | Mampu melayani ribuan intent per detik         |
 | 3. Akurasi Intent (Accuracy) | 100.00%           | Akurasi sempurna pada 20% unseen test set      |
 | 4. Precision (Macro Avg)     | 1.0000            | Presisi tinggi tanpa salah prediksi kelas      |
 | 5. Recall (Macro Avg)        | 1.0000            | Sensitivitas tinggi mengenali seluruh kelas    |
 | 6. F1-Score (Macro Avg)      | 1.0000            | Harmoni sempurna antara precision & recall     |
 | 7. Command Accuracy          | 100.00%           | 100% Valid & Patuh Aturan Guard-Rail           |
-| 8. Kompleksitas Deployment   | 31.90 KB          | Ringkas, mandiri, tanpa GPU, mudah dideploy    |
+| 8. Kompleksitas Deployment   | 128.04 KB         | Ringkas, mandiri, tanpa GPU, mudah dideploy    |
 +------------------------------+-------------------+------------------------------------------------+
 ================================================================================

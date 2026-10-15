@@ -11,6 +11,12 @@ from mikrotik_adapter import (
     disable_interface,
     enable_nat,
     disable_nat,
+    get_ip_addresses,
+    get_interface_telemetry,
+    add_ip_address,
+    remove_ip_address,
+    update_ip_address,
+    MANAGEMENT_IPS,
     MANAGEMENT_INTERFACES,
     MikroTikAdapter,
 )
@@ -26,6 +32,10 @@ SUPPORTED_INTENTS = {
     "disable_interface": "disable_interface",
     "enable_nat": "enable_nat",
     "disable_nat": "disable_nat",
+    "get_interface_ip": "get_interface_telemetry",
+    "add_ip_address": "add_ip_address",
+    "remove_ip_address": "remove_ip_address",
+    "update_ip_address": "update_ip_address",
 }
 
 
@@ -72,18 +82,51 @@ def normalize_rate(rate_str: str) -> str:
     return f"{single}/{single}"
 
 
+IFACE_PREFIX_PATTERN = re.compile(
+    r"^(?:port\s*lan|port\s*eth|kabel\s*lan|jalur\s*kabel|port|ethernet|ether|eth|lan|jalur|interfaces?|iface|colokan|kabel|link|int)\s*(\d+)$"
+    r"|^(?:eth|ether|lan|int|port|iface)(\d+)$",
+    re.IGNORECASE,
+)
+
+
+def _normalize_interface_str(tgt_str: str) -> str:
+    s = str(tgt_str).strip().lower()
+    m = IFACE_PREFIX_PATTERN.match(s)
+    if m:
+        num = m.group(1) or m.group(2)
+        return f"ether{num}"
+    if s in ("wifi", "wi-fi", "wireless"):
+        return "wlan1"
+    return s
+
+
+def normalize_ip_address(addr_str: str) -> str:
+    if not isinstance(addr_str, str) or not addr_str.strip():
+        raise ValueError("IP address cannot be empty")
+    s = addr_str.strip()
+    if "/" not in s:
+        s = f"{s}/24"
+    iface = ipaddress.ip_interface(s)
+    return str(iface)
+
+
+def _is_ip_like(s: str) -> bool:
+    if not isinstance(s, str):
+        return False
+    clean = s.strip().split("/")[0].strip()
+    parts = clean.split(".")
+    return len(parts) == 4 and all(p.isdigit() for p in parts)
+
+
 def normalize_target(target_str: str) -> str:
     if not isinstance(target_str, str) or not target_str.strip():
         raise ValueError("Target IP cannot be empty")
-    s = target_str.strip().lower()
-    if s.startswith("port"):
-        num = re.search(r"\d+", s)
-        if num:
-            s = f"ether{num.group(0)}"
-    if s in VALID_INTERFACES:
-        return s
-    if re.match(r"^(?:ether\d+|wlan\d+|bridge\d*)$", s):
-        raise ValueError(f"Interface {s} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)")
+    s = str(target_str).strip().lower()
+    norm_iface = _normalize_interface_str(s)
+    if norm_iface in VALID_INTERFACES:
+        return norm_iface
+    if re.match(r"^(?:ether\d+|wlan\d+|bridge\d*)$", norm_iface):
+        raise ValueError(f"Interface {norm_iface} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)")
     if "/" in s:
         return str(ipaddress.ip_network(s, strict=False))
     return f"{ipaddress.ip_address(s)}/32"
@@ -119,10 +162,12 @@ def check_safety(target: Optional[str], action: str) -> Tuple[bool, str]:
 
 def build_network_policy(
     intent: str,
-    target: Optional[str] = None,
+    target: Optional[Union[str, list]] = None,
     rate: Optional[str] = None,
     dst_port: Optional[Union[str, int]] = None,
     protocol: Optional[str] = "tcp",
+    address: Optional[str] = None,
+    interface: Optional[str] = None,
 ) -> dict:
     intent_norm = intent.strip().lower() if isinstance(intent, str) else ""
     if intent_norm not in SUPPORTED_INTENTS:
@@ -133,6 +178,8 @@ def build_network_policy(
             "rate": rate,
             "dst_port": dst_port,
             "protocol": protocol,
+            "address": address,
+            "interface": interface,
             "name": None,
             "is_valid": False,
             "error": f"Intent tidak dikenali: '{intent}'",
@@ -153,10 +200,7 @@ def build_network_policy(
                 "is_valid": False,
                 "error": "Target interface wajib diisi",
             }
-        tgt = str(target).strip().lower()
-        if tgt.startswith("port"):
-            num_m = re.search(r"\d+", tgt)
-            tgt = f"ether{num_m.group(0)}" if num_m else tgt
+        tgt = _normalize_interface_str(str(target))
 
         if tgt not in VALID_INTERFACES:
             return {
@@ -197,11 +241,7 @@ def build_network_policy(
         }
 
     if intent_norm in ("enable_nat", "disable_nat"):
-        out_interface = str(target).strip().lower() if target and str(target).strip() else "ether1"
-        if out_interface.startswith("port"):
-            num_m = re.search(r"\d+", out_interface)
-            if num_m:
-                out_interface = f"ether{num_m.group(0)}"
+        out_interface = _normalize_interface_str(str(target)) if target and str(target).strip() else "ether1"
         comment = "IBN_NAT_MASQ"
         return {
             "intent": intent_norm,
@@ -213,6 +253,386 @@ def build_network_policy(
             "dst_port": None,
             "protocol": None,
             "name": f"nat_{out_interface}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "get_interface_ip":
+        raw_target = target if target is not None else interface
+        if not raw_target:
+            norm_target = None
+        elif isinstance(raw_target, (list, tuple)):
+            norm_target = []
+            for item in raw_target:
+                tgt = _normalize_interface_str(item)
+                if tgt not in VALID_INTERFACES:
+                    return {
+                        "intent": intent_norm,
+                        "action": action,
+                        "target": tgt,
+                        "address": None,
+                        "interface": tgt,
+                        "rate": None,
+                        "dst_port": None,
+                        "protocol": None,
+                        "name": None,
+                        "is_valid": False,
+                        "error": f"Interface {tgt} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)",
+                    }
+                norm_target.append(tgt)
+        else:
+            tgt = _normalize_interface_str(str(raw_target))
+            if tgt not in VALID_INTERFACES:
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": tgt,
+                    "address": None,
+                    "interface": tgt,
+                    "rate": None,
+                    "dst_port": None,
+                    "protocol": None,
+                    "name": None,
+                    "is_valid": False,
+                    "error": f"Interface {tgt} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)",
+                }
+            norm_target = tgt
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": norm_target,
+            "address": None,
+            "interface": norm_target,
+            "rate": None,
+            "dst_port": None,
+            "protocol": None,
+            "name": "check_ip",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "add_ip_address":
+        cand_addr = address
+        cand_iface = interface
+
+        if cand_addr is None and target and _is_ip_like(str(target)):
+            cand_addr = str(target).strip()
+
+        if cand_iface is None:
+            if interface is not None:
+                cand_iface = interface
+            elif target and not _is_ip_like(str(target)):
+                cand_iface = str(target).strip()
+
+        if not cand_iface or not str(cand_iface).strip():
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": None,
+                "address": cand_addr,
+                "interface": None,
+                "name": None,
+                "is_valid": False,
+                "error": "Interface wajib diisi",
+            }
+
+        norm_iface = _normalize_interface_str(cand_iface)
+        if norm_iface not in VALID_INTERFACES:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": cand_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": f"Interface {norm_iface} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)",
+            }
+
+        if not cand_addr or not str(cand_addr).strip():
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": None,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": "Address IP wajib diisi",
+            }
+
+        try:
+            norm_addr = normalize_ip_address(str(cand_addr))
+        except ValueError as e:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": cand_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": str(e),
+            }
+
+        addr_clean = norm_addr.split("/")[0].strip()
+        raw_addr_clean = str(cand_addr).strip().split("/")[0].strip()
+        if (
+            addr_clean in ("192.168.88.1", ROUTER_HOST)
+            or raw_addr_clean in ("192.168.88.1", ROUTER_HOST)
+            or norm_addr in MANAGEMENT_IPS
+            or str(cand_addr).strip() in MANAGEMENT_IPS
+            or addr_clean in MANAGEMENT_IPS
+        ):
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": norm_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": f"Anti-lockout: Dilarang mengubah IP manajemen ({norm_addr})",
+            }
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": norm_iface,
+            "address": norm_addr,
+            "interface": norm_iface,
+            "rate": None,
+            "dst_port": None,
+            "protocol": None,
+            "name": f"ip_{norm_iface}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "remove_ip_address":
+        cand_addr = address
+        cand_iface = interface
+
+        if cand_addr is None and target and _is_ip_like(str(target)):
+            cand_addr = str(target).strip()
+
+        if cand_iface is None:
+            if interface is not None:
+                cand_iface = interface
+            elif target and not _is_ip_like(str(target)):
+                cand_iface = str(target).strip()
+
+        if not cand_addr and not cand_iface:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": None,
+                "address": None,
+                "interface": None,
+                "name": None,
+                "is_valid": False,
+                "error": "Harap tentukan address atau interface yang ingin dihapus",
+            }
+
+        norm_iface = None
+        if cand_iface:
+            norm_iface = _normalize_interface_str(cand_iface)
+            if norm_iface not in VALID_INTERFACES:
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": norm_iface,
+                    "address": cand_addr,
+                    "interface": norm_iface,
+                    "name": None,
+                    "is_valid": False,
+                    "error": f"Interface {norm_iface} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)",
+                }
+
+            if norm_iface in MANAGEMENT_INTERFACES and not cand_addr:
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": norm_iface,
+                    "address": None,
+                    "interface": norm_iface,
+                    "name": None,
+                    "is_valid": False,
+                    "error": f"Anti-lockout: Dilarang menghapus IP pada interface manajemen ({norm_iface})",
+                }
+
+        norm_addr = None
+        if cand_addr:
+            raw_clean = str(cand_addr).strip().split("/")[0].strip()
+            if (
+                raw_clean in ("192.168.88.1", ROUTER_HOST)
+                or str(cand_addr).strip() in MANAGEMENT_IPS
+                or raw_clean in MANAGEMENT_IPS
+            ):
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": norm_iface or str(cand_addr).strip(),
+                    "address": str(cand_addr).strip(),
+                    "interface": norm_iface,
+                    "name": None,
+                    "is_valid": False,
+                    "error": f"Anti-lockout: Dilarang menghapus IP manajemen ({cand_addr})",
+                }
+
+            try:
+                norm_addr = normalize_ip_address(str(cand_addr))
+            except ValueError as e:
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": norm_iface,
+                    "address": cand_addr,
+                    "interface": norm_iface,
+                    "name": None,
+                    "is_valid": False,
+                    "error": str(e),
+                }
+
+            addr_clean = norm_addr.split("/")[0].strip()
+            if (
+                addr_clean in ("192.168.88.1", ROUTER_HOST)
+                or norm_addr in MANAGEMENT_IPS
+                or addr_clean in MANAGEMENT_IPS
+            ):
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": norm_iface or norm_addr,
+                    "address": norm_addr,
+                    "interface": norm_iface,
+                    "name": None,
+                    "is_valid": False,
+                    "error": f"Anti-lockout: Dilarang menghapus IP manajemen ({norm_addr})",
+                }
+
+        name = f"del_ip_{norm_iface}" if norm_iface else f"del_ip_{norm_addr.split('/')[0]}"
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": norm_iface or norm_addr,
+            "address": norm_addr,
+            "interface": norm_iface,
+            "rate": None,
+            "dst_port": None,
+            "protocol": None,
+            "name": name,
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "update_ip_address":
+        cand_addr = address
+        cand_iface = interface
+
+        if cand_addr is None and target and _is_ip_like(str(target)):
+            cand_addr = str(target).strip()
+
+        if cand_iface is None:
+            if interface is not None:
+                cand_iface = interface
+            elif target and not _is_ip_like(str(target)):
+                cand_iface = str(target).strip()
+
+        if not cand_iface or not str(cand_iface).strip():
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": None,
+                "address": cand_addr,
+                "interface": None,
+                "name": None,
+                "is_valid": False,
+                "error": "Interface wajib diisi",
+            }
+
+        norm_iface = _normalize_interface_str(cand_iface)
+        if norm_iface not in VALID_INTERFACES:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": cand_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": f"Interface {norm_iface} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)",
+            }
+
+        if norm_iface in MANAGEMENT_INTERFACES:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": cand_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": f"Anti-lockout: Dilarang mengubah IP pada interface manajemen ({norm_iface})",
+            }
+
+        if not cand_addr or not str(cand_addr).strip():
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": None,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": "Address IP wajib diisi",
+            }
+
+        try:
+            norm_addr = normalize_ip_address(str(cand_addr))
+        except ValueError as e:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": cand_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": str(e),
+            }
+
+        addr_clean = norm_addr.split("/")[0].strip()
+        raw_addr_clean = str(cand_addr).strip().split("/")[0].strip()
+        if (
+            addr_clean in ("192.168.88.1", ROUTER_HOST)
+            or raw_addr_clean in ("192.168.88.1", ROUTER_HOST)
+            or norm_addr in MANAGEMENT_IPS
+            or str(cand_addr).strip() in MANAGEMENT_IPS
+            or addr_clean in MANAGEMENT_IPS
+        ):
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": norm_iface,
+                "address": norm_addr,
+                "interface": norm_iface,
+                "name": None,
+                "is_valid": False,
+                "error": f"Anti-lockout: Dilarang mengubah IP manajemen ({norm_addr})",
+            }
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": norm_iface,
+            "address": norm_addr,
+            "interface": norm_iface,
+            "rate": None,
+            "dst_port": None,
+            "protocol": None,
+            "name": f"ip_{norm_iface}",
             "is_valid": True,
             "error": None,
         }
@@ -373,6 +793,8 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
     protocol = policy.get("protocol", "tcp") or "tcp"
     out_iface = policy.get("out_interface") or target or "ether1"
     comment = policy.get("comment", "IBN_NAT_MASQ")
+    address = policy.get("address")
+    interface = policy.get("interface")
 
     try:
         if intent == "limit_bandwidth":
@@ -423,6 +845,30 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
                 if adapter
                 else disable_nat(out_interface=out_iface, comment=comment)
             )
+        elif intent == "get_interface_ip":
+            res = (
+                adapter.get_interface_telemetry(interfaces=target)
+                if adapter
+                else get_interface_telemetry(interfaces=target)
+            )
+        elif intent == "add_ip_address":
+            res = (
+                adapter.add_ip_address(address=address, interface=interface)
+                if adapter
+                else add_ip_address(address=address, interface=interface)
+            )
+        elif intent == "remove_ip_address":
+            res = (
+                adapter.remove_ip_address(address=address, interface=interface)
+                if adapter
+                else remove_ip_address(address=address, interface=interface)
+            )
+        elif intent == "update_ip_address":
+            res = (
+                adapter.update_ip_address(interface=interface, new_address=address)
+                if adapter
+                else update_ip_address(interface=interface, new_address=address)
+            )
         else:
             return {
                 "status": "error",
@@ -436,6 +882,8 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
             "intent": intent,
             "action": policy.get("action"),
             "target": target,
+            "address": address,
+            "interface": interface,
             "dst_port": dst_port,
             "protocol": protocol if dst_port else None,
             "result": res,
@@ -447,6 +895,8 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
             "intent": intent,
             "action": policy.get("action"),
             "target": target,
+            "address": address,
+            "interface": interface,
             "dst_port": dst_port,
             "protocol": protocol if dst_port else None,
             "error": str(e),

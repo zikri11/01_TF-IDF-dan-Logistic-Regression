@@ -3,6 +3,7 @@ from typing import Optional, Union
 from config import ROUTER_HOST, ROUTER_PORT, ROUTER_USER, ROUTER_PASS, ROUTER_TIMEOUT
 
 MANAGEMENT_INTERFACES = {'ether2', 'bridge'}
+MANAGEMENT_IPS = {'192.168.88.1', '192.168.88.1/24'}
 
 
 class MikroTikAdapter:
@@ -262,6 +263,205 @@ class MikroTikAdapter:
             nat.remove(m['.id'])
         return {'action': 'removed', 'count': len(matches)}
 
+    def _is_mgmt_ip(self, ip: Optional[str]) -> bool:
+        if not ip:
+            return False
+        clean = ip.split('/')[0].strip()
+        return clean in ('192.168.88.1', self.host) or ip.strip() in MANAGEMENT_IPS
+
+    # IP Address Domain (/ip/address) & Telemetry
+    def get_ip_addresses(self, interface: Optional[Union[str, list[str]]] = None) -> list:
+        self.connect()
+        records = list(self.api.path('ip', 'address'))
+        if not interface:
+            return records
+        target_ifaces = {interface.lower()} if isinstance(interface, str) else {i.lower() for i in interface}
+        return [
+            r for r in records
+            if r.get('interface', '').lower() in target_ifaces
+            or r.get('actual-interface', '').lower() in target_ifaces
+        ]
+
+    def get_interface_telemetry(self, interfaces: Optional[Union[str, list[str]]] = None) -> list:
+        self.connect()
+        all_ifaces = self.get_interface_states()
+        all_ips = self.get_ip_addresses()
+
+        if interfaces:
+            target_names = {interfaces.lower()} if isinstance(interfaces, str) else {i.lower() for i in interfaces}
+            selected_ifaces = [
+                i for i in all_ifaces
+                if i.get('name', '').lower() in target_names
+                or i.get('default-name', '').lower() in target_names
+            ]
+        else:
+            selected_ifaces = all_ifaces
+
+        telemetry = []
+        for iface in selected_ifaces:
+            name = iface.get('name', '')
+            name_lower = name.lower()
+            ips = [
+                r['address']
+                for r in all_ips
+                if (r.get('interface', '').lower() == name_lower or r.get('actual-interface', '').lower() == name_lower)
+                and 'address' in r
+            ]
+            telemetry.append({
+                'name': name,
+                'type': iface.get('type', ''),
+                'mac': iface.get('mac-address', ''),
+                'disabled': bool(iface.get('disabled', False)),
+                'running': bool(iface.get('running', False)),
+                'ips': ips,
+            })
+        return telemetry
+
+    def add_ip_address(self, address: str, interface: str, comment: str = 'IBN_IP') -> dict:
+        if self._is_mgmt_ip(address):
+            raise ValueError(f"Anti-lockout: Dilarang mengubah IP manajemen ({address})")
+
+        self.connect()
+        ip_path = self.api.path('ip', 'address')
+        addr_clean = address.split('/')[0].strip()
+
+        existing = next(
+            (r for r in ip_path if r.get('address') == address or r.get('address', '').split('/')[0].strip() == addr_clean),
+            None
+        )
+
+        if existing:
+            r_iface = existing.get('interface', '').lower()
+            r_actual = existing.get('actual-interface', '').lower()
+            if r_iface == interface.lower() or r_actual == interface.lower():
+                return {
+                    'action': 'noop',
+                    'id': existing['.id'],
+                    'address': address,
+                    'interface': interface,
+                    'comment': existing.get('comment', ''),
+                }
+            raise ValueError(f"Address '{address}' sudah ada di interface lain ('{existing.get('interface')}')")
+
+        new_id = ip_path.add(address=address, interface=interface, comment=comment)
+        return {
+            'action': 'added',
+            'id': new_id,
+            'address': address,
+            'interface': interface,
+            'comment': comment,
+        }
+
+    def remove_ip_address(self, address: Optional[str] = None, interface: Optional[str] = None) -> dict:
+        if not address and not interface:
+            raise ValueError("Harap tentukan address atau interface yang ingin dihapus")
+
+        if address and self._is_mgmt_ip(address):
+            raise ValueError(f"Anti-lockout: Dilarang menghapus IP manajemen ({address})")
+
+        self.connect()
+        ip_path = self.api.path('ip', 'address')
+        addr_clean = address.split('/')[0].strip() if address else None
+
+        matches = []
+        for r in ip_path:
+            r_addr = r.get('address', '')
+            r_clean = r_addr.split('/')[0].strip()
+            r_iface = r.get('interface', '').lower()
+            r_actual = r.get('actual-interface', '').lower()
+
+            match_addr = True
+            if address:
+                match_addr = (r_addr == address or r_clean == addr_clean)
+
+            match_iface = True
+            if interface:
+                match_iface = (r_iface == interface.lower() or r_actual == interface.lower())
+
+            if match_addr and match_iface:
+                if self._is_mgmt_ip(r_addr):
+                    raise ValueError(f"Anti-lockout: Dilarang menghapus IP manajemen ({r_addr})")
+                matches.append(r)
+
+        for m in matches:
+            ip_path.remove(m['.id'])
+
+        return {'action': 'removed', 'count': len(matches)}
+
+    def update_ip_address(
+        self,
+        interface: str,
+        new_address: str,
+        old_address: Optional[str] = None,
+        comment: str = 'IBN_IP'
+    ) -> dict:
+        if interface.lower() in MANAGEMENT_INTERFACES:
+            raise ValueError(f"Anti-lockout: Dilarang mengubah IP pada interface manajemen ({interface})")
+        if self._is_mgmt_ip(new_address):
+            raise ValueError(f"Anti-lockout: Dilarang menggunakan IP manajemen ({new_address})")
+
+        self.connect()
+        ip_path = self.api.path('ip', 'address')
+        new_clean = new_address.split('/')[0].strip()
+
+        for r in ip_path:
+            r_addr = r.get('address', '')
+            r_clean = r_addr.split('/')[0].strip()
+            if r_addr == new_address or r_clean == new_clean:
+                r_iface = r.get('interface', '').lower()
+                r_actual = r.get('actual-interface', '').lower()
+                if r_iface != interface.lower() and r_actual != interface.lower():
+                    raise ValueError(f"Address '{new_address}' sudah ada di interface lain ('{r.get('interface')}')")
+
+        old_rec = None
+        if old_address:
+            old_clean = old_address.split('/')[0].strip()
+            for r in ip_path:
+                r_iface = r.get('interface', '').lower()
+                r_actual = r.get('actual-interface', '').lower()
+                if r_iface == interface.lower() or r_actual == interface.lower():
+                    r_addr = r.get('address', '')
+                    r_clean = r_addr.split('/')[0].strip()
+                    if r_addr == old_address or r_clean == old_clean:
+                        old_rec = r
+                        break
+        else:
+            for r in ip_path:
+                r_iface = r.get('interface', '').lower()
+                r_actual = r.get('actual-interface', '').lower()
+                if r_iface == interface.lower() or r_actual == interface.lower():
+                    old_rec = r
+                    break
+
+        if old_rec:
+            old_addr = old_rec.get('address', '')
+            old_clean_val = old_addr.split('/')[0].strip()
+            if old_addr == new_address or old_clean_val == new_clean:
+                return {
+                    'action': 'noop',
+                    'id': old_rec['.id'],
+                    'interface': interface,
+                    'old_address': old_addr,
+                    'new_address': new_address,
+                    'comment': old_rec.get('comment', comment),
+                }
+        else:
+            old_addr = None
+
+        new_id = ip_path.add(address=new_address, interface=interface, comment=comment)
+
+        if old_rec:
+            ip_path.remove(old_rec['.id'])
+
+        return {
+            'action': 'updated' if old_rec else 'added',
+            'id': new_id,
+            'interface': interface,
+            'old_address': old_addr,
+            'new_address': new_address,
+            'comment': comment,
+        }
+
 
 _default_adapter = MikroTikAdapter()
 
@@ -309,5 +509,21 @@ def enable_nat(out_interface: str = 'ether1', comment: str = 'IBN_NAT_MASQ') -> 
 
 def disable_nat(out_interface: str = 'ether1', comment: str = 'IBN_NAT_MASQ') -> dict:
     return _default_adapter.disable_nat(out_interface, comment)
+
+def get_ip_addresses(interface: Optional[Union[str, list[str]]] = None) -> list:
+    return _default_adapter.get_ip_addresses(interface)
+
+def get_interface_telemetry(interfaces: Optional[Union[str, list[str]]] = None) -> list:
+    return _default_adapter.get_interface_telemetry(interfaces)
+
+def add_ip_address(address: str, interface: str, comment: str = 'IBN_IP') -> dict:
+    return _default_adapter.add_ip_address(address, interface, comment)
+
+def remove_ip_address(address: Optional[str] = None, interface: Optional[str] = None) -> dict:
+    return _default_adapter.remove_ip_address(address, interface)
+
+def update_ip_address(interface: str, new_address: str, old_address: Optional[str] = None, comment: str = 'IBN_IP') -> dict:
+    return _default_adapter.update_ip_address(interface, new_address, old_address, comment)
+
 
 

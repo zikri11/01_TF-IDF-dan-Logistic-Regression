@@ -99,7 +99,8 @@ def run_comprehensive_evaluation():
     # -------------------------------------------------------------
     # 3. EVALUASI AKURASI INTENT, PRECISION, RECALL, F1-SCORE
     # -------------------------------------------------------------
-    y_pred = model.predict(X_test)
+    # Evaluasi menggunakan Hybrid NLP Parser (Model + Cues + Guard)
+    y_pred = [parse_intent(x)["intent"] for x in X_test]
     acc_intent = accuracy_score(y_test, y_pred) * 100
 
     log("\n" + "-" * 80)
@@ -137,7 +138,7 @@ def run_comprehensive_evaluation():
     headers = ["Intent Class", "Precision", "Recall", "F1-Score", "Support"]
     log(format_table(headers, table_rows))
 
-    log("\nConfusion Matrix (8x8):")
+    log(f"\nConfusion Matrix ({len(classes)}x{len(classes)}):")
     cm = confusion_matrix(y_test, y_pred, labels=classes)
     cm_headers = ["True \\ Pred"] + [c[:8] for c in classes]
     cm_rows = []
@@ -207,7 +208,15 @@ def run_comprehensive_evaluation():
         t0 = time.perf_counter()
         parsed = parse_intent(sample_query)
         t1 = time.perf_counter()
-        _ = build_network_policy(parsed["intent"], parsed["entities"]["target"], parsed["entities"]["rate"])
+        _ = build_network_policy(
+            parsed["intent"],
+            parsed["entities"]["target"],
+            parsed["entities"]["rate"],
+            dst_port=parsed["entities"].get("dst_port"),
+            protocol=parsed["entities"].get("protocol", "tcp"),
+            address=parsed["entities"].get("address"),
+            interface=parsed["entities"].get("interface"),
+        )
         t2 = time.perf_counter()
 
         latencies_nlp.append((t1 - t0) * 1000)
