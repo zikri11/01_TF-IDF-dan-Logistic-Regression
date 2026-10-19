@@ -11,11 +11,19 @@ from mikrotik_adapter import (
     disable_interface,
     enable_nat,
     disable_nat,
+    get_bandwidth_limits,
+    get_firewall_blocks,
+    get_nat_rules,
     get_ip_addresses,
     get_interface_telemetry,
     add_ip_address,
     remove_ip_address,
     update_ip_address,
+    add_port_forward,
+    remove_port_forward,
+    ping_host,
+    flush_dns_cache,
+    get_system_health,
     MANAGEMENT_IPS,
     MANAGEMENT_INTERFACES,
     MikroTikAdapter,
@@ -32,10 +40,18 @@ SUPPORTED_INTENTS = {
     "disable_interface": "disable_interface",
     "enable_nat": "enable_nat",
     "disable_nat": "disable_nat",
+    "get_bandwidth_status": "get_bandwidth_limits",
+    "get_firewall_status": "get_firewall_blocks",
+    "get_nat_status": "get_nat_rules",
     "get_interface_ip": "get_interface_telemetry",
     "add_ip_address": "add_ip_address",
     "remove_ip_address": "remove_ip_address",
     "update_ip_address": "update_ip_address",
+    "add_port_forward": "add_port_forward",
+    "remove_port_forward": "remove_port_forward",
+    "ping_host": "ping_host",
+    "flush_dns_cache": "flush_dns_cache",
+    "get_system_health": "get_system_health",
 }
 
 
@@ -122,11 +138,15 @@ def normalize_target(target_str: str) -> str:
     if not isinstance(target_str, str) or not target_str.strip():
         raise ValueError("Target IP cannot be empty")
     s = str(target_str).strip().lower()
+    if s in ("all", "semua", "seluruh"):
+        return "all"
     norm_iface = _normalize_interface_str(s)
     if norm_iface in VALID_INTERFACES:
         return norm_iface
     if re.match(r"^(?:ether\d+|wlan\d+|bridge\d*)$", norm_iface):
         raise ValueError(f"Interface {norm_iface} tidak ada di hAP lite (tersedia: ether1 - ether4, wlan1)")
+    if re.match(r"^(?:[a-zA-Z0-9][-a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$", s):
+        return s
     if "/" in s:
         return str(ipaddress.ip_network(s, strict=False))
     return f"{ipaddress.ip_address(s)}/32"
@@ -136,9 +156,11 @@ def check_safety(target: Optional[str], action: str) -> Tuple[bool, str]:
     act = action.lower() if isinstance(action, str) else ""
     if "block" not in act and "drop" not in act:
         return True, ""
-    if not target:
+    if not target or str(target).lower() in ("all", "semua", "seluruh"):
         return True, ""
     if target in VALID_INTERFACES:
+        return True, ""
+    if not _is_ip_like(str(target)):
         return True, ""
 
     clean_target = target.strip().split("/")[0]
@@ -168,6 +190,7 @@ def build_network_policy(
     protocol: Optional[str] = "tcp",
     address: Optional[str] = None,
     interface: Optional[str] = None,
+    to_port: Optional[Union[str, int]] = None,
 ) -> dict:
     intent_norm = intent.strip().lower() if isinstance(intent, str) else ""
     if intent_norm not in SUPPORTED_INTENTS:
@@ -308,6 +331,252 @@ def build_network_policy(
             "dst_port": None,
             "protocol": None,
             "name": "check_ip",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm in ("get_bandwidth_status", "get_firewall_status", "get_nat_status"):
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": target,
+            "address": address,
+            "interface": interface,
+            "rate": rate,
+            "dst_port": dst_port,
+            "protocol": protocol,
+            "name": f"show_{intent_norm}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "add_port_forward":
+        # Target internal host
+        cand_addr = address or target
+        if not cand_addr:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": None,
+                "address": None,
+                "dst_port": dst_port,
+                "name": None,
+                "is_valid": False,
+                "error": "Alamat IP internal (to_address) wajib diisi untuk port forwarding",
+            }
+        cand_str = str(cand_addr).strip()
+        if "/" in cand_str:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": dst_port,
+                "name": None,
+                "is_valid": False,
+                "error": f"INV-NAT-02: Alamat IP internal wajib berupa single host IP valid, bukan subnet ({cand_str})",
+            }
+        try:
+            ip_obj = ipaddress.ip_address(cand_str)
+            if ip_obj.is_multicast or ip_obj.is_loopback:
+                raise ValueError()
+        except Exception:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": dst_port,
+                "name": None,
+                "is_valid": False,
+                "error": f"Alamat IP internal tidak valid: '{cand_str}'",
+            }
+
+        # Port validation
+        if dst_port is None:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": None,
+                "name": None,
+                "is_valid": False,
+                "error": "Port eksternal (dst_port) wajib diisi untuk port forwarding",
+            }
+        try:
+            p_ext = int(dst_port)
+            if not (1 <= p_ext <= 65535):
+                raise ValueError()
+        except Exception:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": dst_port,
+                "name": None,
+                "is_valid": False,
+                "error": f"Port eksternal tidak valid: {dst_port} (harus antara 1-65535)",
+            }
+
+        # Anti-lockout: protect controller & Winbox ports
+        if p_ext == 8728:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": p_ext,
+                "name": None,
+                "is_valid": False,
+                "error": "INV-NAT-03: Anti-lockout dilarang mem-forward port RouterOS Binary API (8728)!",
+            }
+        if p_ext == 8291:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": p_ext,
+                "name": None,
+                "is_valid": False,
+                "error": "INV-NAT-03: Anti-lockout dilarang mem-forward port Winbox (8291)!",
+            }
+
+        p_int = p_ext if to_port is None else to_port
+        try:
+            p_int = int(p_int)
+            if not (1 <= p_int <= 65535):
+                raise ValueError()
+        except Exception:
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": p_ext,
+                "to_port": to_port,
+                "name": None,
+                "is_valid": False,
+                "error": f"Port internal tidak valid: {to_port} (harus antara 1-65535)",
+            }
+
+        proto = (protocol or "tcp").lower()
+        if proto not in ("tcp", "udp"):
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": cand_str,
+                "address": cand_str,
+                "dst_port": p_ext,
+                "protocol": protocol,
+                "name": None,
+                "is_valid": False,
+                "error": f"Protokol tidak didukung: '{protocol}' (harus tcp atau udp)",
+            }
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": cand_str,
+            "address": cand_str,
+            "dst_port": p_ext,
+            "to_port": p_int,
+            "protocol": proto,
+            "name": f"portfwd_{p_ext}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "remove_port_forward":
+        p_ext = None
+        if dst_port is not None and str(dst_port).lower() not in ("all", "semua", "seluruh"):
+            try:
+                p_ext = int(dst_port)
+                if not (1 <= p_ext <= 65535):
+                    raise ValueError()
+            except Exception:
+                return {
+                    "intent": intent_norm,
+                    "action": action,
+                    "target": target,
+                    "dst_port": dst_port,
+                    "name": None,
+                    "is_valid": False,
+                    "error": f"Port eksternal tidak valid: {dst_port} (harus antara 1-65535)",
+                }
+        else:
+            p_ext = "all" if str(dst_port).lower() in ("all", "semua", "seluruh") else None
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": target,
+            "dst_port": p_ext,
+            "protocol": (protocol or "tcp").lower() if p_ext and p_ext != "all" else None,
+            "name": f"rm_portfwd_{p_ext or 'all'}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    # Diagnostics & Utility Domain (OTHER)
+    if intent_norm == "ping_host":
+        cand_host = target or address
+        if not cand_host or not str(cand_host).strip():
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": None,
+                "name": None,
+                "is_valid": False,
+                "error": "Target IP atau hostname untuk ping wajib diisi",
+            }
+
+        host_str = str(cand_host).strip()
+        # Clean domain or IP
+        if not re.match(r"^[a-zA-Z0-9\.\-_]+$", host_str):
+            return {
+                "intent": intent_norm,
+                "action": action,
+                "target": host_str,
+                "name": None,
+                "is_valid": False,
+                "error": f"Format target ping tidak valid: '{host_str}'",
+            }
+
+        # Bound count (INV-DIAG-01: max count=4)
+        count_val = 4
+        if dst_port is not None:
+            try:
+                count_val = min(max(int(dst_port), 1), 4)
+            except Exception:
+                count_val = 4
+
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "target": host_str,
+            "count": count_val,
+            "name": f"ping_{host_str.replace('.', '_')}",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "flush_dns_cache":
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "name": "flush_dns",
+            "is_valid": True,
+            "error": None,
+        }
+
+    if intent_norm == "get_system_health":
+        return {
+            "intent": intent_norm,
+            "action": action,
+            "name": "system_health",
             "is_valid": True,
             "error": None,
         }
@@ -810,16 +1079,23 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
                 else remove_bandwidth_limit(target=target)
             )
         elif intent == "block_traffic":
+            is_site = target and "." in str(target) and not _is_ip_like(str(target))
+            site_val = str(target).lower() if is_site else None
+            target_val = None if is_site else target
+            port_val = 443 if is_site else dst_port
             res = (
-                adapter.apply_firewall_block(target=target, dst_port=dst_port, protocol=protocol)
+                adapter.apply_firewall_block(target=target_val, dst_port=port_val, protocol=protocol, site=site_val)
                 if adapter
-                else apply_firewall_block(target=target, dst_port=dst_port, protocol=protocol)
+                else apply_firewall_block(target=target_val, dst_port=port_val, protocol=protocol, site=site_val)
             )
         elif intent == "unblock_traffic":
+            is_site = target and "." in str(target) and not _is_ip_like(str(target))
+            site_val = str(target).lower() if is_site else None
+            target_val = None if is_site else target
             res = (
-                adapter.remove_firewall_block(target=target, dst_port=dst_port)
+                adapter.remove_firewall_block(target=target_val, dst_port=dst_port, site=site_val)
                 if adapter
-                else remove_firewall_block(target=target, dst_port=dst_port)
+                else remove_firewall_block(target=target_val, dst_port=dst_port, site=site_val)
             )
         elif intent == "enable_interface":
             res = (
@@ -851,6 +1127,24 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
                 if adapter
                 else get_interface_telemetry(interfaces=target)
             )
+        elif intent == "get_bandwidth_status":
+            res = (
+                adapter.get_bandwidth_limits()
+                if adapter
+                else get_bandwidth_limits()
+            )
+        elif intent == "get_firewall_status":
+            res = (
+                adapter.get_firewall_blocks()
+                if adapter
+                else get_firewall_blocks()
+            )
+        elif intent == "get_nat_status":
+            res = (
+                adapter.get_nat_rules()
+                if adapter
+                else get_nat_rules()
+            )
         elif intent == "add_ip_address":
             res = (
                 adapter.add_ip_address(address=address, interface=interface)
@@ -869,6 +1163,55 @@ def execute_policy(policy: dict, adapter: Optional[MikroTikAdapter] = None) -> d
                 if adapter
                 else update_ip_address(interface=interface, new_address=address)
             )
+        elif intent == "add_port_forward":
+            to_addr = str(policy.get("address") or policy.get("target") or "")
+            to_p = policy.get("to_port") or policy.get("dst_port")
+            res = (
+                adapter.add_port_forward(
+                    dst_port=policy["dst_port"],
+                    to_address=to_addr,
+                    to_port=to_p,
+                    protocol=policy.get("protocol", "tcp") or "tcp",
+                )
+                if adapter
+                else add_port_forward(
+                    dst_port=policy["dst_port"],
+                    to_address=to_addr,
+                    to_port=to_p,
+                    protocol=policy.get("protocol", "tcp") or "tcp",
+                )
+            )
+        elif intent == "remove_port_forward":
+            res = (
+                adapter.remove_port_forward(
+                    dst_port=policy.get("dst_port"),
+                    to_address=policy.get("target"),
+                    protocol=policy.get("protocol"),
+                )
+                if adapter
+                else remove_port_forward(
+                    dst_port=policy.get("dst_port"),
+                    to_address=policy.get("target"),
+                    protocol=policy.get("protocol"),
+                )
+            )
+        elif intent == "ping_host":
+            target_host = str(policy.get("target") or "")
+            res = (
+                adapter.ping_host(
+                    host=target_host,
+                    count=policy.get("count", 4),
+                )
+                if adapter
+                else ping_host(
+                    host=target_host,
+                    count=policy.get("count", 4),
+                )
+            )
+        elif intent == "flush_dns_cache":
+            res = adapter.flush_dns_cache() if adapter else flush_dns_cache()
+        elif intent == "get_system_health":
+            res = adapter.get_system_health() if adapter else get_system_health()
         else:
             return {
                 "status": "error",

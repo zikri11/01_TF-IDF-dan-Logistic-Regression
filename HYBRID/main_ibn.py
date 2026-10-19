@@ -182,15 +182,50 @@ konfigurasi otomatis QoS (Simple Queue), Firewall, Interface, dan NAT MikroTik.
     * "cek ip port 1 dan port 3"
     * "cek semua ip"
 
- 8. Penambahan IP Address (add_ip_address):
+ 8. Cek / Inspeksi Bandwidth (get_bandwidth_status):
+    * "siapa saja yang lagi dibatasi bandwidth"
+    * "tampilkan seluruh antrean simple queue"
+    * "cek limit bandwidth host 192.168.88.50"
+
+ 9. Cek / Inspeksi Firewall (get_firewall_status):
+    * "siapa saja yang lagi diblokir internetnya"
+    * "tampilkan seluruh aturan firewall filter drop"
+    * "apakah port 80 sedang ditutup firewall"
+
+ 10. Cek / Inspeksi NAT (get_nat_status):
+    * "apakah internet nat sedang aktif"
+    * "tampilkan seluruh aturan nat yang aktif"
+    * "tampilkan daftar aturan port forwarding aktif"
+
+ 11. Penambahan IP Address (add_ip_address):
     * "tambahkan ip 192.168.10.1/24 di port 3"
     * "pasang ip 10.10.10.1 pada ether4"
 
- 9. Pengubahan IP Address (update_ip_address):
+ 12. Pengubahan IP Address (update_ip_address):
     * "ganti ip port 3 jadi 10.10.10.1/24"
     * "ubah ip di ether4 ke 172.16.1.1"
 
- 10. Aturan Penghapusan Spesifik (Safety Object Guard):
+ 13. Port Forwarding / Destination NAT (add_port_forward / remove_port_forward):
+    * "forward port 8080 ke server 192.168.88.50 port 80"
+    * "buka port 8443 lempar ke 192.168.88.20"
+    * "hapus aturan port forwarding 8080"
+    * "hapus semua port forwarding"
+
+ 14. Diagnostik Ping & Latensi ICMP (ping_host):
+    * "ping 8.8.8.8" / "ping google.com count 4"
+    * "coba ping ke 192.168.88.50 dong"
+    * "lakukan ping sebanyak 4 kali ke 1.1.1.1"
+
+ 15. Pembersihan Cache DNS (flush_dns_cache):
+    * "flush dns cache" / "bersihkan cache dns router"
+    * "reset cache dns di router" / "kosongkan tabel cache dns"
+
+ 16. Monitoring Kesehatan Hardware Router (get_system_health):
+    * "system resource print" / "cek beban cpu router"
+    * "tampilkan sisa ram router" / "lihat status uptime mikrotik"
+    * "gimana kesehatan hardware mikrotik"
+
+ 17. Aturan Penghapusan Spesifik (Safety Object Guard):
     * Wajib menyebut objek spesifik: 'hapus limit port 1', 'hapus ip 10.10.10.1', 'buka blokir port 80'
     * (Catatan: Perintah ambigu seperti 'hapus port 1' otomatis ditolak demi keamanan router)
 
@@ -278,6 +313,87 @@ def handle_input_intent(text: str, adapter: MikroTikAdapter):
                     ip_str,
                 ])
             print(format_table(["No", "Interface", "Tipe", "MAC Address", "Link Status", "IP Address Terpasang"], rows))
+        elif intent == "get_bandwidth_status" and isinstance(res, list):
+            print(f"\n    {COLOR_BOLD}{COLOR_CYAN}--- HASIL INSPEKSI BANDWIDTH (SIMPLE QUEUE) ---{COLOR_RESET}")
+            if res:
+                rows = []
+                for idx, q in enumerate(res, 1):
+                    rows.append([
+                        str(idx),
+                        q.get(".id", "-"),
+                        q.get("name", "-"),
+                        q.get("target", "-"),
+                        q.get("max-limit", "-"),
+                        str(q.get("bytes", "-")),
+                    ])
+                print(format_table(["No", "ID", "Nama Antrean", "Target", "Max Limit", "Bytes"], rows))
+            else:
+                print("    (Tidak ada antrean Simple Queue aktif di router)")
+        elif intent == "get_firewall_status" and isinstance(res, list):
+            print(f"\n    {COLOR_BOLD}{COLOR_CYAN}--- HASIL INSPEKSI KEAMANAN FIREWALL FILTER DROP ---{COLOR_RESET}")
+            if res:
+                rows = []
+                for idx, f in enumerate(res, 1):
+                    rows.append([
+                        str(idx),
+                        f.get(".id", "-"),
+                        f.get("chain", "-"),
+                        f.get("src-address", "-"),
+                        str(f.get("dst-port", "-")),
+                        f.get("protocol", "-"),
+                        f.get("action", "-"),
+                        f.get("comment", "-"),
+                    ])
+                print(format_table(["No", "ID", "Chain", "Src Address", "Dst Port", "Proto", "Action", "Comment"], rows))
+            else:
+                print("    (Tidak ada aturan firewall filter drop yang aktif)")
+        elif intent == "get_nat_status" and isinstance(res, list):
+            print(f"\n    {COLOR_BOLD}{COLOR_CYAN}--- HASIL INSPEKSI GATEWAY NAT MASQUERADE ---{COLOR_RESET}")
+            if res:
+                rows = []
+                for idx, n in enumerate(res, 1):
+                    status_str = "Disabled" if n.get("disabled") in (True, "true") else "Aktif"
+                    rows.append([
+                        str(idx),
+                        n.get(".id", "-"),
+                        n.get("chain", "-"),
+                        n.get("action", "-"),
+                        n.get("out-interface") or n.get("out-interface-list") or "-",
+                        n.get("comment", "-"),
+                        status_str,
+                    ])
+                print(format_table(["No", "ID", "Chain", "Action", "Out-Interface", "Comment", "Status"], rows))
+            else:
+                print("    (Tidak ada aturan NAT aktif di router)")
+        elif intent == "add_port_forward" and isinstance(res, dict):
+            print(f"    Aksi Router : {res.get('action', '-')}")
+            print(f"    Rule ID     : {res.get('id', '-')}")
+            print(f"    Port Publik : {res.get('dst_port', '-')}")
+            print(f"    Server LAN  : {res.get('to_address', '-')}:{res.get('to_port', '-')}")
+            print(f"    Protokol    : {res.get('protocol', 'tcp')}")
+            print(f"    Comment     : {res.get('comment', '-')}")
+        elif intent == "remove_port_forward" and isinstance(res, dict):
+            print(f"    Aksi Router : {res.get('action', '-')}")
+            p_val = res.get('dst_port') or "(Semua Port Forwarding)"
+            print(f"    Target Port : {p_val}")
+            print(f"    Jml Dihapus : {res.get('count', 0)}")
+        elif intent == "ping_host" and isinstance(res, dict):
+            print(f"    Aksi Router : Uji Latensi ICMP ({res.get('action', '-')})")
+            print(f"    Target Host : {res.get('target', '-')}")
+            print(f"    Paket ICMP  : Terkirim={res.get('sent', 0)}, Diterima={res.get('received', 0)}")
+            print(f"    Packet Loss : {res.get('packet_loss_pct', 0)}%")
+            print(f"    Statistik   : Min: {res.get('min_rtt_ms', 0)} ms | Avg: {res.get('avg_rtt_ms', 0)} ms | Max: {res.get('max_rtt_ms', 0)} ms")
+        elif intent == "flush_dns_cache" and isinstance(res, dict):
+            print(f"    Aksi Router : Pembersihan Resolver DNS ({res.get('action', '-')})")
+            print(f"    Status      : {res.get('status', 'success').upper()}")
+            print(f"    Pesan       : {res.get('message', 'Cache DNS router berhasil dibersihkan')}")
+        elif intent == "get_system_health" and isinstance(res, dict):
+            print(f"    Aksi Router : Audit Hardware ({res.get('action', '-')})")
+            print(f"    Perangkat   : {res.get('board_name', 'hAP lite')} ({res.get('version', '-')})")
+            print(f"    Beban CPU   : {res.get('cpu_load_pct', 0)}% ({res.get('cpu_model', '-')})")
+            print(f"    Memori RAM  : {res.get('free_memory_mb', 0)} MB bebas / {res.get('total_memory_mb', 0)} MB total")
+            print(f"    Disk Bebas  : {res.get('free_hdd_mb', 0)} MB")
+            print(f"    Uptime      : {res.get('uptime', '-')}")
         elif intent == "add_ip_address" and isinstance(res, dict):
             print(f"    Aksi Router : {res.get('action', '-')}")
             print(f"    Rule ID     : {res.get('id', '-')}")

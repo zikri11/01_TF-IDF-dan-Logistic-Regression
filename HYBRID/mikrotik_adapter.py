@@ -59,14 +59,20 @@ class MikroTikAdapter:
     def remove_bandwidth_limit(self, target: str) -> int:
         self.connect()
         q = self.api.path('queue', 'simple')
-        target_clean = target.split('/')[0]
-        matches = [
-            r for r in q
-            if r.get('target', '').split('/')[0] == target_clean
-            or r.get('target') == target
-            or r.get('name') == target
-            or r.get('name') == f"qos_{target}"
-        ]
+        if str(target).lower() in ("all", "semua", "seluruh"):
+            matches = [
+                r for r in q
+                if 'IBN' in str(r.get('comment', '')) or str(r.get('name', '')).startswith('qos_')
+            ]
+        else:
+            target_clean = target.split('/')[0]
+            matches = [
+                r for r in q
+                if r.get('target', '').split('/')[0] == target_clean
+                or r.get('target') == target
+                or r.get('name') == target
+                or r.get('name') == f"qos_{target}"
+            ]
         for m in matches:
             q.remove(m['.id'])
         return len(matches)
@@ -81,17 +87,19 @@ class MikroTikAdapter:
         target: Optional[str] = None,
         dst_port: Optional[Union[str, int]] = None,
         protocol: str = 'tcp',
+        site: Optional[str] = None,
         comment: str = 'IBN_DROP'
     ) -> dict:
-        if not target and dst_port is None:
-            raise ValueError("Target IP atau dst_port wajib diisi")
+        if not target and dst_port is None and not site:
+            raise ValueError("Target IP, dst_port, atau nama situs wajib diisi")
 
-        target_ip = target.split('/')[0] if target else None
+        target_ip = target.split('/')[0] if target and not site else None
         if target_ip and target_ip in ('192.168.88.1', self.host):
             raise ValueError(f"Anti-lockout: dilarang memblokir IP router/gateway ({target_ip})")
 
-        port_str = str(dst_port) if dst_port is not None else None
+        port_str = str(dst_port) if dst_port is not None else ('443' if site else None)
         proto_str = protocol.lower() if protocol else 'tcp'
+        rule_comment = comment if comment != 'IBN_DROP' else (f'IBN_BLOCK_{site.upper()}' if site else 'IBN_DROP')
 
         self.connect()
         fw = self.api.path('ip', 'firewall', 'filter')
@@ -99,6 +107,9 @@ class MikroTikAdapter:
         def _match_existing(r):
             if r.get('chain') != 'forward' or r.get('action') != 'drop':
                 return False
+            if site:
+                return r.get('tls-host') == f"*{site}*" or site.lower() in str(r.get('comment', '')).lower()
+
             r_src = r.get('src-address', '').split('/')[0] if r.get('src-address') else None
             r_port = str(r['dst-port']) if 'dst-port' in r else None
 
@@ -124,44 +135,68 @@ class MikroTikAdapter:
             return {
                 'action': 'noop',
                 'id': existing['.id'],
-                'target': target,
-                'dst_port': dst_port,
-                'protocol': protocol if dst_port is not None else None,
+                'target': target or site,
+                'dst_port': dst_port or ('443' if site else None),
+                'protocol': proto_str,
                 'comment': existing.get('comment', ''),
             }
 
-        params = {'chain': 'forward', 'action': 'drop', 'comment': comment}
-        if target:
-            params['src-address'] = target
-        if dst_port is not None:
-            params['protocol'] = proto_str
-            params['dst-port'] = port_str
+        params = {'chain': 'forward', 'action': 'drop', 'comment': rule_comment}
+        if site:
+            params['protocol'] = 'tcp'
+            params['dst-port'] = '443'
+            params['tls-host'] = f"*{site}*"
+        else:
+            if target:
+                params['src-address'] = target
+            if dst_port is not None:
+                params['protocol'] = proto_str
+                params['dst-port'] = port_str
 
         new_id = fw.add(**params)
         return {
             'action': 'added',
             'id': new_id,
-            'target': target,
-            'dst_port': dst_port,
-            'protocol': protocol if dst_port is not None else None,
-            'comment': comment,
+            'target': target or site,
+            'dst_port': dst_port or ('443' if site else None),
+            'protocol': proto_str,
+            'comment': rule_comment,
         }
 
     def remove_firewall_block(
         self,
         target: Optional[str] = None,
         dst_port: Optional[Union[str, int]] = None,
+        site: Optional[str] = None,
         comment: Optional[str] = None
     ) -> int:
         self.connect()
         fw = self.api.path('ip', 'firewall', 'filter')
-        target_ip = target.split('/')[0] if target else None
+        target_str = str(target).lower() if target else ""
+
+        if target_str in ("all", "semua", "seluruh"):
+            matches = [
+                r for r in fw
+                if r.get('chain') == 'forward' and r.get('action') == 'drop' and (
+                    'IBN' in str(r.get('comment', '')) or 'IBN' in str(r.get('tls-host', ''))
+                )
+            ]
+            for m in matches:
+                fw.remove(m['.id'])
+            return len(matches)
+
+        target_ip = target.split('/')[0] if target and not site else None
         port_str = str(dst_port) if dst_port is not None else None
 
         matches = []
         for r in fw:
             if r.get('chain') != 'forward' or r.get('action') != 'drop':
                 continue
+            if site:
+                if site.lower() in str(r.get('tls-host', '')).lower() or site.lower() in str(r.get('comment', '')).lower():
+                    matches.append(r)
+                continue
+
             r_src = r.get('src-address', '').split('/')[0] if r.get('src-address') else None
             r_port = str(r['dst-port']) if 'dst-port' in r else None
 
@@ -262,6 +297,149 @@ class MikroTikAdapter:
         for m in matches:
             nat.remove(m['.id'])
         return {'action': 'removed', 'count': len(matches)}
+
+    def add_port_forward(
+        self,
+        dst_port: Union[int, str],
+        to_address: str,
+        to_port: Optional[Union[int, str]] = None,
+        protocol: str = 'tcp',
+        comment: Optional[str] = None
+    ) -> dict:
+        port_num = int(dst_port)
+        if not (1 <= port_num <= 65535):
+            raise ValueError(f"Port eksternal tidak valid: {dst_port} (harus 1-65535)")
+
+        to_p = int(to_port) if to_port is not None else port_num
+        if not (1 <= to_p <= 65535):
+            raise ValueError(f"Port internal tidak valid: {to_port} (harus 1-65535)")
+
+        proto = protocol.lower() if protocol else 'tcp'
+        if proto not in ('tcp', 'udp'):
+            raise ValueError(f"Protokol tidak valid: {protocol} (harus tcp atau udp)")
+
+        to_addr_clean = to_address.split('/')[0].strip() if to_address else ''
+        if not to_addr_clean:
+            raise ValueError("Alamat IP internal (to_address) wajib diisi")
+
+        rule_comment = comment or f"IBN_PORT_FWD_{port_num}"
+
+        self.connect()
+        nat = self.api.path('ip', 'firewall', 'nat')
+
+        # ponytail: exact match on chain=dstnat, action=dst-nat, dst-port, protocol. upgrade path: multi-port range
+        existing = next(
+            (
+                r for r in nat
+                if r.get('chain') == 'dstnat'
+                and r.get('action') == 'dst-nat'
+                and str(r.get('dst-port')) == str(port_num)
+                and r.get('protocol', 'tcp').lower() == proto
+            ),
+            None
+        )
+
+        if existing:
+            ext_addr = str(existing.get('to-addresses', '')).strip()
+            ext_port = str(existing.get('to-ports', '')).strip()
+            if ext_addr == to_addr_clean and ext_port == str(to_p):
+                if existing.get('disabled', False):
+                    nat.update(**{'.id': existing['.id'], 'disabled': False})
+                    return {
+                        'action': 'enabled',
+                        'id': existing['.id'],
+                        'dst_port': port_num,
+                        'to_address': to_addr_clean,
+                        'to_port': to_p,
+                        'protocol': proto,
+                        'comment': rule_comment,
+                    }
+                return {
+                    'action': 'noop',
+                    'id': existing['.id'],
+                    'dst_port': port_num,
+                    'to_address': to_addr_clean,
+                    'to_port': to_p,
+                    'protocol': proto,
+                    'comment': existing.get('comment', ''),
+                }
+            nat.update(**{
+                '.id': existing['.id'],
+                'to-addresses': to_addr_clean,
+                'to-ports': str(to_p),
+                'disabled': False,
+                'comment': rule_comment,
+            })
+            return {
+                'action': 'updated',
+                'id': existing['.id'],
+                'dst_port': port_num,
+                'to_address': to_addr_clean,
+                'to_port': to_p,
+                'protocol': proto,
+                'comment': rule_comment,
+            }
+
+        new_id = nat.add(
+            chain='dstnat',
+            action='dst-nat',
+            protocol=proto,
+            **{
+                'dst-port': str(port_num),
+                'to-addresses': to_addr_clean,
+                'to-ports': str(to_p),
+                'comment': rule_comment,
+            }
+        )
+        return {
+            'action': 'added',
+            'id': new_id,
+            'dst_port': port_num,
+            'to_address': to_addr_clean,
+            'to_port': to_p,
+            'protocol': proto,
+            'comment': rule_comment,
+        }
+
+    def remove_port_forward(
+        self,
+        dst_port: Optional[Union[int, str]] = None,
+        to_address: Optional[str] = None,
+        protocol: Optional[str] = None,
+        comment: Optional[str] = None
+    ) -> dict:
+        self.connect()
+        nat = self.api.path('ip', 'firewall', 'nat')
+        port_str = str(dst_port) if dst_port is not None and str(dst_port).lower() not in ("all", "semua", "seluruh") else None
+        to_clean = to_address.split('/')[0].strip() if to_address else None
+        proto = protocol.lower() if protocol else None
+
+        matches = []
+        for r in nat:
+            if r.get('chain') != 'dstnat' or r.get('action') != 'dst-nat':
+                continue
+
+            hit = False
+            if port_str:
+                if str(r.get('dst-port')) == port_str:
+                    hit = (r.get('protocol', 'tcp').lower() == proto) if proto else True
+            elif to_clean:
+                if str(r.get('to-addresses', '')).strip() == to_clean:
+                    hit = True
+            elif comment:
+                if r.get('comment') == comment:
+                    hit = True
+            elif str(dst_port).lower() in ("all", "semua", "seluruh") or not dst_port:
+                if 'IBN' in str(r.get('comment', '')):
+                    hit = True
+
+            if hit:
+                matches.append(r)
+
+        for m in matches:
+            nat.remove(m['.id'])
+
+        return {'action': 'removed', 'count': len(matches), 'dst_port': dst_port}
 
     def _is_mgmt_ip(self, ip: Optional[str]) -> bool:
         if not ip:
@@ -462,6 +640,91 @@ class MikroTikAdapter:
             'comment': comment,
         }
 
+    # Diagnostics & Utility Domain (OTHER)
+    def ping_host(self, host: str, count: int = 4) -> dict:
+        if not host or not str(host).strip():
+            raise ValueError("Target host untuk ping tidak boleh kosong")
+        cnt = min(max(int(count), 1), 4)  # INV-DIAG-01: Bound count 1-4
+        target_str = str(host).strip()
+
+        self.connect()
+        try:
+            ping_path = self.api.path('ping')
+            res = list(ping_path(address=target_str, count=str(cnt)))
+        except Exception:
+            res = list(self.api('ping', **{'address': target_str, 'count': str(cnt)}))
+
+        received = 0
+        rtts = []
+        for r in res:
+            if 'time' in r or 'status' not in r or r.get('status') == 'alive':
+                received += 1
+                t_val = r.get('time')
+                if t_val:
+                    clean_t = str(t_val).replace('ms', '').replace('s', '').strip()
+                    try:
+                        rtts.append(float(clean_t))
+                    except ValueError:
+                        pass
+
+        packet_loss = int(((cnt - received) / cnt) * 100) if cnt > 0 else 0
+        min_rtt = min(rtts) if rtts else 0.0
+        avg_rtt = round(sum(rtts) / len(rtts), 2) if rtts else 0.0
+        max_rtt = max(rtts) if rtts else 0.0
+
+        return {
+            'action': 'ping_completed',
+            'target': target_str,
+            'sent': cnt,
+            'received': received,
+            'packet_loss_pct': packet_loss,
+            'min_rtt_ms': min_rtt,
+            'avg_rtt_ms': avg_rtt,
+            'max_rtt_ms': max_rtt,
+            'details': res,
+        }
+
+    def flush_dns_cache(self) -> dict:
+        self.connect()
+        try:
+            dns_cache = self.api.path('ip', 'dns', 'cache')
+            try:
+                dns_cache('flush')
+            except Exception:
+                self.api('ip/dns/cache/flush')
+        except Exception:
+            self.api('ip/dns/cache/flush')
+
+        return {
+            'action': 'dns_cache_flushed',
+            'status': 'success',
+            'message': 'Cache DNS router berhasil dibersihkan',
+        }
+
+    def get_system_health(self) -> dict:
+        self.connect()
+        res_list = list(self.api.path('system', 'resource'))
+        info = res_list[0] if res_list else {}
+
+        free_mem_mb = round(int(info.get('free-memory', 0)) / (1024 * 1024), 2)
+        total_mem_mb = round(int(info.get('total-memory', 32 * 1024 * 1024)) / (1024 * 1024), 2)
+        free_hdd_mb = round(int(info.get('free-hdd-space', 0)) / (1024 * 1024), 2)
+
+        return {
+            'action': 'system_health_inspected',
+            'platform': info.get('platform', 'MikroTik'),
+            'version': info.get('version', 'RouterOS v6'),
+            'uptime': info.get('uptime', '-'),
+            'cpu_load_pct': int(info.get('cpu-load', 0)),
+            'cpu_model': info.get('cpu', 'MIPS 24KEc'),
+            'cpu_count': int(info.get('cpu-count', 1)),
+            'cpu_freq_mhz': int(info.get('cpu-frequency', 650)),
+            'free_memory_mb': free_mem_mb,
+            'total_memory_mb': total_mem_mb,
+            'free_hdd_mb': free_hdd_mb,
+            'board_name': info.get('board-name', 'hAP lite'),
+        }
+
 
 _default_adapter = MikroTikAdapter()
 
@@ -478,16 +741,18 @@ def apply_firewall_block(
     target: Optional[str] = None,
     dst_port: Optional[Union[str, int]] = None,
     protocol: str = 'tcp',
+    site: Optional[str] = None,
     comment: str = 'IBN_DROP'
 ) -> dict:
-    return _default_adapter.apply_firewall_block(target, dst_port, protocol, comment)
+    return _default_adapter.apply_firewall_block(target, dst_port, protocol, site, comment)
 
 def remove_firewall_block(
     target: Optional[str] = None,
     dst_port: Optional[Union[str, int]] = None,
+    site: Optional[str] = None,
     comment: Optional[str] = None
 ) -> int:
-    return _default_adapter.remove_firewall_block(target, dst_port, comment)
+    return _default_adapter.remove_firewall_block(target, dst_port, site, comment)
 
 def get_firewall_blocks() -> list:
     return _default_adapter.get_firewall_blocks()
@@ -524,6 +789,32 @@ def remove_ip_address(address: Optional[str] = None, interface: Optional[str] = 
 
 def update_ip_address(interface: str, new_address: str, old_address: Optional[str] = None, comment: str = 'IBN_IP') -> dict:
     return _default_adapter.update_ip_address(interface, new_address, old_address, comment)
+
+def add_port_forward(
+    dst_port: Union[int, str],
+    to_address: str,
+    to_port: Optional[Union[int, str]] = None,
+    protocol: str = 'tcp',
+    comment: Optional[str] = None
+) -> dict:
+    return _default_adapter.add_port_forward(dst_port, to_address, to_port, protocol, comment)
+
+def remove_port_forward(
+    dst_port: Optional[Union[int, str]] = None,
+    to_address: Optional[str] = None,
+    protocol: Optional[str] = None,
+    comment: Optional[str] = None
+) -> dict:
+    return _default_adapter.remove_port_forward(dst_port, to_address, protocol, comment)
+
+def ping_host(host: str, count: int = 4) -> dict:
+    return _default_adapter.ping_host(host, count)
+
+def flush_dns_cache() -> dict:
+    return _default_adapter.flush_dns_cache()
+
+def get_system_health() -> dict:
+    return _default_adapter.get_system_health()
 
 
 

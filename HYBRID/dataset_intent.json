@@ -120,6 +120,166 @@
     "intent": "limit_bandwidth"
   },
   {
+    "text": "bisa tolong batasi kecepatan komputer 10.0.0.12 jadi 1mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "alokasikan bandwidth untuk pc 192.168.88.60 sebesar 2 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong limitasi transfer rate host 10.0.0.15 ke 512k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "pangkas kecepatan internet client 192.168.88.45 jadi 256kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "kecilkan bandwidth laptop 10.0.0.22 sebesar 1m",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "atur batasan data untuk host 192.168.88.75 jadi 3 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong cekik kecepatan download upload 10.0.0.30 ke 4mb",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi pemakaian data user 192.168.88.95 di 5mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "kasih limitasi kecepatan internet 10.0.0.40 jadi 512 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "setel batas transfer rate 192.168.88.105 sebesar 2mbit",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong batasi eth 2 jadi 4mb",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "kasih limit lan 3 sebesar 10mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "atur kecepatan jalur 1 ke 2 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi transfer data iface 4 jadi 1m",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong batasi colokan 2 sebesar 512k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "set batas bandwidth kabel lan 3 jadi 3mb",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "pangkas kecepatan int 1 ke 2mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi penggunaan internet port lan 4 jadi 5 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "bisa limit kecepatan link 1 jadi 4 Mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "atur alokasi bandwidth port eth 3 di 2mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "atur batas kecepatan transfer ip 10.10.20.5 menjadi 512 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong pangkas pemakaian internet 192.168.88.115 jadi 1mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi alokasi bandwidth eth 1 di 3 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong cekik kecepatan download komputer 10.10.30.12 jadi 256k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "alokasikan bandwidth internet host 192.168.88.135 sebesar 4mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "kecilkan alokasi data client 10.10.40.18 jadi 1mbit",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "bisa tolong batasi transfer rate perangkat 192.168.88.145 ke 2mb",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "setel batas maksimal bandwidth pc 10.10.50.25 sebesar 5 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "pangkas kecepatan koneksi user 192.168.88.155 jadi 512k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi penggunaan data laptop 10.10.60.30 maksimal 3mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong atur batas bandwidth lan 2 jadi 2 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi kecepatan transfer iface 3 ke 1mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "pangkas alokasi data colokan 1 jadi 512k",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "atur batas kecepatan kabel lan 4 sebesar 4mb",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "tolong limitasi transfer data int 2 ke 2mbit",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "batasi pemakaian bandwidth link 3 jadi 3 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "kecilkan kecepatan port lan 1 jadi 1mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "setel batas kecepatan internet port eth 4 sebesar 512 kbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "bisa batasi alokasi data jalur 2 jadi 2mbps",
+    "intent": "limit_bandwidth"
+  },
+  {
+    "text": "alokasikan bandwidth antarmuka eth 3 di 4 mega",
+    "intent": "limit_bandwidth"
+  },
+  {
     "text": "Hapus limit bandwidth untuk IP 192.168.88.50",
     "intent": "remove_limit"
   },
@@ -237,6 +397,166 @@
   },
   {
     "text": "Bebaskan pembatasan transfer rate 192.168.88.235",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "kembalikan kecepatan semula komputer 10.0.0.12",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "bebaskan transfer rate untuk host 192.168.88.60",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "tolong lepaskan batasan bandwidth client 10.0.0.15",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "normalkan transfer data untuk laptop 192.168.88.45",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hilangkan limitasi kecepatan internet 10.0.0.22",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut pengaturan batas data host 192.168.88.75",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "reset batasan qos client 10.0.0.30 ke semula",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "unlimit penggunaan bandwidth untuk 192.168.88.95",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hapus pembatasan transfer rate perangkat 10.0.0.40",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "tolong hilangkan aturan pembatasan 192.168.88.105",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "kembalikan speed normal untuk eth 2",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "bebaskan limit bandwidth lan 3",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut pembatasan kecepatan jalur 1",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "lepaskan batasan transfer data iface 4",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "normalkan kecepatan pada colokan 2",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hapus limitasi qos kabel lan 3",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "unlimit batasan internet int 1",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "reset kecepatan port lan 4 ke semula",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hilangkan batas bandwidth link 1",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut limitasi data port eth 3",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut pembatasan kecepatan pada komputer 10.10.20.5",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "kembalikan kecepatan internet host 192.168.88.115 seperti semula",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hapus simple queue pembatasan eth 1",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "unlimit bandwidth kabel lan 2",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "tolong bebaskan transfer rate client 10.10.30.12",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "normalkan kembali pemakaian data pc 192.168.88.135",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "lepaskan batasan kecepatan unduh host 10.10.40.18",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hilangkan pengaturan pembatasan data user 192.168.88.145",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "reset limitasi bandwidth perangkat 10.10.50.25 ke normal",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut aturan pembatas kecepatan laptop 192.168.88.155",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "unlimit transfer data untuk laptop 10.10.60.30",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "tolong kembalikan kecepatan semula lan 2",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "bebaskan aturan bandwidth iface 3",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut limitasi kecepatan pada colokan 1",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hapus semua antrean limit bandwidth",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "bersihkan seluruh limit kecepatan",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "normalkan bandwidth semua komputer di lab",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "cabut semua pembatasan kecepatan router",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "unlimit semua antrean bandwidth",
+    "intent": "remove_limit"
+  },
+  {
+    "text": "hapus seluruh aturan simple queue",
     "intent": "remove_limit"
   },
   {
@@ -360,6 +680,166 @@
     "intent": "block_traffic"
   },
   {
+    "text": "cegat seluruh lalu lintas data dari host 10.0.0.12",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "isolasi komunikasi jaringan komputer 192.168.88.60",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tolak semua paket data dari 10.0.0.15",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "putus akses internet untuk perangkat 192.168.88.45",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "hentikan koneksi keluar masuk laptop 10.0.0.22",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "cegat paket internet dari user 192.168.88.75",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "jatuhkan semua trafik komunikasi 10.0.0.30",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir akses komunikasi client 192.168.88.95",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup koneksi internet dari host 10.0.0.40",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tolak akses jaringan komputer 192.168.88.105",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir port 80 pada lan 3",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup akses port 443 di eth 2",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir port 22 untuk iface 4",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "cegat port 53 pada jalur 1",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir akses web http untuk 10.0.0.12",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup koneksi https port 443 client 192.168.88.60",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir port ssh pada komputer 10.0.0.15",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tolak paket dns port 53 untuk 192.168.88.45",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir port 8080 pada colokan 2",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup port 80 kabel lan 3",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir seluruh akses internet dari host 10.10.20.5",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup komunikasi data komputer 192.168.88.115",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "cegat port 443 pada eth 1",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir port 80 untuk lan 2",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tolak lalu lintas paket data dari 10.10.30.12",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "putus akses komunikasi internet client 192.168.88.135",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "isolasi koneksi jaringan komputer 10.10.40.18",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "hentikan lalu lintas keluar masuk pc 192.168.88.145",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "jatuhkan semua paket internet perangkat 10.10.50.25",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup akses keluar masuk data host 192.168.88.155",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "cegat komunikasi data laptop 10.10.60.30",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir port 22 pada iface 3",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup koneksi port 53 di colokan 1",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir akses situs youtube.com",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "tutup akses domain tiktok.com untuk lab",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "cekal website judi.online",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir web facebook.com pada jaringan",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "jangan izinkan pengguna membuka instagram.com",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "cegat akses situs kompas.com",
+    "intent": "block_traffic"
+  },
+  {
+    "text": "blokir domain judi.com",
+    "intent": "block_traffic"
+  },
+  {
     "text": "Buka blokir untuk IP 192.168.88.99",
     "intent": "unblock_traffic"
   },
@@ -477,6 +957,166 @@
   },
   {
     "text": "Lepas blokiran perangkat 192.168.88.216",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka kembali isolasi jaringan komputer 10.0.0.12",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan lalu lintas data dari host 192.168.88.60",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepaskan pencegatan paket untuk 10.0.0.15",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "pulihkan koneksi internet perangkat 192.168.88.45",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "bolehkan kembali akses komunikasi 10.0.0.22",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir koneksi keluar masuk 192.168.88.75",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan paket data dari komputer 10.0.0.30",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepaskan isolasi trafik untuk user 192.168.88.95",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "pulihkan akses komunikasi host 10.0.0.40",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka kembali aturan tolak paket 192.168.88.105",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir port 80 pada lan 3",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan kembali port 443 di eth 2",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka akses port 22 untuk iface 4",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepaskan blokir port 53 pada jalur 1",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir layanan web http untuk 10.0.0.12",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "pulihkan akses https port 443 client 192.168.88.60",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir port ssh pada komputer 10.0.0.15",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan paket dns port 53 untuk 192.168.88.45",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka kembali port 8080 pada colokan 2",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepaskan blokir port 80 kabel lan 3",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka kembali blokir internet komputer 10.10.20.5",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan kembali lalu lintas data host 192.168.88.115",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepas pencegatan port 443 pada eth 1",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka aturan drop port 80 untuk lan 2",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "pulihkan akses komunikasi untuk 10.10.30.12",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "bolehkan lagi paket data dari client 192.168.88.135",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepaskan isolasi jaringan komputer 10.10.40.18",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka kembali koneksi keluar masuk pc 192.168.88.145",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "pulihkan komunikasi internet perangkat 10.10.50.25",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan akses jaringan untuk host 192.168.88.155",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir komunikasi data laptop 10.10.60.30",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan kembali port 22 pada iface 3",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka akses port 53 di colokan 1",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir situs youtube.com",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "izinkan kembali web tiktok.com",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "lepas pencekalan domain kompas.com",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka blokir website instagram.com",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "buka semua pemblokiran internet di router",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "hapus semua aturan blokir firewall",
+    "intent": "unblock_traffic"
+  },
+  {
+    "text": "bersihkan daftar drop rule firewall",
     "intent": "unblock_traffic"
   },
   {
@@ -600,6 +1240,166 @@
     "intent": "enable_interface"
   },
   {
+    "text": "hidupkan port eth 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan lan 4 mikrotik",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan int 1 router",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong hidupkan iface 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan colokan 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan jalur kabel 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan link 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong aktifkan port lan 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan antarmuka eth 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan sambungan lan 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan kembali ethernet 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan kembali iface 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong aktifkan colokan 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "buka koneksi port eth 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan antarmuka kabel lan 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan koneksi int 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan jalur port 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan interfaces eth 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan link kabel 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan port lan 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong nyalakan interface port 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan kembali antarmuka eth 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan colokan kabel lan 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan link antarmuka iface 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan port int 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan jalur koneksi port lan 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan sambungan port eth 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong aktifkan interface colokan 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan antarmuka kabel lan 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan kembali koneksi link 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan kembali jalur port 3",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan antarmuka port eth 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong nyalakan sambungan int 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan koneksi jaringan iface 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan kembali colokan kabel 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan antarmuka link 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "tolong aktifkan sambungan port lan 2",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "hidupkan koneksi interface eth 4",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "nyalakan kembali antarmuka lan 1",
+    "intent": "enable_interface"
+  },
+  {
+    "text": "aktifkan jalur sambungan port 2",
+    "intent": "enable_interface"
+  },
+  {
     "text": "Matikan interface ether1",
     "intent": "disable_interface"
   },
@@ -717,6 +1517,166 @@
   },
   {
     "text": "Tolong matikan interface ether3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan port eth 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan lan 4 mikrotik",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "nonaktifkan int 1 router",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tolong matikan iface 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "putuskan colokan 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan jalur kabel 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tutup link 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tolong nonaktifkan port lan 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan antarmuka eth 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan sambungan lan 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "putus koneksi ethernet 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "nonaktifkan kembali iface 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tolong matikan colokan 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tutup koneksi port eth 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan antarmuka kabel lan 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan koneksi int 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "putus jalur port 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "nonaktifkan interfaces eth 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan link kabel 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan port lan 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan antarmuka interface port 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan colokan eth 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "nonaktifkan jalur kabel lan 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tutup sambungan link iface 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan port int 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "putuskan jalur koneksi port lan 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan sambungan port eth 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tolong matikan interface colokan 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "nonaktifkan antarmuka kabel lan 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tutup kembali koneksi link 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan kembali jalur port 3",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan antarmuka port eth 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tolong matikan sambungan int 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "nonaktifkan koneksi jaringan iface 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan kembali colokan kabel 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tutup antarmuka link 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "tolong nonaktifkan sambungan port lan 2",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "matikan koneksi interface eth 4",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "padamkan kembali antarmuka lan 1",
+    "intent": "disable_interface"
+  },
+  {
+    "text": "putus jalur sambungan port 2",
     "intent": "disable_interface"
   },
   {
@@ -840,6 +1800,166 @@
     "intent": "enable_nat"
   },
   {
+    "text": "tolong nyalakan kembali nat masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan konfigurasi masquerade internet",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang aturan nat masquerade untuk wan",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "buat aturan masquerade pada interface ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "hidupkan fungsi nat masquerade router",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "tolong aktifkan masquerade pada eth 1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "nyalakan fitur nat internet wan",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang nat masquerade di jalur 1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan masquerade untuk koneksi publik",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "buat konfigurasi nat pada ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "hidupkan masquerade firewall internet",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan rule nat masquerade eth1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang aturan masquerade internet publik",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "tolong hidupkan kembali nat internet",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan fitur masquerade jaringan wan",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "nyalakan kembali aturan nat masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang konfigurasi nat untuk port 1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan fungsi berbagi internet masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "buat aturan nat masquerade gateway",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "hidupkan aturan masquerade koneksi luar",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan kembali fitur nat masquerade router",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "tolong nyalakan fungsi berbagi internet masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang aturan masquerade pada antarmuka wan",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "buat konfigurasi nat masquerade untuk ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "hidupkan kembali rule nat masquerade internet",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "nyalakan fungsi gateway nat masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang aturan berbagi koneksi internet masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "tolong aktifkan fitur masquerade pada ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "buat rule nat masquerade untuk jaringan publik",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "hidupkan kembali konfigurasi masquerade wan",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "nyalakan aturan firewall nat masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang konfigurasi masquerade pada antarmuka ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan kembali fungsi nat internet publik",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "tolong hidupkan fitur sharing internet masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "buat konfigurasi masquerade gateway internet",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "nyalakan kembali rule nat masquerade ether1",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "pasang aturan nat masquerade untuk port wan",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "aktifkan fungsi translasi alamat masquerade",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "hidupkan aturan masquerade jaringan luar",
+    "intent": "enable_nat"
+  },
+  {
+    "text": "tolong nyalakan konfigurasi nat gateway wan",
+    "intent": "enable_nat"
+  },
+  {
     "text": "Matikan NAT",
     "intent": "disable_nat"
   },
@@ -957,6 +2077,166 @@
   },
   {
     "text": "Disable NAT masquerade lan 1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tolong matikan kembali nat masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "nonaktifkan konfigurasi masquerade internet",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut aturan nat masquerade untuk wan",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus aturan masquerade pada interface ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "padamkan fungsi nat masquerade router",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tolong nonaktifkan masquerade pada eth 1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tutup fitur nat internet wan",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut nat masquerade di jalur 1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hilangkan masquerade untuk koneksi publik",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus konfigurasi nat pada ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "padamkan masquerade firewall internet",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "matikan rule nat masquerade eth1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut aturan masquerade internet publik",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tolong matikan kembali nat internet",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "nonaktifkan fitur masquerade jaringan wan",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tutup kembali aturan nat masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut konfigurasi nat untuk port 1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hilangkan fungsi berbagi internet masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus aturan nat masquerade gateway",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "padamkan aturan masquerade koneksi luar",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "matikan kembali fitur nat masquerade router",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tolong cabut fungsi berbagi internet masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus aturan masquerade pada antarmuka wan",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "nonaktifkan konfigurasi nat masquerade untuk ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "padamkan kembali rule nat masquerade internet",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tutup fungsi gateway nat masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut aturan berbagi koneksi internet masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tolong nonaktifkan fitur masquerade pada ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus rule nat masquerade untuk jaringan publik",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "padamkan kembali konfigurasi masquerade wan",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tutup aturan firewall nat masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut konfigurasi masquerade pada antarmuka ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "matikan kembali fungsi nat internet publik",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tolong padamkan fitur sharing internet masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus konfigurasi masquerade gateway internet",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "tutup kembali rule nat masquerade ether1",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "hapus semua konfigurasi nat router",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "bersihkan seluruh aturan masquerade",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "cabut semua konfigurasi nat wan",
+    "intent": "disable_nat"
+  },
+  {
+    "text": "reset aturan nat router",
     "intent": "disable_nat"
   },
   {
@@ -1080,6 +2360,166 @@
     "intent": "get_interface_ip"
   },
   {
+    "text": "bisa tolong periksa ip pada eth 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi status ip lan 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat alamat ip di int 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan informasi ip iface 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek konfigurasi ip colokan 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa alamat ip kabel lan 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat status ip link 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek ip port lan 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi ip pada port eth 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan ip address jalur kabel 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek ip eth 1 dan lan 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa ip colokan 2 dan iface 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan ip int 3 dan link 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat ip kabel lan 4 dan port 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek status ip di seluruh antarmuka",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan seluruh ip address router",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa daftar ip semua interface",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat telemetri ip port 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi status ip dan link ether4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan info ip address interface ether1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek konfigurasi ip pada port lan 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat alamat ip yang terpasang di eth 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi status ip dan koneksi lan 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan informasi ip di int 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa telemetri ip colokan 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek alamat ip antarmuka iface 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat status konfigurasi ip kabel lan 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi informasi ip address link 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan status ip pada port eth 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa alamat ip jalur 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek ip pada antarmuka port 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat telemetri ip colokan 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi ip address interface eth 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan informasi ip di lan 1",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa status ip int 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "cek konfigurasi ip address kabel lan 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "lihat alamat ip port lan 3",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "inspeksi telemetri ip link 2",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "tampilkan status ip jalur 4",
+    "intent": "get_interface_ip"
+  },
+  {
+    "text": "periksa konfigurasi ip antarmuka iface 3",
+    "intent": "get_interface_ip"
+  },
+  {
     "text": "Tambahkan ip 192.168.10.1/24 di port 3",
     "intent": "add_ip_address"
   },
@@ -1197,6 +2637,166 @@
   },
   {
     "text": "Beri alamat ip 172.16.50.1/24 pada port 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tolong pasangkan ip 10.20.10.1/24 di eth 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "masukkan alamat ip 172.16.80.1 pada lan 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "beri ip 192.168.140.1/24 untuk int 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasikan ip 10.30.20.1 di iface 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tambahkan alamat ip 172.20.50.1/24 ke colokan 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasang ip baru 192.168.150.1 pada kabel lan 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "input ip 10.40.1.1/24 di link 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tetapkan ip 172.16.90.1 untuk port lan 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasi alamat ip 192.168.160.1/24 pada port eth 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tambahkan ip 10.50.20.1 ke jalur kabel 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasang ip 172.20.60.1/24 di eth 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "masukkan ip 192.168.170.1 pada lan 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "beri alamat ip 10.60.1.1/24 untuk int 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasikan ip baru 172.16.100.1 di iface 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tolong tambahkan ip 192.168.180.1/24 ke colokan 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasangkan ip 10.70.10.1 pada kabel lan 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "input alamat ip 172.20.70.1/24 di link 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tetapkan ip baru 192.168.190.1 untuk port lan 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasi ip 10.80.1.1/24 pada port eth 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tambahkan alamat ip baru 172.16.110.1 di jalur kabel 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tambahkan alamat ip 10.50.10.1/24 di port 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasang ip baru 172.16.120.1 pada eth 2",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "masukkan ip 192.168.200.1/24 ke lan 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasikan ip 10.60.20.1 di int 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "beri ip 172.20.80.1/24 pada colokan 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "input alamat ip 192.168.210.1 di iface 2",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tetapkan ip baru 10.70.30.1/24 untuk kabel lan 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasangkan ip 172.16.130.1 pada link 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tambahkan ip address 192.168.220.1/24 ke port lan 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasi ip baru 10.80.40.1 di port eth 2",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasang alamat ip 172.20.90.1/24 pada jalur 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "masukkan ip baru 192.168.230.1 ke antarmuka eth 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "beri alamat ip 10.90.50.1/24 di colokan 2",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasikan ip 172.16.140.1 pada kabel lan 1",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "input ip baru 192.168.240.1/24 untuk int 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tetapkan alamat ip 10.100.10.1 di iface 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasangkan ip 172.20.100.1/24 pada port lan 2",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "tambahkan konfigurasi ip 192.168.250.1 di link 3",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "pasang ip baru 10.110.20.1/24 ke jalur 4",
+    "intent": "add_ip_address"
+  },
+  {
+    "text": "konfigurasi alamat ip 172.16.150.1 pada antarmuka lan 1",
     "intent": "add_ip_address"
   },
   {
@@ -1320,806 +2920,6 @@
     "intent": "update_ip_address"
   },
   {
-    "text": "bisa tolong batasi kecepatan komputer 10.0.0.12 jadi 1mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "alokasikan bandwidth untuk pc 192.168.88.60 sebesar 2 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong limitasi transfer rate host 10.0.0.15 ke 512k",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "pangkas kecepatan internet client 192.168.88.45 jadi 256kbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "kecilkan bandwidth laptop 10.0.0.22 sebesar 1m",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "atur batasan data untuk host 192.168.88.75 jadi 3 Mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong cekik kecepatan download upload 10.0.0.30 ke 4mb",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi pemakaian data user 192.168.88.95 di 5mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "kasih limitasi kecepatan internet 10.0.0.40 jadi 512 kbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "setel batas transfer rate 192.168.88.105 sebesar 2mbit",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong batasi eth 2 jadi 4mb",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "kasih limit lan 3 sebesar 10mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "atur kecepatan jalur 1 ke 2 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi transfer data iface 4 jadi 1m",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong batasi colokan 2 sebesar 512k",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "set batas bandwidth kabel lan 3 jadi 3mb",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "pangkas kecepatan int 1 ke 2mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi penggunaan internet port lan 4 jadi 5 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "bisa limit kecepatan link 1 jadi 4 Mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "atur alokasi bandwidth port eth 3 di 2mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "kembalikan kecepatan semula komputer 10.0.0.12",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "bebaskan transfer rate untuk host 192.168.88.60",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "tolong lepaskan batasan bandwidth client 10.0.0.15",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "normalkan transfer data untuk laptop 192.168.88.45",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hilangkan limitasi kecepatan internet 10.0.0.22",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cabut pengaturan batas data host 192.168.88.75",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "reset batasan qos client 10.0.0.30 ke semula",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "unlimit penggunaan bandwidth untuk 192.168.88.95",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hapus pembatasan transfer rate perangkat 10.0.0.40",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "tolong hilangkan aturan pembatasan 192.168.88.105",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "kembalikan speed normal untuk eth 2",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "bebaskan limit bandwidth lan 3",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cabut pembatasan kecepatan jalur 1",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "lepaskan batasan transfer data iface 4",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "normalkan kecepatan pada colokan 2",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hapus limitasi qos kabel lan 3",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "unlimit batasan internet int 1",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "reset kecepatan port lan 4 ke semula",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hilangkan batas bandwidth link 1",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cabut limitasi data port eth 3",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cegat seluruh lalu lintas data dari host 10.0.0.12",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "isolasi komunikasi jaringan komputer 192.168.88.60",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tolak semua paket data dari 10.0.0.15",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "putus akses internet untuk perangkat 192.168.88.45",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "hentikan koneksi keluar masuk laptop 10.0.0.22",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "cegat paket internet dari user 192.168.88.75",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "jatuhkan semua trafik komunikasi 10.0.0.30",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir akses komunikasi client 192.168.88.95",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup koneksi internet dari host 10.0.0.40",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tolak akses jaringan komputer 192.168.88.105",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port 80 pada lan 3",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup akses port 443 di eth 2",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port 22 untuk iface 4",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "cegat port 53 pada jalur 1",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir akses web http untuk 10.0.0.12",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup koneksi https port 443 client 192.168.88.60",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port ssh pada komputer 10.0.0.15",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tolak paket dns port 53 untuk 192.168.88.45",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port 8080 pada colokan 2",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup port 80 kabel lan 3",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "buka kembali isolasi jaringan komputer 10.0.0.12",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan lalu lintas data dari host 192.168.88.60",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepaskan pencegatan paket untuk 10.0.0.15",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan koneksi internet perangkat 192.168.88.45",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "bolehkan kembali akses komunikasi 10.0.0.22",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka blokir koneksi keluar masuk 192.168.88.75",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan paket data dari komputer 10.0.0.30",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepaskan isolasi trafik untuk user 192.168.88.95",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan akses komunikasi host 10.0.0.40",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka kembali aturan tolak paket 192.168.88.105",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka blokir port 80 pada lan 3",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan kembali port 443 di eth 2",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka akses port 22 untuk iface 4",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepaskan blokir port 53 pada jalur 1",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka blokir layanan web http untuk 10.0.0.12",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan akses https port 443 client 192.168.88.60",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka blokir port ssh pada komputer 10.0.0.15",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan paket dns port 53 untuk 192.168.88.45",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka kembali port 8080 pada colokan 2",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepaskan blokir port 80 kabel lan 3",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "hidupkan port eth 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan lan 4 mikrotik",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan int 1 router",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "tolong hidupkan iface 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan colokan 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan jalur kabel 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan link 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "tolong aktifkan port lan 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan antarmuka eth 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan sambungan lan 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan kembali ethernet 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan kembali iface 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "tolong aktifkan colokan 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "buka koneksi port eth 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan antarmuka kabel lan 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan koneksi int 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan jalur port 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan interfaces eth 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan link kabel 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan port lan 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "matikan port eth 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan lan 4 mikrotik",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "nonaktifkan int 1 router",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong matikan iface 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "putuskan colokan 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan jalur kabel 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tutup link 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong nonaktifkan port lan 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan antarmuka eth 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan sambungan lan 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "putus koneksi ethernet 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "nonaktifkan kembali iface 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong matikan colokan 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tutup koneksi port eth 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan antarmuka kabel lan 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan koneksi int 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "putus jalur port 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "nonaktifkan interfaces eth 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan link kabel 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan port lan 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong nyalakan kembali nat masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan konfigurasi masquerade internet",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang aturan nat masquerade untuk wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "buat aturan masquerade pada interface ether1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "hidupkan fungsi nat masquerade router",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong aktifkan masquerade pada eth 1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "nyalakan fitur nat internet wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang nat masquerade di jalur 1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan masquerade untuk koneksi publik",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "buat konfigurasi nat pada ether1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "hidupkan masquerade firewall internet",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan rule nat masquerade eth1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang aturan masquerade internet publik",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong hidupkan kembali nat internet",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan fitur masquerade jaringan wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "nyalakan kembali aturan nat masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang konfigurasi nat untuk port 1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan fungsi berbagi internet masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "buat aturan nat masquerade gateway",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "hidupkan aturan masquerade koneksi luar",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong matikan kembali nat masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "nonaktifkan konfigurasi masquerade internet",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut aturan nat masquerade untuk wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hapus aturan masquerade pada interface ether1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "padamkan fungsi nat masquerade router",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tolong nonaktifkan masquerade pada eth 1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tutup fitur nat internet wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut nat masquerade di jalur 1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hilangkan masquerade untuk koneksi publik",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hapus konfigurasi nat pada ether1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "padamkan masquerade firewall internet",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "matikan rule nat masquerade eth1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut aturan masquerade internet publik",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tolong matikan kembali nat internet",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "nonaktifkan fitur masquerade jaringan wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tutup kembali aturan nat masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut konfigurasi nat untuk port 1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hilangkan fungsi berbagi internet masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hapus aturan nat masquerade gateway",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "padamkan aturan masquerade koneksi luar",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "bisa tolong periksa ip pada eth 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi status ip lan 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat alamat ip di int 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan informasi ip iface 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek konfigurasi ip colokan 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa alamat ip kabel lan 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat status ip link 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek ip port lan 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi ip pada port eth 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan ip address jalur kabel 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek ip eth 1 dan lan 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa ip colokan 2 dan iface 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan ip int 3 dan link 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat ip kabel lan 4 dan port 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek status ip di seluruh antarmuka",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan seluruh ip address router",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa daftar ip semua interface",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat telemetri ip port 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi status ip dan link ether4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan info ip address interface ether1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tolong pasangkan ip 10.20.10.1/24 di eth 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "masukkan alamat ip 172.16.80.1 pada lan 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "beri ip 192.168.140.1/24 untuk int 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasikan ip 10.30.20.1 di iface 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tambahkan alamat ip 172.20.50.1/24 ke colokan 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasang ip baru 192.168.150.1 pada kabel lan 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "input ip 10.40.1.1/24 di link 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tetapkan ip 172.16.90.1 untuk port lan 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasi alamat ip 192.168.160.1/24 pada port eth 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tambahkan ip 10.50.20.1 ke jalur kabel 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasang ip 172.20.60.1/24 di eth 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "masukkan ip 192.168.170.1 pada lan 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "beri alamat ip 10.60.1.1/24 untuk int 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasikan ip baru 172.16.100.1 di iface 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tolong tambahkan ip 192.168.180.1/24 ke colokan 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasangkan ip 10.70.10.1 pada kabel lan 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "input alamat ip 172.20.70.1/24 di link 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tetapkan ip baru 192.168.190.1 untuk port lan 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasi ip 10.80.1.1/24 pada port eth 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tambahkan alamat ip baru 172.16.110.1 di jalur kabel 3",
-    "intent": "add_ip_address"
-  },
-  {
     "text": "tolong ganti ip eth 3 jadi 10.20.10.1/24",
     "intent": "update_ip_address"
   },
@@ -2200,806 +3000,6 @@
     "intent": "update_ip_address"
   },
   {
-    "text": "atur batas kecepatan transfer ip 10.10.20.5 menjadi 512 kbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong pangkas pemakaian internet 192.168.88.115 jadi 1mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi alokasi bandwidth eth 1 di 3 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong cekik kecepatan download komputer 10.10.30.12 jadi 256k",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "alokasikan bandwidth internet host 192.168.88.135 sebesar 4mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "kecilkan alokasi data client 10.10.40.18 jadi 1mbit",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "bisa tolong batasi transfer rate perangkat 192.168.88.145 ke 2mb",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "setel batas maksimal bandwidth pc 10.10.50.25 sebesar 5 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "pangkas kecepatan koneksi user 192.168.88.155 jadi 512k",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi penggunaan data laptop 10.10.60.30 maksimal 3mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong atur batas bandwidth lan 2 jadi 2 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi kecepatan transfer iface 3 ke 1mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "pangkas alokasi data colokan 1 jadi 512k",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "atur batas kecepatan kabel lan 4 sebesar 4mb",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "tolong limitasi transfer data int 2 ke 2mbit",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "batasi pemakaian bandwidth link 3 jadi 3 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "kecilkan kecepatan port lan 1 jadi 1mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "setel batas kecepatan internet port eth 4 sebesar 512 kbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "bisa batasi alokasi data jalur 2 jadi 2mbps",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "alokasikan bandwidth antarmuka eth 3 di 4 mega",
-    "intent": "limit_bandwidth"
-  },
-  {
-    "text": "cabut pembatasan kecepatan pada komputer 10.10.20.5",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "kembalikan kecepatan internet host 192.168.88.115 seperti semula",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hapus simple queue pembatasan eth 1",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "unlimit bandwidth kabel lan 2",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "tolong bebaskan transfer rate client 10.10.30.12",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "normalkan kembali pemakaian data pc 192.168.88.135",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "lepaskan batasan kecepatan unduh host 10.10.40.18",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hilangkan pengaturan pembatasan data user 192.168.88.145",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "reset limitasi bandwidth perangkat 10.10.50.25 ke normal",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cabut aturan pembatas kecepatan laptop 192.168.88.155",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "unlimit transfer data untuk laptop 10.10.60.30",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "tolong kembalikan kecepatan semula lan 2",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "bebaskan aturan bandwidth iface 3",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cabut limitasi kecepatan pada colokan 1",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "normalkan batasan transfer data kabel lan 4",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "hilangkan pembatasan bandwidth int 2",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "lepaskan limitasi internet link 3",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "reset batas transfer rate port lan 1 ke normal",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "kembalikan kecepatan penuh port eth 4",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "cabut aturan simple queue jalur 2",
-    "intent": "remove_limit"
-  },
-  {
-    "text": "blokir seluruh akses internet dari host 10.10.20.5",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup komunikasi data komputer 192.168.88.115",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "cegat port 443 pada eth 1",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port 80 untuk lan 2",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tolak lalu lintas paket data dari 10.10.30.12",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "putus akses komunikasi internet client 192.168.88.135",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "isolasi koneksi jaringan komputer 10.10.40.18",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "hentikan lalu lintas keluar masuk pc 192.168.88.145",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "jatuhkan semua paket internet perangkat 10.10.50.25",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup akses keluar masuk data host 192.168.88.155",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "cegat komunikasi data laptop 10.10.60.30",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port 22 pada iface 3",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup koneksi port 53 di colokan 1",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "cegat port 8080 untuk kabel lan 4",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tolak akses port 80 pada int 2",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir port 443 untuk link 3",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup port 22 di port lan 1",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "cegat port 53 kabel port eth 4",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "blokir akses web port 80 pada jalur 2",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "tutup akses layanan https port 443 antarmuka eth 3",
-    "intent": "block_traffic"
-  },
-  {
-    "text": "buka kembali blokir internet komputer 10.10.20.5",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan kembali lalu lintas data host 192.168.88.115",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepas pencegatan port 443 pada eth 1",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka aturan drop port 80 untuk lan 2",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan akses komunikasi untuk 10.10.30.12",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "bolehkan lagi paket data dari client 192.168.88.135",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepaskan isolasi jaringan komputer 10.10.40.18",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka kembali koneksi keluar masuk pc 192.168.88.145",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan komunikasi internet perangkat 10.10.50.25",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan akses jaringan untuk host 192.168.88.155",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka blokir komunikasi data laptop 10.10.60.30",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan kembali port 22 pada iface 3",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka akses port 53 di colokan 1",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepas pencegatan port 8080 untuk kabel lan 4",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan koneksi port 80 pada int 2",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan lalu lintas port 443 untuk link 3",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "buka blokir port 22 di port lan 1",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "lepas blokir port 53 kabel port eth 4",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "pulihkan akses web port 80 pada jalur 2",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "izinkan layanan https port 443 antarmuka eth 3",
-    "intent": "unblock_traffic"
-  },
-  {
-    "text": "tolong nyalakan interface port 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan kembali antarmuka eth 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan colokan kabel lan 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan link antarmuka iface 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan port int 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan jalur koneksi port lan 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan sambungan port eth 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "tolong aktifkan interface colokan 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan antarmuka kabel lan 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan kembali koneksi link 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan kembali jalur port 3",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan antarmuka port eth 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "tolong nyalakan sambungan int 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan koneksi jaringan iface 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan kembali colokan kabel 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan antarmuka link 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "tolong aktifkan sambungan port lan 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "hidupkan koneksi interface eth 4",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "nyalakan kembali antarmuka lan 1",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "aktifkan jalur sambungan port 2",
-    "intent": "enable_interface"
-  },
-  {
-    "text": "matikan antarmuka interface port 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan colokan eth 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "nonaktifkan jalur kabel lan 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tutup sambungan link iface 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan port int 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "putuskan jalur koneksi port lan 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan sambungan port eth 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong matikan interface colokan 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "nonaktifkan antarmuka kabel lan 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tutup kembali koneksi link 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan kembali jalur port 3",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan antarmuka port eth 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong matikan sambungan int 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "nonaktifkan koneksi jaringan iface 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan kembali colokan kabel 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tutup antarmuka link 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "tolong nonaktifkan sambungan port lan 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "matikan koneksi interface eth 4",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "padamkan kembali antarmuka lan 1",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "putus jalur sambungan port 2",
-    "intent": "disable_interface"
-  },
-  {
-    "text": "aktifkan kembali fitur nat masquerade router",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong nyalakan fungsi berbagi internet masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang aturan masquerade pada antarmuka wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "buat konfigurasi nat masquerade untuk ether1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "hidupkan kembali rule nat masquerade internet",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "nyalakan fungsi gateway nat masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang aturan berbagi koneksi internet masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong aktifkan fitur masquerade pada ether1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "buat rule nat masquerade untuk jaringan publik",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "hidupkan kembali konfigurasi masquerade wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "nyalakan aturan firewall nat masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang konfigurasi masquerade pada antarmuka ether1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan kembali fungsi nat internet publik",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong hidupkan fitur sharing internet masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "buat konfigurasi masquerade gateway internet",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "nyalakan kembali rule nat masquerade ether1",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "pasang aturan nat masquerade untuk port wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "aktifkan fungsi translasi alamat masquerade",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "hidupkan aturan masquerade jaringan luar",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "tolong nyalakan konfigurasi nat gateway wan",
-    "intent": "enable_nat"
-  },
-  {
-    "text": "matikan kembali fitur nat masquerade router",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tolong cabut fungsi berbagi internet masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hapus aturan masquerade pada antarmuka wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "nonaktifkan konfigurasi nat masquerade untuk ether1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "padamkan kembali rule nat masquerade internet",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tutup fungsi gateway nat masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut aturan berbagi koneksi internet masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tolong nonaktifkan fitur masquerade pada ether1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hapus rule nat masquerade untuk jaringan publik",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "padamkan kembali konfigurasi masquerade wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tutup aturan firewall nat masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut konfigurasi masquerade pada antarmuka ether1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "matikan kembali fungsi nat internet publik",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tolong padamkan fitur sharing internet masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hapus konfigurasi masquerade gateway internet",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tutup kembali rule nat masquerade ether1",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cabut aturan nat masquerade untuk port wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "hilangkan fungsi translasi alamat masquerade",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "padamkan aturan masquerade jaringan luar",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "tolong matikan konfigurasi nat gateway wan",
-    "intent": "disable_nat"
-  },
-  {
-    "text": "cek konfigurasi ip pada port lan 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat alamat ip yang terpasang di eth 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi status ip dan koneksi lan 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan informasi ip di int 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa telemetri ip colokan 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek alamat ip antarmuka iface 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat status konfigurasi ip kabel lan 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi informasi ip address link 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan status ip pada port eth 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa alamat ip jalur 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek ip pada antarmuka port 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat telemetri ip colokan 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi ip address interface eth 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan informasi ip di lan 1",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa status ip int 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "cek konfigurasi ip address kabel lan 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "lihat alamat ip port lan 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "inspeksi telemetri ip link 2",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tampilkan status ip jalur 4",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "periksa konfigurasi ip antarmuka iface 3",
-    "intent": "get_interface_ip"
-  },
-  {
-    "text": "tambahkan alamat ip 10.50.10.1/24 di port 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasang ip baru 172.16.120.1 pada eth 2",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "masukkan ip 192.168.200.1/24 ke lan 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasikan ip 10.60.20.1 di int 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "beri ip 172.20.80.1/24 pada colokan 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "input alamat ip 192.168.210.1 di iface 2",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tetapkan ip baru 10.70.30.1/24 untuk kabel lan 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasangkan ip 172.16.130.1 pada link 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tambahkan ip address 192.168.220.1/24 ke port lan 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasi ip baru 10.80.40.1 di port eth 2",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasang alamat ip 172.20.90.1/24 pada jalur 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "masukkan ip baru 192.168.230.1 ke antarmuka eth 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "beri alamat ip 10.90.50.1/24 di colokan 2",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasikan ip 172.16.140.1 pada kabel lan 1",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "input ip baru 192.168.240.1/24 untuk int 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tetapkan alamat ip 10.100.10.1 di iface 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasangkan ip 172.20.100.1/24 pada port lan 2",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "tambahkan konfigurasi ip 192.168.250.1 di link 3",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "pasang ip baru 10.110.20.1/24 ke jalur 4",
-    "intent": "add_ip_address"
-  },
-  {
-    "text": "konfigurasi alamat ip 172.16.150.1 pada antarmuka lan 1",
-    "intent": "add_ip_address"
-  },
-  {
     "text": "ganti ip pada port 1 jadi 10.50.10.1/24",
     "intent": "update_ip_address"
   },
@@ -3078,5 +3078,2245 @@
   {
     "text": "update ip antarmuka lan 1 ke 172.16.150.1",
     "intent": "update_ip_address"
+  },
+  {
+    "text": "tampilkan seluruh antrean simple queue",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek daftar aturan simple queue aktif",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat alokasi max limit simple queue",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa konfigurasi simple queue router",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan tabel pembatasan bandwidth",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek parameter max-limit simple queue",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan antrean qos yang aktif di router",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa data rate simple queue",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan daftar pembatasan kecepatan qos",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "inspeksi seluruh aturan simple queue",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek limit bandwidth host 192.168.88.50",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa status antrean qos ip 192.168.88.20",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat aturan pembatasan kecepatan 192.168.88.35",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek max-limit untuk target 192.168.88.40",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan alokasi bandwidth komputer 192.168.88.15",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa limit kecepatan host 192.168.88.70",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek status qos target 192.168.88.25",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat antrean simple queue ip 10.10.10.5",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa batasan bandwidth client 10.10.20.15",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek alokasi data rate host 172.16.1.10",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek limit bandwidth port 3",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa pembatasan kecepatan ether3",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat alokasi bandwidth colokan lan 2",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan limit kecepatan kabel lan 4",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek status antrean qos eth 1",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa kuota bandwidth jalur 2",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat aturan limit antarmuka iface 3",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek limit kecepatan antarmuka int 2",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan status antrean port lan 1",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa batasan data link 3",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "siapa saja yang lagi dibatasi bandwidth",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "siapa aja yang lagi dicekik kecepatannya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat yang lagi dilimit dong",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek komputer mana yang kena limit",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "siapa yang kena cekik bandwidth di lab",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat daftar user yang dibatasi internetnya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "ada siapa aja di tabel limit bandwidth",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "siapa saja klien yang kena simple queue",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek daftar perangkat yang dibatasi",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat yang kecepatannya dipotong",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah 192.168.88.50 kena limit bandwidth",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "laptop 192.168.88.20 lagi dilimit gak",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek komputer 192.168.88.35 dapet kecepatan berapa",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "komputer 192.168.88.40 lagi dicekik gak inetnya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah ip 192.168.88.15 kena pembatasan kecepatan",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "user 192.168.88.70 dibatasi berapa mega",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "pc 192.168.88.25 internetnya dicekik gak",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah client 10.10.10.5 ada di daftar limit",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek dong komputer 10.10.20.15 dapet jatah bandwidth berapa",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah host 172.16.1.10 dibatasi kecepatannya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "colokan 3 lagi kena limit gak",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "port 2 internetnya dicekik gak sih",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek lan 4 dapet bandwidth berapa",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah jalur 1 dibatasi kecepatannya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "colokan lan 3 kena aturan limit gak",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek kecepatan kabel 2 sekarang berapa",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah eth 4 lagi dicekik bandwidth-nya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat kuota kecepatan colokan 1 dong",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "port lan 2 ada limitnya gak",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "jalur kabel 3 dibatasi berapa mb",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "berapa batas kecepatan internet saat ini",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "apakah ada pembatasan bandwidth yang sedang aktif",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan informasi antrean kecepatan jaringan",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat ringkasan limit bandwidth yang berjalan",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "cek apakah ada komputer yang dibatasi koneksinya",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan daftar pengguna yang mengalami pembatasan",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "bagaimana status alokasi bandwidth saat ini",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "periksa apakah ada aturan qos yang berjalan di router",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan monitoring antrean pembatasan internet",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "lihat rincian aturan bandwidth yang diterapkan",
+    "intent": "get_bandwidth_status"
+  },
+  {
+    "text": "tampilkan seluruh aturan firewall filter drop",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek daftar rule filter drop yang aktif",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat daftar rule pencekalan paket data",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa tabel filter drop chain forward",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan konfigurasi firewall filter yang aktif",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "inspeksi seluruh aturan drop pada firewall",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek rule pemblokiran akses internet di router",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan daftar filter firewall drop forward",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa status pencegahan trafik pada firewall",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat daftar blacklist firewall filter",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek status firewall untuk ip 192.168.88.99",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah host 192.168.88.50 terdaftar di drop rule",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa status pencekalan komputer 192.168.88.20",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat aturan firewall untuk target 192.168.88.35",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek apakah ip 192.168.88.40 diblokir firewall",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa status drop host 192.168.88.15",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan aturan firewall klien 192.168.88.70",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek filter drop untuk pc 10.10.10.99",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat apakah client 10.10.20.50 terkena drop",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa pencekalan host 172.16.1.99",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek status pemblokiran port 80",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah port 443 sedang ditutup firewall",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa apakah port 22 sedang diblokir",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat status pencegahan port 53 dns",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan aturan firewall untuk port 8080",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek apakah port layanan http 80 di-drop",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa status pemblokiran port https 443",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat apakah port ssh 22 terbuka atau diblokir",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek pencekalan port dns 53 pada firewall",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan status filter port web 80",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "siapa saja yang lagi diblokir internetnya",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "siapa yang kena blokir di lab",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat daftar komputer yang diblokir dong",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "siapa aja yang gak bisa internetan",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek siapa yang diputus koneksinya",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat orang-orang yang diblokir router",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "ada siapa aja di daftar blokir internet",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek komputer mana yang lagi di-drop",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "siapa yang internetnya dimatikan firewall",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat user yang kena blokir hari ini",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "komputer 192.168.88.99 lagi diblokir gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah pc 192.168.88.50 kena cut internet",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "laptop 192.168.88.20 bisa internetan gak sekarang",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek komputer 192.168.88.35 lagi kena blokir gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah perangkat 192.168.88.40 diputus jalurnya",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "user 192.168.88.15 kena blokir firewall gak sih",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek dong host 192.168.88.70 bisa browsing gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah pc 10.10.10.99 lagi di-drop router",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "komputer 10.10.20.50 kena pencekalan gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek apakah laptop 172.16.1.99 diblokir aksesnya",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "port 80 lagi ditutup gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah web port 443 lagi dikunci",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek port 22 lagi diblokir gak sih",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "port 53 dns ditutup gak sama router",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah port 8080 bisa diakses sekarang",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek browsing port 80 lagi dimatiin gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah port https 443 diblokir untuk lab",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "port ssh 22 lagi kena blokir gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek dong port 53 lagi di-drop gak",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "port web 80 lagi aktif apa diblokir",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah ada pemblokiran trafik yang aktif",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan ringkasan firewall drop saat ini",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "bagaimana status pencekalan internet di router",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat daftar pencekalan akses jaringan yang berlaku",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "apakah ada perangkat yang saat ini dilarang internetan",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "periksa apakah ada aturan drop yang berjalan",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan informasi komputer yang dicekal",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "lihat status proteksi firewall jaringan",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "cek apakah ada port layanan yang sedang dinonaktifkan",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan seluruh entri blacklist jaringan saat ini",
+    "intent": "get_firewall_status"
+  },
+  {
+    "text": "tampilkan seluruh aturan nat yang aktif",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek konfigurasi nat router",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat tabel firewall nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa status aturan srcnat masquerade",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan daftar rule nat masquerade",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "inspeksi konfigurasi nat internet wan",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek parameter out-interface pada nat masquerade",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan aturan nat chain srcnat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa status masquerade pada ether1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat konfigurasi nat sharing internet",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan daftar aturan port forwarding aktif",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek konfigurasi dst-nat router",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat pemetaan port forwarding yang berjalan",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa aturan forwarding port publik ke server lokal",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan tabel destination nat aktif",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "inspeksi rule port forwarding di firewall nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek status redirect port pada nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat pemetaan virtual server pada nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa daftar forwarding port 8080",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan konfigurasi dst-nat port 2222",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek aturan nat pada interface ether1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat konfigurasi masquerade port eth 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa status nat untuk kabel lan 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah ada aturan nat pada colokan 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan konfigurasi sharing internet wan ether1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek rule nat masquerade jalur 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat status nat antarmuka iface 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa konfigurasi masquerade port lan 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek aturan nat pada link 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan parameter masquerade antarmuka int 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah internet nat sedang aktif",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "nat internet udah nyala belum sih",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek status masquerade nat sekarang",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "sharing internet udah jalan belum",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah masquerade wan lagi nyala",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "koneksi nat internet aktif gak",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek dong nat router lagi hidup gak",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah lab udah dapet sharing internet",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "masquerade ether1 udah aktif belum",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "status internet nat gimana sekarang",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek port forwarding lagi jalan gak",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "server lokal udah di-forward belum port-nya",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "ada port forwarding apa aja yang aktif",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek apakah port 8080 udah diarahkan ke server",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "port 2222 udah diteruskan ke pc lokal belum",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat daftar port yang di-forward dong",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek aturan forward port web server",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "port forwarding ke server lab aktif gak",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah ada port luar yang diarahkan ke dalam",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat daftar mapping port sekarang",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "colokan 1 lagi aktif nat-nya gak",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah jalur 1 udah dipasang masquerade",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "port 1 udah nyambung nat internet belum",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek sharing internet di kabel lan 1",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah eth 1 udah ada masquerade-nya",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lan 1 internet nat-nya jalan gak",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "cek masquerade colokan kabel 1 dong",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah link wan 1 udah di-nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "jalur internet port 1 aktif gak nat-nya",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "colokan internet wan udah ada masquerade belum",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah jaringan lokal sudah bisa mengakses internet via nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "bagaimana status translasi alamat jaringan saat ini",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan ringkasan konfigurasi gateway internet",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa apakah fitur berbagi koneksi internet sedang berjalan",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat kondisi operasional masquerade gateway router",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan informasi alur translasi ip lokal ke publik",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "apakah ada pemetaan port eksternal ke internal yang aktif",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "lihat status keterhubungan gateway nat",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "periksa apakah router mengizinkan akses internet keluar via masquerade",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "tampilkan laporan status network address translation",
+    "intent": "get_nat_status"
+  },
+  {
+    "text": "forward port 8080 ke server 192.168.88.50 port 80",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "konfigurasi dst-nat port 2222 diarahkan ke 192.168.88.99 port 22",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan port eksternal 8443 ke 192.168.88.20 port 443 protocol tcp",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tambahkan aturan port forwarding 5353 ke 192.168.88.15 port 53 udp",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buat rule destination nat port 9000 ke host 10.10.10.5 port 9000",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 8000 ke ip 192.168.88.35 port 80",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "petakan port publik 3389 ke server rdp 192.168.88.40 port 3389",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "konfigurasi port forwarding port 2121 ke ftp server 192.168.88.70 port 21",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "teruskan trafik port 8088 ke komputer 10.10.20.15 port 8080",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "atur dst-nat dari port 5000 ke 192.168.88.25 port 5000",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "pasang port forwarding 80 ke server web 192.168.88.100 port 80",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tambahkan mapping port 4433 ke 192.168.88.115 port 443",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "redirect port 10000 ke host 10.10.30.12 port 80",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buat aturan forward port 2200 ke ssh server 192.168.88.135 port 22",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port luar 8888 ke ip lokal 192.168.88.145 port 8080",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "petakan port 6000 ke client 10.10.40.18 port 6000 protocol tcp",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "konfigurasi redirect port 7000 ke host 192.168.88.155 port 7000",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tambahkan aturan forward port 9999 ke 10.10.50.25 port 9999",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buat pemetaan dst-nat port 4000 ke ip 192.168.88.165 port 4000",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 1234 ke host 10.10.60.30 port 1234",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buka port 8080 lempar ke ip 192.168.88.50 port 80",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tembusin port 2222 ke server 192.168.88.99",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan koneksi port 8443 ke web server lab 192.168.88.20",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buka akses port 5353 lempar ke 192.168.88.15",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "teruskan port luar 9000 ke komputer 10.10.10.5",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "lempar port 8000 ke laptop 192.168.88.35 port 80",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buka jalur port 3389 ke pc 192.168.88.40",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forwarding-in port 2121 ke server ftp 192.168.88.70",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "salurkan port 8088 ke pc 10.10.20.15",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong arahkan port 5000 ke ip 192.168.88.25",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buka port 80 tembusin ke server 192.168.88.100",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "lempar koneksi port 4433 ke host 192.168.88.115",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong forward port 10000 ke komputer 10.10.30.12",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan trafik port 2200 ke laptop 192.168.88.135",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buka akses luar port 8888 ke 192.168.88.145",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tembuskan port 6000 ke client 10.10.40.18",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "salurkan trafik luar port 7000 ke 192.168.88.155",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong buka port 9999 arahkan ke 10.10.50.25",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward dong port 4000 ke komputer 192.168.88.165",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "lempar port 1234 ke perangkat 10.10.60.30",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "untuk server 192.168.88.50 tolong forward port 8080",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "bisa tolong teruskan port 2222 ke komputer 192.168.88.99",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong buatkan pemetaan port 8443 ke 192.168.88.20",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "hubungkan port eksternal 5353 dengan internal 192.168.88.15",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "saya ingin port 9000 diteruskan ke 10.10.10.5",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong sambungkan port 8000 dari luar ke ip 192.168.88.35",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "berikan akses port 3389 dari luar ke host 192.168.88.40",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buat koneksi port 2121 agar mengarah ke 192.168.88.70",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "ijinkan akses luar port 8088 masuk ke 10.10.20.15",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong setel port 5000 tembus ke 192.168.88.25",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "hubungkan port 80 dari internet ke server lokal 192.168.88.100",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "bisa tolong arahkan port 4433 ke 192.168.88.115",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "saya butuh port 10000 diteruskan ke host 10.10.30.12",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong buka jalur luar port 2200 ke pc 192.168.88.135",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan koneksi publik port 8888 ke perangkat 192.168.88.145",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "berikan akses masuk port 6000 untuk 10.10.40.18",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "buat aturan agar port 7000 diteruskan ke 192.168.88.155",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "sambungkan port luar 9999 ke ip 10.10.50.25",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "tolong hubungkan port 4000 ke komputer lab 192.168.88.165",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "bisa teruskan port 1234 ke host 10.10.60.30",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 8081 ke 192.168.88.51 port 81",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 8082 ke 192.168.88.52 port 82",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 8083 ke 192.168.88.53 port 83",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 8084 ke 192.168.88.54 port 84",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "forward port 8085 ke 192.168.88.55 port 85",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan port 9001 ke 192.168.88.61",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan port 9002 ke 192.168.88.62",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan port 9003 ke 192.168.88.63",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan port 9004 ke 192.168.88.64",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "arahkan port 9005 ke 192.168.88.65",
+    "intent": "add_port_forward"
+  },
+  {
+    "text": "hapus aturan port forwarding 8080",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut konfigurasi dst-nat port 2222",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hilangkan aturan port forward 8443",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus pemetaan port forwarding 5353",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut aturan destination nat port 9000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus rule forward port 8000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hilangkan mapping port publik 3389",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut aturan forwarding port 2121",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus konfigurasi dst-nat port 8088",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hilangkan pemetaan port 5000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut aturan port forwarding 80",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus redirect port 4433",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hilangkan rule forward port 10000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut pemetaan port 2200",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus konfigurasi forwarding port 8888",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hilangkan aturan dst-nat port 6000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut mapping port 7000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan forward port 9999",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hilangkan aturan redirect port 4000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut konfigurasi forward port 1234",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tutup akses port forwarding 8080",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "jangan lempar port 2222 lagi",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut lemparan port 8443",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tutup pemetaan port 5353",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hentikan forwarding port 9000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tutup jalur port 8000 ke server",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "lepas forward port 3389 dong",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cut akses port forwarding 2121",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "jangan teruskan port 8088 lagi",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tutup akses luar port 5000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus forward port 80 ke server lab",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "lepas pemetaan port 4433",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tutup forward port 10000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut akses forward port 2200",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hentikan penerusan port 8888",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "lepas jalur forward port 6000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tutup akses forwarding port 7000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut lemparan port luar 9999",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus jalur forward port 4000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hentikan forward port 1234",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "batalkan aturan port forwarding untuk port 8080",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tolong batalkan pemetaan port 2222",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "kembalikan port 8443 agar tidak di-forward",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "normalkan kembali konfigurasi port 5353",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tolong batalkan penerusan port 9000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "jangan izinkan lagi forward port 8000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "batalkan akses publik untuk port 3389",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tolong cabut pembukaan port 2121",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "kembalikan port 8088 ke kondisi default",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "reset konfigurasi port forwarding 5000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tolong batalkan forward port 80",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan yang meneruskan port 4433",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "jangan teruskan lagi koneksi port 10000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "batalkan konfigurasi forwarding port 2200",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tolong cabut penerusan port 8888",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus pemetaan masuk untuk port 6000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "batalkan aturan masuk port 7000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "tolong jangan forward lagi port 9999",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut aturan koneksi masuk port 4000",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "batalkan penerusan trafik port 1234",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan port forwarding 8081",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan port forwarding 8082",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan port forwarding 8083",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan port forwarding 8084",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "hapus aturan port forwarding 8085",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut forward port 9001",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut forward port 9002",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut forward port 9003",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut forward port 9004",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "cabut forward port 9005",
+    "intent": "remove_port_forward"
+  },
+  {
+    "text": "ping 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping host 192.168.88.254",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping google.com count 4",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping ke ip 192.168.88.10",
+    "intent": "ping_host"
+  },
+  {
+    "text": "jalankan tes ping ke gateway 192.168.88.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "lakukan uji icmp ping ke 1.1.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping server dns 8.8.4.4",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes konektivitas ping ke cloudflare.com",
+    "intent": "ping_host"
+  },
+  {
+    "text": "lakukan ping sebanyak 4 kali ke 192.168.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "kirim paket icmp echo ke 192.168.88.50",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping domain unsil.ac.id",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping ip public 103.10.10.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes konektivitas icmp ke 10.10.10.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping host web 192.168.88.20",
+    "intent": "ping_host"
+  },
+  {
+    "text": "lakukan perintah ping ke 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping ke server 192.168.88.100",
+    "intent": "ping_host"
+  },
+  {
+    "text": "kirim ping icmp ke gateway internet",
+    "intent": "ping_host"
+  },
+  {
+    "text": "jalankan icmp check ke 1.1.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping host server 192.168.88.30",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping ke alamat 192.168.88.40",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes ping ke domain github.com",
+    "intent": "ping_host"
+  },
+  {
+    "text": "lakukan ping test ke host 192.168.88.60",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping ip target 192.168.88.70",
+    "intent": "ping_host"
+  },
+  {
+    "text": "kirim 4 paket ping ke 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba ping ke 8.8.8.8 dong",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes koneksi ke google.com",
+    "intent": "ping_host"
+  },
+  {
+    "text": "cek apakah server 192.168.88.50 nyambung",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba ping laptop 192.168.88.20",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes ping ke server lab dong",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba tes nyambung gak ke 1.1.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping dulu ip 192.168.88.99",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes koneksi internet ping 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba ping gateway kampus",
+    "intent": "ping_host"
+  },
+  {
+    "text": "cek latensi ping ke 8.8.4.4",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes rtt ping ke server dns",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba tembak ping ke 192.168.88.15",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes ping ke server mikrotik",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba ping ip temen 192.168.88.45",
+    "intent": "ping_host"
+  },
+  {
+    "text": "pingin tau nyambung gak ke google",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba pingin ke ip 192.168.88.33",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes ping dong ke detik.com",
+    "intent": "ping_host"
+  },
+  {
+    "text": "cek koneksi rtt ke 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba ping alamat 192.168.88.12",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes konektivitas jaringan ke 1.1.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "coba ping ke server ubuntu",
+    "intent": "ping_host"
+  },
+  {
+    "text": "tes apakah host 192.168.88.55 hidup",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ping dulu ke 192.168.88.254",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji keterjangkauan host 192.168.88.50 dengan icmp",
+    "intent": "ping_host"
+  },
+  {
+    "text": "periksa respon jaringan dari host 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji latency rtt ke server google.com",
+    "intent": "ping_host"
+  },
+  {
+    "text": "cek status keterhubungan server 192.168.88.20 via ping",
+    "intent": "ping_host"
+  },
+  {
+    "text": "lakukan pengukuran waktu respon paket ke 1.1.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "evaluasi keterjangkauan ip 192.168.88.10 dengan ping",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji apakah host 192.168.88.80 aktif di jaringan",
+    "intent": "ping_host"
+  },
+  {
+    "text": "inspeksi packet loss ke gateway 192.168.88.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ukur rtt koneksi ke cloudflare 1.1.1.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji reachability server database 192.168.88.40",
+    "intent": "ping_host"
+  },
+  {
+    "text": "analisis waktu transmisi icmp ke 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "periksa stabilitas ping ke ip server",
+    "intent": "ping_host"
+  },
+  {
+    "text": "verifikasi respon icmp dari 192.168.88.200",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji kelancaran paket ke domain unsil.ac.id",
+    "intent": "ping_host"
+  },
+  {
+    "text": "ukur latency ping ke server pusat 192.168.88.250",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji keterhubungan perangkat 192.168.88.15 via icmp echo",
+    "intent": "ping_host"
+  },
+  {
+    "text": "periksa apakah ip 192.168.88.75 merespon paket",
+    "intent": "ping_host"
+  },
+  {
+    "text": "cek kualitas koneksi rtt ke gateway mikrotik",
+    "intent": "ping_host"
+  },
+  {
+    "text": "lakukan diagnosa keterjangkauan jaringan ke 8.8.8.8",
+    "intent": "ping_host"
+  },
+  {
+    "text": "verifikasi keterhubungan rute ke 1.0.0.1",
+    "intent": "ping_host"
+  },
+  {
+    "text": "uji performa paket icmp ke host lab",
+    "intent": "ping_host"
+  },
+  {
+    "text": "periksa respon ping host 192.168.88.18",
+    "intent": "ping_host"
+  },
+  {
+    "text": "evaluasi kestabilan latency ke server 192.168.88.22",
+    "intent": "ping_host"
+  },
+  {
+    "text": "flush dns cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "flush cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "ip dns cache flush",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan dns cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan cache dns router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus seluruh cache dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan tabel cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "clear dns cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan flush pada resolver dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset cache dns di router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus rekaman cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan temporary record dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "flush data resolver cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus entri cache dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan memori rekaman dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "jalankan pembersihan cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan riwayat cache domain dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "flush seluruh rekaman dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus daftar cache dns yang tersimpan",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan reset pada cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "clear resolver dns cache sekarang",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan tabel resolver dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus riwayat query cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "flush tabel ip dns cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihin cache dns dong",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset dns cache nya",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus cache domain di router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "tolong flush dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan riwayat dns router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "buang semua cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongin cache dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset rekaman domain dns dong",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihin riwayat domain yang kesimpan",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "flush dns nya sekarang ya",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus cache nama domain di router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan data dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "refresh cache dns dong",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset cache lookup domain",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "tolong hapus seluruh rekaman dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihin cache resolver dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan cache pencarian domain",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus riwayat lookup dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset penyimpanan cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "buang rekaman ip domain di dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "tolong bersihkan dns cache router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "flush cache alamat domain sekarang",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus sisa cache dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan pembersihan total rekaman cache resolver dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset memori penyimpanan riwayat domain dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan seluruh entri resolver pada ip dns cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus data cache nama domain untuk memperbarui record",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "sinkronkan ulang resolusi domain dengan membersihkan cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan operasi flush rekaman domain yang tersimpan di memori",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan riwayat entri dns routeros untuk mencegah stale ip",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "segarkan kembali tabel resolusi nama domain via flush cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan tabel resolver dns agar memuat ip domain terbaru",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "perbarui entri resolver dns dengan menghapus cache tersimpan",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan reset berkala pada memori cache dns router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "hapus seluruh database cache resolver di mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan cache translasi domain ke ip pada router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "perbarui cache dns mikrotik dengan membuang entri lama",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan flush entri domain kadaluarsa di cache dns",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan memori resolver ip dns cache untuk troubleshooting",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan seluruh rekaman sementara domain pada router",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan purges pada cache resolver dns mikrotik",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "reset histori lookup ip dns cache sistem",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan buffer cache dns routeros",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "lakukan tindakan flush database cache domain",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "kosongkan riwayat resolusi host pada dns cache",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "bersihkan seluruh rekaman ip dns resolver sekarang",
+    "intent": "flush_dns_cache"
+  },
+  {
+    "text": "system resource print",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek system resource router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan system resource",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek beban cpu router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan sisa ram router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek kapasitas memori bebas",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat status uptime mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan penggunaan cpu dan ram",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek spesifikasi hardware router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "inspeksi resource hardware mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat beban kerja prosesor mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan informasi board name dan cpu",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek persentase cpu load router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat kapasitas free memory mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan data resource perangkat keras",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek kesehatan sistem router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat informasi frekuensi cpu router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan free hdd space mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek status kesehatan hardware mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan parameter sistem resource",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat kondisi prosesor dan ram router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek arsitektur cpu dan versi routeros",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan telemetri hardware router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat ringkasan sumber daya perangkat keras",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek kondisi router dong",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "mikrotik lagi berat gak ya",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "sisa ram router tinggal berapa",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "router mikrotik udah nyala berapa lama",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek beban cpu router sekarang",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cpu router lagi tinggi gak sih",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "gimana kesehatan hardware mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan sisa memori router dong",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek performa hardware router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "apakah router lagi overload",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat kondisi memori ram mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek apakah cpu mikrotik lagi kepanasan",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat router udah aktif berapa hari",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "ram mikrotik masih lega gak",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek kesehatan mesin router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "gimana kondisi prosesor mikrotik saat ini",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "apakah memori router mau habis",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek status hardware mikrotik dong",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat spesifikasi dan beban router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "apakah cpu load router aman",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "cek apakah router ngos-ngosan",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan info ram dan cpu router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lihat sisa ruang penyimpanan mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lakukan audit beban sumber daya cpu dan memori router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "pantau statistik kinerja hardware dan persentase utilisasi cpu",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "analisis sisa kapasitas memori ram pada router hAP lite",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "periksa waktu operasional uptime dan kestabilan perangkat router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "evaluasi pemakaian memori bebas dan beban prosesor perangkat keras",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "inspeksi telemetri sumber daya sistem operasi routeros",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "laporkan kondisi utilisasi prosesor dan ketersediaan memori sistem",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "monitoring beban komputasi dan ruang penyimpanan router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "periksa metrik kesehatan sistem dan ketahanan hardware router",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "analisis tingkat pembebanan prosesor mikrotik secara berkala",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "tampilkan laporan diagnostik kesehatan sumber daya perangkat",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "inspeksi rasio penggunaan memori ram terhadap total kapasitas",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "evaluasi apakah router memerlukan optimasi sumber daya memori",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "pantau telemetri hardware router untuk memastikan performa stabil",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lakukan verifikasi status operasional uptime dan cpu load",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "periksa kapasitas penyimpanan disk dan ketersediaan memori utama",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "laporkan statistik sumber daya perangkat keras mikrotik",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "analisis kesehatan prosesor dalam menangani beban jaringan",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "inspeksi ketersediaan memori fisik pada router hAP lite",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "pantau integritas operasional dan performa hardware sistem",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "evaluasi statistik beban kerja routeros dan durasi aktif",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "periksa laporan kinerja komputasi dan sisa memori sistem",
+    "intent": "get_system_health"
+  },
+  {
+    "text": "lakukan diagnosa kesehatan perangkat keras router mikrotik",
+    "intent": "get_system_health"
   }
 ]

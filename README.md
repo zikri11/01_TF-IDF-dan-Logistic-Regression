@@ -4,12 +4,12 @@
 [![Python Version](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![RouterOS](https://img.shields.io/badge/MikroTik-RouterOS%20v6.49.17-red.svg)](https://mikrotik.com/)
 [![License](https://img.shields.io/badge/License-Academic-green.svg)]()
-[![Dataset Size](https://img.shields.io/badge/Dataset-770%20Samples-informational.svg)]()
-[![Model Size](https://img.shields.io/badge/Model%20Size-128.04%20KB-brightgreen.svg)]()
-[![Inference Latency](https://img.shields.io/badge/Inference%20Latency-1.38%20ms-orange.svg)]()
+[![Dataset Size](https://img.shields.io/badge/Dataset-1330%20Samples-informational.svg)]()
+[![Model Size](https://img.shields.io/badge/Model%20Size-465.89%20KB-brightgreen.svg)]()
+[![Inference Latency](https://img.shields.io/badge/Inference%20Latency-1.53%20ms-orange.svg)]()
 [![Accuracy](https://img.shields.io/badge/Accuracy-100.00%25-success.svg)]()
 
-Repository ini memuat kode sumber, dataset korpus 770 sampel seimbang (11 kelas intent), model Machine Learning terlatih, skrip evaluasi kuantitatif 8 parameter riset (metodologi split 80/20), serta antarmuka CLI untuk prototipe penelitian **Intent-Based Networking (IBN)** pada perangkat fisik nyata **MikroTik RouterOS v6 (hAP lite / RB941-2nD)** mencakup **5 Domain Jaringan Lengkap** (QoS Bandwidth, Firewall Filter, NAT Masquerade, Interface Management, dan Full Lifecycle CRUD IP Addressing).
+Repository ini memuat kode sumber, dataset korpus 1.330 sampel seimbang (19 kelas intent), model Machine Learning terlatih, skrip evaluasi kuantitatif 8 parameter riset (metodologi split 80/20), serta antarmuka CLI untuk prototipe penelitian **Intent-Based Networking (IBN)** pada perangkat fisik nyata **MikroTik RouterOS v6 (hAP lite / RB941-2nD)** mencakup **5 Domain Jaringan Lengkap** (QoS Bandwidth, Firewall Filter + TLS-Host SNI, NAT Masquerade & Port Forwarding, Interface Management, dan Full Lifecycle CRUD IP Addressing) serta **Domain Diagnostik & Pemeliharaan Jaringan (OTHER)** (Uji Konektivitas ICMP Ping, Pembersihan Resolver Cache DNS, dan Monitoring Kesehatan Hardware CPU/RAM/Uptime).
 
 Repository ini terstruktur secara rapi ke dalam **3 Direktori Utama**:
 * **`GAMBAR/`**: Diagram arsitektur end-to-end, pipeline NLP, dan diagram komparatif beresolusi tinggi (High-DPI @2x monokrom).
@@ -27,13 +27,14 @@ Sistem dibangun dengan arsitektur tertutup (*closed-loop pipeline*) yang menghub
 ### Rantai Pemrosesan 5 Lapisan:
 1. **Operator Intake Layer (`main_ibn.py`):** Antarmuka CLI interaktif yang menerima perintah teks bebas berbahasa Indonesia dengan monitoring 5 tabel aktif router (Simple Queue, Firewall Filter, Firewall NAT, Interface Status, dan IP Address Assignment).
 2. **Lightweight Hybrid NLP Layer (`nlp_parser.py`):**
-   * **Jalur Probabilistik (ML):** Mengklasifikasikan maksud (*intent*) kalimat ke 11 kelas intent menggunakan TF-IDF (1,2-gram) + Logistic Regression.
+   * **Jalur Probabilistik (ML):** Mengklasifikasikan maksud (*intent*) kalimat ke 19 kelas intent menggunakan TF-IDF (1,2-gram) + Logistic Regression.
    * **Jalur Deterministik (Regex):** Mengekstrak entitas pasti tanpa risiko halusinasi (*zero hallucination*) seperti IP Address, angka batas bandwidth, interface fisik (`ether1`-`ether4` beserta 13 variasi alias: `port`, `eth`, `lan`, `int`, `iface`, `colokan`, `kabel lan`, `jalur`, `link`), dan nomor port layanan (`80`, `443`, `22`, `53`).
    * **Syntactic Cue & Object Disambiguation:** Resolusi cerdas untuk negasi dan kata beririsan (misal *"buka blokir"* vs *"blokir"*, *"hapus limit"* vs *"hapus ip"*, serta penolakan edukatif untuk *"hapus port 1"*).
    * **Confidence Threshold Guard:** Menolak otomatis perintah ambigu yang memiliki tingkat keyakinan model di bawah ambang batas aman ($< 50\%$).
 3. **Policy Engine & Safety Guard-Rails (`policy_engine.py`):**
    * Normalisasi format satuan fleksibel (`"2 Mbps"`, `"9mb"`, `"512k"`) ke format baku MikroTik (`"2M/2M"`, `"9M/9M"`, `"512k/512k"`).
-   * Normalisasi subnet mask otomatis (misal `"10.10.10.1"` $ightarrow$ `"10.10.10.1/24"`).
+   * Normalisasi subnet mask otomatis (misal `"10.10.10.1"` $
+ightarrow$ `"10.10.10.1/24"`).
    * **Proteksi Anti-Lockout:** Menolak pemblokiran atau penonaktifan terhadap IP Gateway Router (`192.168.88.1`) maupun antarmuka manajemen kabel LAN Controller (`ether2` dan `bridge`).
    * **Validasi Hardware Catalog:** Menolak antarmuka fisik di luar kapasitas router lab (misal menolak *"port 5"* pada hAP lite yang hanya memiliki 4 port fisik).
    * Menghasilkan struktur baku **Intermediate Policy JSON**.
@@ -63,70 +64,62 @@ Berikut adalah visualisasi perbandingan alur pemrosesan dan data empiris antara 
 
 ![Diagram Komparasi Murni vs Hybrid](GAMBAR/diagram_komparasi_murni_vs_hybrid.png)
 
-Evaluasi kuantitatif komprehensif dijalankan menggunakan skrip `evaluasi_riset_ibn.py` terhadap dataset korpus dengan rasio **80% Data Latih (616 sampel)** dan **20% Data Uji Independen (154 sampel)** secara proporsional (*Stratified Split*):
+Evaluasi kuantitatif komprehensif dijalankan menggunakan skrip `evaluasi_riset_ibn.py` terhadap dataset korpus dengan rasio **80% Data Latih (1.064 sampel)** dan **20% Data Uji Independen (266 sampel)** secara proporsional (*Stratified Split*):
 
 ```text
 ================================================================================
-                   TABEL RINGKASAN RESMI EVALUASI RISET
+                   TABEL RINGKASAN RESMI EVALUASI RISET (19 KELAS)
 ================================================================================
 +------------------------------+-------------------+------------------------------------------------+
 | Parameter Riset              | Nilai Kuantitatif | Interpretasi Akademis                          |
 +------------------------------+-------------------+------------------------------------------------+
-| 1. CPU Controller Load       | 20.9%             | Sangat Rendah (Beban CPU Laptop/Mini PC minim) |
-|    RAM Memory Footprint      | 117.46 MB         | Hemat Memori (< 50 MB total process)           |
-| 2. Processing Time (Mean)    | 1.380 ms          | Ultra-Fast (Inferensi & Validasi < 1.5 ms)     |
-|    Controller Throughput     | 723.4 QPS         | Mampu melayani ribuan intent per detik         |
+| 1. CPU Controller Load       | 18.7%             | Sangat Rendah (Beban CPU Laptop/Mini PC minim) |
+|    RAM Memory Footprint      | 118.83 MB         | Hemat Memori (< 50 MB total process)           |
+| 2. Processing Time (Mean)    | 1.525 ms          | Ultra-Fast (Inferensi & Validasi < 1.6 ms)     |
+|    Controller Throughput     | 654.5 QPS         | Mampu melayani ratusan intent per detik        |
 | 3. Akurasi Intent (Accuracy) | 100.00%           | Akurasi sempurna pada 20% unseen test set      |
-| 4. Precision (Macro Avg)     | 1.0000            | Presisi tinggi tanpa salah prediksi kelas      |
-| 5. Recall (Macro Avg)        | 1.0000            | Sensitivitas tinggi mengenali seluruh kelas    |
+| 4. Precision (Macro Avg)     | 1.0000            | Presisi mutlak tanpa salah prediksi kelas      |
+| 5. Recall (Macro Avg)        | 1.0000            | Sensitivitas penuh mengenali seluruh kelas     |
 | 6. F1-Score (Macro Avg)      | 1.0000            | Harmoni sempurna antara precision & recall     |
-| 7. Command Accuracy          | 100.00%           | 100% Valid & Patuh Aturan Guard-Rail           |
-| 8. Kompleksitas Deployment   | 128.04 KB         | Ringkas, mandiri, tanpa GPU, mudah dideploy    |
+| 7. Command Accuracy          | 99.62%            | 100% Valid & Patuh Aturan Guard-Rail           |
+| 8. Kompleksitas Deployment   | 465.89 KB         | Ringkas, mandiri, tanpa GPU, mudah dideploy    |
 +------------------------------+-------------------+------------------------------------------------+
 ================================================================================
 ```
 
-### A. Matriks Klasifikasi Per-Kelas (Classification Report - 154 Test Samples)
-* **Dataset Evaluasi:** 154 sampel unseen test set (14 sampel per kelas)
+### A. Matriks Klasifikasi Per-Kelas (Classification Report - 266 Test Samples)
+* **Dataset Evaluasi:** 266 sampel unseen test set (14 sampel per kelas x 19 intent)
 * **Akurasi Keseluruhan:** **100.00%**
 
-| Intent Class | Precision | Recall | F1-Score | Support |
-| :--- | :---: | :---: | :---: | :---: |
-| `add_ip_address` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `block_traffic` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `disable_interface` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `disable_nat` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `enable_interface` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `enable_nat` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `get_interface_ip` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `limit_bandwidth` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `remove_limit` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `unblock_traffic` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| `update_ip_address` | 1.0000 | 1.0000 | 1.0000 | 14 |
-| **Macro Average** | **1.0000** | **1.0000** | **1.0000** | **154** |
-| **Weighted Average** | **1.0000** | **1.0000** | **1.0000** | **154** |
+| Intent Class | Domain / Tipe Aksi | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| `add_ip_address` | IP Addressing (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `add_port_forward` | NAT Port Forwarding (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `block_traffic` | Firewall Security (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `disable_interface` | Interface Hardware (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `disable_nat` | NAT Gateway (DELETE) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `enable_interface` | Interface Hardware (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `enable_nat` | NAT Gateway (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `flush_dns_cache` | OTHER / Maintenance (RESET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `get_bandwidth_status` | Bandwidth QoS (SHOW) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `get_firewall_status` | Firewall Security (SHOW) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `get_interface_ip` | Interface & IP (SHOW) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `get_nat_status` | NAT Gateway (SHOW) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `get_system_health` | OTHER / Monitoring (SHOW) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `limit_bandwidth` | Bandwidth QoS (SET) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `ping_host` | OTHER / Diagnostics (ICMP) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `remove_limit` | Bandwidth QoS (DELETE) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `remove_port_forward` | NAT Port Forwarding (DELETE) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `unblock_traffic` | Firewall Security (DELETE) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| `update_ip_address` | IP Addressing (EDIT) | 1.0000 | 1.0000 | 1.0000 | 14 |
+| **Macro Average** | **19 Kelas Intent** | **1.0000** | **1.0000** | **1.0000** | **266** |
+| **Weighted Average** | **19 Kelas Intent** | **1.0000** | **1.0000** | **1.0000** | **266** |
 
-### B. Confusion Matrix (11x11)
-```text
-True \ Pred         add_ip block  dis_if dis_nat en_if en_nat get_ip limit rem_lim unblock update
-add_ip_address        14     0      0       0      0     0      0      0       0       0      0
-block_traffic          0    14      0       0      0     0      0      0       0       0      0
-disable_interface      0     0     14       0      0     0      0      0       0       0      0
-disable_nat            0     0      0      14      0     0      0      0       0       0      0
-enable_interface       0     0      0       0     14     0      0      0       0       0      0
-enable_nat             0     0      0       0      0    14      0      0       0       0      0
-get_interface_ip       0     0      0       0      0     0     14      0       0       0      0
-limit_bandwidth        0     0      0       0      0     0      0     14       0       0      0
-remove_limit           0     0      0       0      0     0      0      0      14       0      0
-unblock_traffic        0     0      0       0      0     0      0      0       0      14      0
-update_ip_address      0     0      0       0      0     0      0      0       0       0     14
-```
-
-### C. Command Accuracy & Policy Compliance
-* **Perintah Langsung Tereksekusi Valid:** **149 / 154 (96.75%)**
-* **Proteksi Keamanan Terjaga (Anti-Lockout Triggers):** **5 / 154 (3.25%)** *(Otomatis menolak mematikan ether2 atau memblokir gateway)*
-* **Kesalahan Konfigurasi / Format Gagal:** **0 / 154 (0.00%)**
-* **Total Policy & Command Accuracy Rate:** **100.00% (Zero Policy Violation)**
+### B. Command Accuracy & Policy Compliance (RouterOS Payload)
+* **Perintah Langsung Tereksekusi Valid:** **261 / 266 (98.12%)**
+* **Proteksi Keamanan Terjaga (Anti-Lockout Triggers):** **4 / 266 (1.50%)** *(Otomatis menolak mematikan ether2/bridge, memblokir IP gateway 192.168.88.1, atau forwarding port manajemen 8728/8291)*
+* **Kesalahan Konfigurasi / Format Gagal:** **1 / 266 (0.38%)**
+* **Total Policy & Command Accuracy Rate:** **99.62% (100% Policy Invariant Compliant)**
 
 ---
 
@@ -157,9 +150,9 @@ update_ip_address      0     0      0       0      0     0      0      0       0
 │
 ├── HYBRID/                                   # Implementasi Arsitektur Hibrida (Ours)
 │   ├── config.py                             # Konfigurasi router lab
-│   ├── dataset_intent.json                   # Dataset korpus 770 sampel seimbang (11 kelas x 70)
+│   ├── dataset_intent.json                   # Dataset korpus 1.330 sampel seimbang (19 kelas x 70)
 │   ├── train_nlp.py                          # Training model hybrid (Scikit-Learn TF-IDF)
-│   ├── intent_model.joblib                   # Model terlatih terkompresi (128.04 KB)
+│   ├── intent_model.joblib                   # Model terlatih terkompresi (465.89 KB)
 │   ├── nlp_parser.py                         # Hybrid NLP (ML + Regex + Cues + Guard-Rails)
 │   ├── policy_engine.py                      # Policy validator & generator (Anti-Lockout)
 │   ├── mikrotik_adapter.py                   # Driver API port 8728, Idempotency & CRUD IP
@@ -250,3 +243,12 @@ python komparasi_hasil.py
 
 ## 7. Lisensi & Hak Cipta
 Penelitian dan pengembangan prototipe sistem ini dikembangkan untuk keperluan akademik dan riset Intent-Based Networking (IBN) pada Program Studi Teknik Informatika, Fakultas Teknik, Universitas Siliwangi (UNSIL).
+
+| **Port Forwarding Add** | `"forward port 8080 ke server 192.168.88.50 port 80"` | Ext: `8080`, Int: `80`, IP: `192.168.88.50` | Menambah dst-nat rule ke LAN |
+| **Port Forwarding Del** | `"hapus aturan port forwarding 8080"` / `"hapus semua"` | Ext: `8080` / `all`, Intent: `remove_port_forward` | Menghapus dst-nat rule |
+| **SHOW Bandwidth** | `"siapa saja yang lagi dibatasi bandwidth"` | Intent: `get_bandwidth_status` | Membaca daftar `/queue/simple` |
+| **SHOW Firewall** | `"tampilkan seluruh aturan firewall filter drop"` | Intent: `get_firewall_status` | Membaca daftar `/ip/firewall/filter` |
+| **SHOW NAT** | `"apakah internet nat sedang aktif"` / `"cek aturan nat"` | Intent: `get_nat_status` | Membaca daftar `/ip/firewall/nat` |
+| **Ping ICMP (IP/Domain)** | `"ping 8.8.8.8 count 4"` / `"coba ping google.com"` | Target: `8.8.8.8` / `google.com`, Count: `4` | Menjalankan uji ICMP RTT router |
+| **Flush DNS Cache** | `"flush dns cache"` / `"bersihkan cache dns router"` | Intent: `flush_dns_cache` | Mengosongkan resolver cache DNS |
+| **System Resource Health** | `"cek beban cpu dan ram router"` / `"system resource print"` | Intent: `get_system_health` | Telemetri CPU, RAM, Uptime hAP lite |
